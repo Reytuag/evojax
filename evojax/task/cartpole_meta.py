@@ -142,7 +142,7 @@ class CartPoleSwingUp(VectorizedTask):
             next_key, key = random.split(state.key)
             cur_state = jax.lax.cond(
                 done, lambda x: get_init_state_fn(key), lambda x: x, cur_state)
-            return State(state=cur_state, obs=jnp.concatenate([get_obs(state=cur_state),action,reward]),
+            return State(state=cur_state, obs=jnp.concatenate([get_obs(state=cur_state),action,jnp.ones((1,))*reward]),
                          steps=steps, key=next_key), reward, done
         self._step_fn = jax.jit(jax.vmap(step_fn))
 
