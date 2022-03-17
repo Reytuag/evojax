@@ -24,16 +24,21 @@ def setup_problem(config, logger):
 
 
 def setup_cartpole(config, hard=False):
-    from evojax.task.cartpole import CartPoleSwingUp
-
-    train_task = CartPoleSwingUp(test=False, harder=hard)
-    test_task = CartPoleSwingUp(test=True, harder=hard)
+    
     if(config["policy"]=='MetaRNN'):
+        from evojax.task.cartpole_meta import CartPoleSwingUp
+    
+        train_task = CartPoleSwingUp(test=False, harder=hard)
+        test_task = CartPoleSwingUp(test=True, harder=hard)
         policy=MetaRnnPolicy(
     	input_dim=train_task.obs_shape[0],
     	hidden_dim=config["hidden_size"],
     	output_dim=train_task.act_shape[0],)
     else:
+        from evojax.task.cartpole import CartPoleSwingUp
+    
+        train_task = CartPoleSwingUp(test=False, harder=hard)
+        test_task = CartPoleSwingUp(test=True, harder=hard)
         policy = MLPPolicy(
             input_dim=train_task.obs_shape[0],
             hidden_dims=[config["hidden_size"]] * 2,
