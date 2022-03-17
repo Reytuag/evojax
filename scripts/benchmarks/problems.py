@@ -27,11 +27,19 @@ def setup_cartpole(config, hard=False):
 
     train_task = CartPoleSwingUp(test=False, harder=hard)
     test_task = CartPoleSwingUp(test=True, harder=hard)
-    policy = MLPPolicy(
-        input_dim=train_task.obs_shape[0],
-        hidden_dims=[config["hidden_size"]] * 2,
-        output_dim=train_task.act_shape[0],
-    )
+    if(config["policy"]=='MLP'):
+        policy = MLPPolicy(
+            input_dim=train_task.obs_shape[0],
+            hidden_dims=[config["hidden_size"]] * 2,
+            output_dim=train_task.act_shape[0],
+        )
+    elif(config["policy"]=='MetaRNN'):
+        policy=MetaRnnPolicy(
+    	input_dim=train_task.obs_shape[0],
+    	hidden_dim=config["hidden_size"],
+    	output_dim=train_task.act_shape[0],)
+    else:
+        raise ValueError('Unsupported policy: {}'.format(config["policy"]))
     return train_task, test_task, policy
 
 
