@@ -4,6 +4,7 @@ import yaml
 import json
 import numpy as np
 from evojax.policy import MLPPolicy
+from evojax.policy import MetaRnnPolicy
 from evojax.policy.convnet import ConvNetPolicy
 
 
