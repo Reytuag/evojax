@@ -27,7 +27,7 @@ from evojax.task.base import VectorizedTask
 
 
 SPAWN_PROB=0.1
-SIZE_GRID=20
+SIZE_GRID=10
 AGENT_VIEW=2
 CONVOL_KER=jnp.array([[0,SPAWN_PROB,0],
                      [SPAWN_PROB,0,SPAWN_PROB],
@@ -59,22 +59,22 @@ def get_init_state_fn(key: jnp.ndarray) -> jnp.ndarray:
     grid=jnp.zeros((SIZE_GRID,SIZE_GRID,2))
     posx,posy=(2,2)
     grid=grid.at[posx,posy,0].set(1)
-    posfx,posfy=(10,10)
+    posfx,posfy=(5,5)
     grid=grid.at[posfx-1:posfx+1,posfy,1].set(1)
     return (grid)
 
 
 
 
-class CartPoleSwingUp(VectorizedTask):
-    """Cart-pole swing up task."""
+class Gridworld(VectorizedTask):
+    """gridworld task."""
 
     def __init__(self,
                  max_steps: int = 1000,
                  test: bool = False):
 
         self.max_steps = max_steps
-        self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*2+2, ])
+        self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*2+6, ])
         self.act_shape = tuple([5, ])
         self.test = test
 
@@ -83,7 +83,7 @@ class CartPoleSwingUp(VectorizedTask):
             posx,posy=(2,2)
             agent=AgentState(posx=posx,posy=posy)
             grid=get_init_state_fn(key)
-            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jnp.zeros((1,)),jnp.zeros((1,))]),agent=agent,
+            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jnp.zeros((5,)),jnp.zeros((1,))]),agent=agent,
                          steps=jnp.zeros((), dtype=int), key=next_key)
         self._reset_fn = jax.jit(jax.vmap(reset_fn))
 
@@ -105,8 +105,8 @@ class CartPoleSwingUp(VectorizedTask):
 
             action=action.astype(jnp.int32)
 
-            posx=state.agent.posx-action[2]+action[4]
-            posy=state.agent.posy-action[1]+action[3]
+            posx=state.agent.posx-action[1]+action[3]
+            posy=state.agent.posy-action[2]+action[4]
             posx=jnp.clip(posx,0,SIZE_GRID-1)
             posy=jnp.clip(posy,0,SIZE_GRID-1)
             grid=grid.at[state.agent.posx,state.agent.posy,0].set(0)
@@ -191,16 +191,57 @@ class CartPoleSwingUp(VectorizedTask):
         return self._step_fn(state, action)
 
 ####################
-
-# reset_keys = random.split(jax.random.PRNGKey(0),1000)
-# env=CartPoleSwingUp()
+# import time
+# import matplotlib.pyplot as plt
+# reset_keys = random.split(jax.random.PRNGKey(0),2)
+# env=Gridworld()
 # state=env._reset_fn(reset_keys)
+# print(state.agent.posx,state.agent.posy)
+# print(state.state[0,:,:,0].shape)
 # t=time.time()
-# for _ in range(1000):
-#     state,reward,done=env._step_fn(state,jnp.ones((1000,5)))
+# list=[]
+# list2=[]
+# print(state.state.shape)
+# a=np.array(state.state[0,:,:,0].to_py())
+# b=np.array(state.state[1,:,:,0].to_py())
+# list.append(a)
+# list2.append(b)
+# for _ in range(4):
+#
+#
+#     key, subkey = random.split(state.key[0])
+#     key, subkey = random.split(key)
+#     #maybe later make the agent to output the one hot categorical
+#     action=jax.random.categorical(subkey,jnp.zeros(5))
+#     print(action)
+#     action=jax.nn.one_hot(action,5)
+#     print(action)
+#     action=action.astype(jnp.int32)
+#
+#     posx=state.agent.posx[0]-action[1]+action[3]
+#     posy=state.agent.posy[0]-action[2]+action[4]
+#     print(posx,posy)
+#
+#
+#     state,reward,done=env._step_fn(state,jnp.zeros((2,5)))
+#     # print(state.key[0])
+#
+#     a=np.array(state.state[0,:,:,0].to_py())
+#     b=np.array(state.state[1,:,:,0].to_py())
+#     list.append(a)
+#     list2.append(b)
+#
+#
 # print(time.time()-t)
-
-
+#
+# a=np.ones((SIZE_GRID*2+1,SIZE_GRID*5+5))
+#
+# for i in range(len(list)):
+#     a[:SIZE_GRID,i*(SIZE_GRID+1):i*(SIZE_GRID+1)+SIZE_GRID]=list[i]+np.random.rand(SIZE_GRID,SIZE_GRID)*0.5
+#     a[SIZE_GRID+1:SIZE_GRID*2+1,i*(SIZE_GRID+1):i*(SIZE_GRID+1)+SIZE_GRID]=list2[i]+np.random.rand(SIZE_GRID,SIZE_GRID)*0.5
+#
+# plt.imshow(a)
+# plt.show()
 
 
 
