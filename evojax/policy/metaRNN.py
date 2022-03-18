@@ -40,6 +40,7 @@ class MetaRNN(nn.Module):
         elif self.out_fn == 'softmax':
             out = nn.softmax(out, axis=-1)
         else:
+          if(self.out_fn!='categorical'):
             raise ValueError(
                 'Unsupported output activation: {}'.format(self.out_fn))
         return h,c,out
