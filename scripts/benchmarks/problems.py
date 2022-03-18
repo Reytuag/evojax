@@ -21,7 +21,23 @@ def setup_problem(config, logger):
         return setup_waterworld(config)
     elif config["problem_type"] == "waterworld_ma":
         return setup_waterworld_ma(config)
+    elif config["problem_type"] == "gridworld_meta":
+    	return setup_gridworld(config)
 
+
+
+def setup_gridworld(config):
+
+    from evojax.task.gridworld_meta import Gridworld
+
+    train_task = Gridworld(test=False)
+    test_task = Gridworld(test=True)
+    policy=MetaRnnPolicy(
+    input_dim=train_task.obs_shape[0],
+    hidden_dim=config["hidden_size"],
+    output_dim=train_task.act_shape[0],)
+  
+    return train_task, test_task, policy
 
 def setup_cartpole(config, hard=False):
     
