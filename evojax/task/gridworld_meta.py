@@ -26,12 +26,14 @@ from evojax.task.base import TaskState
 from evojax.task.base import VectorizedTask
 
 
-SPAWN_PROB=0.1
+SPAWN_PROB=0.05
 SIZE_GRID=10
 AGENT_VIEW=2
 CONVOL_KER=jnp.array([[0,SPAWN_PROB,0],
                      [SPAWN_PROB,0,SPAWN_PROB],
                       [ 0,SPAWN_PROB,0 ]])
+
+print(CONVOL_KER)
 
 
 @dataclass
@@ -60,7 +62,7 @@ def get_init_state_fn(key: jnp.ndarray) -> jnp.ndarray:
     posx,posy=(2,2)
     grid=grid.at[posx,posy,0].set(1)
     posfx,posfy=(5,5)
-    grid=grid.at[posfx-1:posfx+1,posfy,1].set(1)
+    grid=grid.at[posfx-1:posfx+2,posfy,1].set(1)
     return (grid)
 
 
@@ -96,7 +98,7 @@ class Gridworld(VectorizedTask):
             key, subkey = random.split(state.key)
             spawn=jax.random.bernoulli(subkey,prob)
             next_fruit=jnp.clip(fruit+spawn,0,1)
-            grid.at[:,:,1].set(next_fruit)
+            grid=grid.at[:,:,1].set(next_fruit)
             #move agent
             key, subkey = random.split(key)
             #maybe later make the agent to output the one hot categorical
@@ -114,7 +116,7 @@ class Gridworld(VectorizedTask):
 
             reward=jnp.sum(grid[:,:,0]*grid[:,:,1])
 
-            grid.at[:,:,1].set(jnp.clip(grid[:,:,1]-grid[:,:,0],0,1))
+            grid=grid.at[:,:,1].set(jnp.clip(grid[:,:,1]-grid[:,:,0],0,1))
 
 
 
@@ -193,7 +195,7 @@ class Gridworld(VectorizedTask):
 ####################
 # import time
 # import matplotlib.pyplot as plt
-# reset_keys = random.split(jax.random.PRNGKey(0),2)
+# reset_keys = random.split(jax.random.PRNGKey(2),2)
 # env=Gridworld()
 # state=env._reset_fn(reset_keys)
 # print(state.agent.posx,state.agent.posy)
@@ -202,8 +204,8 @@ class Gridworld(VectorizedTask):
 # list=[]
 # list2=[]
 # print(state.state.shape)
-# a=np.array(state.state[0,:,:,0].to_py())
-# b=np.array(state.state[1,:,:,0].to_py())
+# a=np.array(state.state[0,:,:,1].to_py())
+# b=np.array(state.state[1,:,:,1].to_py())
 # list.append(a)
 # list2.append(b)
 # for _ in range(4):
@@ -224,10 +226,12 @@ class Gridworld(VectorizedTask):
 #
 #
 #     state,reward,done=env._step_fn(state,jnp.zeros((2,5)))
+#     print("a")
+#     print(reward)
 #     # print(state.key[0])
 #
-#     a=np.array(state.state[0,:,:,0].to_py())
-#     b=np.array(state.state[1,:,:,0].to_py())
+#     a=np.array(state.state[0,:,:,1].to_py())
+#     b=np.array(state.state[1,:,:,1].to_py())
 #     list.append(a)
 #     list2.append(b)
 #
@@ -242,8 +246,16 @@ class Gridworld(VectorizedTask):
 #
 # plt.imshow(a)
 # plt.show()
-
-
-
-
-
+#
+#
+# grid=jnp.zeros((10,10,2))
+#
+#
+# a=jax.scipy.signal.convolve(state.state[0,:,:,1],CONVOL_KER,mode="same")
+# print(a)
+# spawn=jax.random.bernoulli(jax.random.PRNGKey(0),a)
+# print(spawn)
+#
+# b=state.state[0,:,:,1]+spawn
+# b=next_fruit=jnp.clip(b,0,1)
+# print(b)
