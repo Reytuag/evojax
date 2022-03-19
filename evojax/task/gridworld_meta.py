@@ -26,7 +26,7 @@ from evojax.task.base import TaskState
 from evojax.task.base import VectorizedTask
 
 
-SPAWN_PROB=0.05
+SPAWN_PROB=0.005
 SIZE_GRID=10
 AGENT_VIEW=2
 CONVOL_KER=jnp.array([[0,SPAWN_PROB,0],
@@ -259,3 +259,25 @@ class Gridworld(VectorizedTask):
 # b=state.state[0,:,:,1]+spawn
 # b=next_fruit=jnp.clip(b,0,1)
 # print(b)
+
+
+
+# import time
+# import matplotlib.pyplot as plt
+# reset_keys = jax.random.split(jax.random.PRNGKey(4),2)
+# env=Gridworld()
+# state=env._reset_fn(reset_keys)
+# print(state.agent.posx,state.agent.posy)
+# print(state.state[0,:,:,0].shape)
+# t=time.time()
+# list=[]
+# list2=[]
+# print(state.state.shape)
+# a=np.array(state.state[0,:,:,1].to_py())
+# b=np.array(state.state[1,:,:,1].to_py())
+#
+# for _ in range(1000):
+#
+#     state,reward,done=env._step_fn(state,jnp.zeros((2,5)))
+#
+# print(state.state[0,:,:,1].sum())
