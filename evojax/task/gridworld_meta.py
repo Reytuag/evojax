@@ -84,7 +84,7 @@ class Gridworld(VectorizedTask):
         self.act_shape = tuple([5, ])
         self.test = test
         self.spawn_prob=spawn_prob
-        self.CONVOL_KER==CONVOL_KER*spawn_prob
+        self.CONVOL_KER=CONVOL_KER*spawn_prob
 
         def reset_fn(key):
             next_key, key = random.split(key)
