@@ -32,6 +32,10 @@ AGENT_VIEW=2
 CONVOL_KER=jnp.array([[0,SPAWN_PROB,0],
                      [SPAWN_PROB,0,SPAWN_PROB],
                       [ 0,SPAWN_PROB,0 ]])
+                      
+limits=jnp.zeros((SIZE_GRID,SIZE_GRID))
+limits=limits.at[2,SIZE_GRID-2].set(1)
+
 
 print(CONVOL_KER)
 
@@ -95,6 +99,7 @@ class Gridworld(VectorizedTask):
             grid=state.state
             fruit=state.state[:,:,1]
             prob=jax.scipy.signal.convolve(fruit,CONVOL_KER,mode="same")
+            prob=prob*limits
             key, subkey = random.split(state.key)
             spawn=jax.random.bernoulli(subkey,prob)
             next_fruit=jnp.clip(fruit+spawn,0,1)
