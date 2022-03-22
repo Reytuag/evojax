@@ -34,7 +34,7 @@ CONVOL_KER=jnp.array([[0,SPAWN_PROB,0],
                       [ 0,SPAWN_PROB,0 ]])
                       
 limits=jnp.zeros((SIZE_GRID,SIZE_GRID))
-limits=limits.at[2,SIZE_GRID-2].set(1)
+limits=limits.at[2:SIZE_GRID-2,2:SIZE_GRID-2].set(1)
 
 
 print(CONVOL_KER)
