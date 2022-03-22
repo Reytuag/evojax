@@ -30,8 +30,8 @@ def setup_gridworld(config):
 
     from evojax.task.gridworld_meta import Gridworld
 
-    train_task = Gridworld(test=False)
-    test_task = Gridworld(test=True)
+    train_task = Gridworld(test=False,spawn_prob=config["spawn_prob"])
+    test_task = Gridworld(test=True,spawn_prob=config["spawn_prob"])
     policy=MetaRnnPolicy(
     input_dim=train_task.obs_shape[0],
     hidden_dim=config["hidden_size"],

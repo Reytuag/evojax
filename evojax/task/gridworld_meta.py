@@ -26,12 +26,12 @@ from evojax.task.base import TaskState
 from evojax.task.base import VectorizedTask
 
 
-SPAWN_PROB=0.005
+
 SIZE_GRID=10
 AGENT_VIEW=2
-CONVOL_KER=jnp.array([[0,SPAWN_PROB,0],
-                     [SPAWN_PROB,0,SPAWN_PROB],
-                      [ 0,SPAWN_PROB,0 ]])
+CONVOL_KER=jnp.array([[0,1,0],
+                     [1,0,1],
+                      [ 0,1,0 ]])
                       
 limits=jnp.zeros((SIZE_GRID,SIZE_GRID))
 limits=limits.at[2:SIZE_GRID-2,2:SIZE_GRID-2].set(1)
@@ -77,12 +77,14 @@ class Gridworld(VectorizedTask):
 
     def __init__(self,
                  max_steps: int = 1000,
-                 test: bool = False):
+                 test: bool = False,spawn_prob=0.005):
 
         self.max_steps = max_steps
         self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*2+6, ])
         self.act_shape = tuple([5, ])
         self.test = test
+        self.spawn_prob=spawn_prob
+        self.CONVOL_KER==CONVOL_KER*spawn_prob
 
         def reset_fn(key):
             next_key, key = random.split(key)
@@ -98,7 +100,7 @@ class Gridworld(VectorizedTask):
             #spawn food
             grid=state.state
             fruit=state.state[:,:,1]
-            prob=jax.scipy.signal.convolve(fruit,CONVOL_KER,mode="same")
+            prob=jax.scipy.signal.convolve(fruit,self.CONVOL_KER,mode="same")
             prob=prob*limits
             key, subkey = random.split(state.key)
             spawn=jax.random.bernoulli(subkey,prob)
