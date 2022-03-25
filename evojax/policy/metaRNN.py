@@ -28,13 +28,12 @@ class MetaRNN(nn.Module):
 
 
     def __call__(self,h,c, inputs: jnp.ndarray):
-        batch_size = inputs.shape[0]
         carry=(h,c)
         # todo replace with scan
         for _ in range(self._num_micro_ticks):
             carry,out= self._lstm(carry,inputs)
         out = self._output_proj(out)
-
+	h,c=carry
         if self.out_fn == 'tanh':
             out = nn.tanh(out)
         elif self.out_fn == 'softmax':
@@ -71,7 +70,7 @@ class MetaRnnPolicy(PolicyNetwork):
                         self._logger = logger
             model=MetaRNN(output_dim,out_fn=output_act_fn)
             self.params = model.init(jax.random.PRNGKey(0),jnp.zeros((1,hidden_dim)),jnp.zeros((1,hidden_dim)), jnp.zeros([1, input_dim]))
-
+            
             self.num_params, format_params_fn = get_params_format_fn(self.params)
             self._logger.info('MetaRNNPolicy.num_params = {}'.format(self.num_params))
             self.hidden_dim=hidden_dim
