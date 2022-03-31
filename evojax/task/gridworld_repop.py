@@ -27,8 +27,8 @@ from evojax.task.base import VectorizedTask
 
 
 
-SIZE_GRID=7
-AGENT_VIEW=2
+SIZE_GRID=6
+AGENT_VIEW=1
 CONVOL_KER=jnp.array([[0,1,0],
                      [1,0,1],
                       [ 0,1,0 ]])
