@@ -64,7 +64,7 @@ class OpenES(NEAlgorithm):
             sys.exit(1)
 
         try:
-            from evosax import Open_ES, FitnessShaper
+            from evosax import OpenES, FitnessShaper
         except ModuleNotFoundError:
             print("You need to install evosax for its OpenES implementation:")
             print("  pip install evosax")
@@ -80,7 +80,7 @@ class OpenES(NEAlgorithm):
         self.rand_key = jax.random.PRNGKey(seed=seed)
 
         # Instantiate evosax's Open ES strategy
-        self.es = Open_ES(
+        self.es = OpenES(
             popsize=pop_size,
             num_dims=param_size,
             opt_name=optimizer,
@@ -128,3 +128,4 @@ class OpenES(NEAlgorithm):
     def best_params(self, params: Union[np.ndarray, jnp.ndarray]) -> None:
         self.es_state["best_member"] = jnp.array(params, copy=True)
         self.es_state["mean"] = jnp.array(params, copy=True)
+

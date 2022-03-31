@@ -18,7 +18,7 @@ from evojax.util import get_params_format_fn
 
 
         
-def dense(sub_rnn, reduce_fn,inc_fwd_msg,inc_bwd_msg, fwd_msg, bwd_msg, reward,lstm_h,lstm_c):
+def vsml_dense(sub_rnn, reduce_fn,inc_fwd_msg,inc_bwd_msg, fwd_msg, bwd_msg, reward,lstm_h,lstm_c):
     """Dense VSML layer.
     Args:
         sub_rnn: Rnn taking as inputs fwd_msg, bwd_msg, state
@@ -49,7 +49,7 @@ class LayerState:
     
 @dataclass
 class symlaPolicyState:
-    layerStates:List[LayerState]
+    layerStates:LayerState
     keys:jnp.array
 
 
@@ -95,64 +95,55 @@ class VSMLRNN(nn.Module):
                  separate_backward_rnn: bool, layerwise_rnns: bool):
         super().__init__()
         self._layer_specs = layer_specs
-        self._num_micro_ticks = num_micro_ticks
+        self._num_micro_tics = num_micro_ticks
         
-        if layerwise_rnns:
-            self._sub_rnns = [SubRNN() for _ in layer_specs]
-        else:
-            self._sub_rnns = [SubRNN()] * len(layer_specs)
+        self._sub_rnn= SubRNN() 
+        
             
         self._backward_pass = backward_pass
         self._feed_label = feed_label
         if backward_pass:
             if separate_backward_rnn:
-                if layerwise_rnns:
-                    self._back_sub_rnns = [SubRNN() for _ in layer_specs]
-                else:
-                    self._back_sub_rnns = [SubRNN()] * len(layer_specs)
+                    self._back_sub_rnn = SubRNN() 
             else:
-                self._back_sub_rnns = self._sub_rnns
+                self._back_sub_rnn = self._sub_rnns
         self._output_idx = output_idx
 
 
 
-    def _tick(self, sub_rnns, layer_states: List[LayerState], reward: jnp.ndarray,
-              inp: jnp.ndarray, reverse=False) -> Tuple[List[LayerState], jnp.ndarray]:
+    def _tick(self, sub_rnns, layer_state: LayerState, reward: jnp.ndarray,
+              inp: jnp.ndarray) -> Tuple(LayerState, jnp.ndarray]:
 
-        sub_rnn = sub_rnns[0]
+        srnn= sub_rnns
         fwd_msg = jnp.pad(inp[..., None], (*[(0, 0)] * inp.ndim, (0, sub_rnn.msg_size - 1)))
         bwd_msg = jnp.pad(error, ((0, 0), (0, sub_rnn.msg_size - 2)))
         layer_states[0].incoming_fwd_msg = fwd_msg
         layer_states[-1].incoming_bwd_msg = bwd_msg
         output = None
 
-        iterable = list(enumerate(zip(layer_states, self._layer_specs, sub_rnns)))
-        if reverse:
-            iterable = list(reversed(iterable))
-        for i, (ls, lspec, srnn) in iterable:
-            lstm_state, fwd_msg, bwd_msg = (ls.lstm_state,
-                                            ls.incoming_fwd_msg,
-                                            ls.incoming_bwd_msg)
-            for _ in range(self._num_micro_ticks):
-                args = (srnn, jnp.mean, fwd_msg, bwd_msg, lstm_state)
-                if isinstance(lspec, DenseSpec):
-                    out = vsml_layers.dense(*args)
-                elif isinstance(lspec, ConvSpec):
-                    out = vsml_layers.conv2d(*args, stride=lspec.stride)
-                else:
-                    raise ValueError(f'Invalid layer {lspec}')
-                new_fwd_msg, new_bwd_msg, lstm_state = out
-            ls.lstm_state = lstm_state
-            if i > 0:
-                shape = layer_states[i - 1].incoming_bwd_msg.shape
-                layer_states[i - 1].incoming_bwd_msg = new_bwd_msg.reshape(shape)
-            if i < len(layer_states) - 1:
-                shape = layer_states[i + 1].incoming_fwd_msg.shape
-                layer_states[i + 1].incoming_fwd_msg = new_fwd_msg.reshape(shape)
-            else:
-                output = new_fwd_msg[:, self._output_idx]
-                if self._tanh_bound:
-                    output = jnp.tanh(output / self._tanh_bound) * self._tanh_bound
+        
+        ls=layer_state
+        lstm_state, inc_fwd_msg, inc_bwd_msg,fwd_msg_bwd_msg = (ls.lstm_state,
+                                        ls.incoming_fwd_msg,
+                                        ls.incoming_bwd_msg)
+        for _ in range(self._num_micro_ticks):
+            args = (srnn, jnp.mean, fwd_msg, bwd_msg, lstm_state)
+:
+            out = vsml_dense(*args)
+            
+            new_fwd_msg, new_bwd_msg, lstm_state = out
+        ls.lstm_state = lstm_state
+        
+        if i > 0:
+            shape = layer_states[i - 1].incoming_bwd_msg.shape
+            layer_states[i - 1].incoming_bwd_msg = new_bwd_msg.reshape(shape)
+        if i < len(layer_states) - 1:
+            shape = layer_states[i + 1].incoming_fwd_msg.shape
+            layer_states[i + 1].incoming_fwd_msg = new_fwd_msg.reshape(shape)
+        else:
+            output = new_fwd_msg[:, self._output_idx]
+            if self._tanh_bound:
+                output = jnp.tanh(output / self._tanh_bound) * self._tanh_bound
 
         return layer_states, output
 

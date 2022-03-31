@@ -32,10 +32,19 @@ def setup_gridworld(config):
 
     train_task = Gridworld(test=False,spawn_prob=config["spawn_prob"])
     test_task = Gridworld(test=True,spawn_prob=config["spawn_prob"])
-    policy=MetaRnnPolicy(
-    input_dim=train_task.obs_shape[0],
-    hidden_dim=config["hidden_size"],
-    output_dim=train_task.act_shape[0],)
+    if(config["policy"]=='MetaRNN'):
+      policy=MetaRnnPolicy(
+      input_dim=train_task.obs_shape[0],
+      hidden_dim=config["hidden_size"],
+      output_dim=train_task.act_shape[0],
+      output_act_fn="categorical")
+    else:
+      policy = MLPPolicy(
+            input_dim=train_task.obs_shape[0],
+            hidden_dims=[config["hidden_size"]] * 2,
+            output_dim=train_task.act_shape[0],
+            output_act_fn="categorical"
+        )
   
     return train_task, test_task, policy
 
@@ -168,3 +177,4 @@ def load_yaml(config_fname: str) -> dict:
     with open(config_fname) as file:
         yaml_config = yaml.load(file, Loader=loader)
     return yaml_config
+
