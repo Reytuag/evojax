@@ -25,7 +25,7 @@ def setup_problem(config, logger):
     elif config["problem_type"] == "gridworld_meta":
     	return setup_gridworld(config)
     elif config["problem_type"] == "gridworld_meta_b":
-    	return setup_gridworld(config)
+    	return setup_gridworld_b(config)
 
 
 def setup_gridworld_b(config):
@@ -43,7 +43,6 @@ def setup_gridworld_b(config):
       num_micro_ticks=config['num_micro_ticks'],
       output_act_fn="categorical")
       
-    
     else:
       policy = MLPPolicy(
             input_dim=train_task.obs_shape[0],

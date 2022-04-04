@@ -152,7 +152,7 @@ class SymLA_Policy(PolicyNetwork):
                         self._logger = create_logger(name='SymLAPolicy')
             else:
                         self._logger = logger
-            model=VSMLRNN(num_micro_ticks,msg_dim,output_idx=0,out_fn=output_act_fn)
+            model=VSMLRNN(num_micro_ticks,msg_dim,output_idx=0,output_fn=output_act_fn,layer_norm=False)
             
     
             
