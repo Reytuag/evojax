@@ -149,15 +149,15 @@ class SymLA_Policy(PolicyNetwork):
 
 
             if logger is None:
-                        self._logger = create_logger(name='MetaRNNolicy')
+                        self._logger = create_logger(name='SymLAPolicy')
             else:
                         self._logger = logger
-            model=MetaRNN(num_micro_ticks,msg_dim,output_idx=0,out_fn=output_act_fn)
+            model=VSMLRNN(num_micro_ticks,msg_dim,output_idx=0,out_fn=output_act_fn)
             
     
             
             self.num_params, format_params_fn = get_params_format_fn(self.params)
-            self._logger.info('MetaRNNPolicy.num_params = {}'.format(self.num_params))
+            self._logger.info('SymLAPolicy.num_params = {}'.format(self.num_params))
             self.hidden_dim=hidden_dim
             self.msg_dim=msg_dim
             self.input_dim=input_dim

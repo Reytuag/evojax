@@ -2,7 +2,7 @@ es_name: "OpenES"
 problem_type: "gridworld_meta_b"
 normalize: false
 es_config:
-  pop_size: 200
+  pop_size: 20
   init_stdev: 0.07
   decay_stdev: 0.999
   limit_stdev: 0.01

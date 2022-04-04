@@ -157,7 +157,7 @@ class Gridworld(VectorizedTask):
             grid = jax.lax.cond(
                 done, lambda x: get_init_state_fn(sub_key), lambda x: x, grid)
 
-            return State(state=grid, obs=get_obs(state=grid,posx=posx,posy=posy),last_action=action,reward=jnp.ones((1,))*reward],agent=AgentState(posx=posx,posy=posy),
+            return State(state=grid, obs=get_obs(state=grid,posx=posx,posy=posy),last_action=action,reward=jnp.ones((1,))*reward,agent=AgentState(posx=posx,posy=posy),
                          steps=steps,side=state.side,repop0=repop0,repop1=repop1, key=key), reward, done
         self._step_fn = jax.jit(jax.vmap(step_fn))
 
