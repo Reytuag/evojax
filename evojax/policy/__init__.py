@@ -17,7 +17,8 @@ from .mlp import MLPPolicy
 from .mlp_pi import PermutationInvariantPolicy
 from .convnet import ConvNetPolicy
 from .metaRNN import MetaRnnPolicy
+from .symla1layer import SymLA_Policy
 
 
 __all__ = ['PolicyNetwork', 'MLPPolicy', 'PermutationInvariantPolicy',
-           'ConvNetPolicy', 'Seq2seqPolicy','MetaRnnPolicy']
+           'ConvNetPolicy', 'Seq2seqPolicy','MetaRnnPolicy','SymLA_Policy']

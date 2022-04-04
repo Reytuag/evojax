@@ -18,21 +18,7 @@ from evojax.util import get_params_format_fn
 
 
         
-def vsml_dense(sub_rnn, reduce_fn,inc_fwd_msg,inc_bwd_msg, fwd_msg, bwd_msg, reward,lstm_h,lstm_c):
-    """Dense VSML layer.
-    Args:
-        sub_rnn: Rnn taking as inputs fwd_msg, bwd_msg, state
-        reduce_fn: A function used to merge messages
-        fwd_msg: Shape [in_channel, msg_size]
-        bwd_msg: Shape [out_channel, msg_size]
-        state: Shape [ic, oc, slow_size]
-    """
-    batched = jax.vmap(sub_rnn.apply, in_axes=(None, None, 0,None,None,0,None,0,0))
-    batched = jax.vmap(batched,       in_axes=(None, None, None,0,0,None,None,0,0))
-    h,c,fwd_msg, bwd_msg = batched(fwd_msg, bwd_msg, state)
-    fwd_msg = reduce_fn(fwd_msg, axis=0)
-    bwd_msg = reduce_fn(bwd_msg, axis=1)
-    return h,c,fwd_msg, bwd_msg
+
 
 #@dataclass
 #class LSTMState:
@@ -44,20 +30,20 @@ class LayerState:
     #lstm_state: LSTMState
     lstm_h: jnp.array
     lstm_c: jnp.array
-    incoming_fwd_msg: jnp.ndarray
-    incoming_bwd_msg: jnp.ndarray
+    fwd_msg: jnp.ndarray
+    bwd_msg: jnp.ndarray
     
 @dataclass
-class symlaPolicyState:
-    layerStates:LayerState
+class SymlaPolicyState:
+    layerState:LayerState
     keys:jnp.array
 
 
 class SubRNN(nn.Module):
 
-    def __init__(self, slow_size: int, msg_size: int, init_rand_proportion: float, layer_norm: bool):
+    def __init__(self,  msg_size: int, layer_norm: bool):
         super().__init__()
-        self._lstm = nn.recurrent.LSTMCell(slow_size)
+        self._lstm = nn.recurrent.LSTMCell()
         self._fwd_messenger = nn.Dense(msg_size)
         self._bwd_messenger = nn.Dense(msg_size)
         #replace layer norm
@@ -70,9 +56,8 @@ class SubRNN(nn.Module):
         
         
 
-    def __call__(self, inc_fwd_msg: jnp.ndarray, inc_bwd_msg: jnp.ndarray,
-    		 fwd_msg:jnp.ndarray,bwd_msg:jnp.ndarray,reward:jnp.ndarray,
-                 h:jnp.array,c:jnp.array,) -> Tuple[jnp.ndarray, jnp.ndarray, hk.LSTMState]:
+    def __call__(self, inc_fwd_msg: jnp.ndarray, inc_bwd_msg: jnp.ndarray,fwd_msg:jnp.ndarray,bwd_msg:jnp.ndarray,reward:jnp.ndarray,
+                 h:jnp.array,c:jnp.array,) :
         
         carry=(h,c)
         inputs = jnp.concatenate([inc_fwd_msg,inc_bwd_msg,fwd_msg, bwd_msg,reward], axis=-1)
@@ -90,125 +75,138 @@ class SubRNN(nn.Module):
 
 class VSMLRNN(nn.Module):
 
-    def __init__(self, layer_specs: List[LayerSpec], num_micro_ticks: int,
-                 output_idx: int, backward_pass: bool,
-                 separate_backward_rnn: bool, layerwise_rnns: bool):
+    def __init__(self,  num_micro_ticks: int,msg_size:int,
+                 output_idx: int,layer_norm: bool, reduce="mean",output_fn="categorical"):
         super().__init__()
-        self._layer_specs = layer_specs
         self._num_micro_tics = num_micro_ticks
         
-        self._sub_rnn= SubRNN() 
-        
-            
-        self._backward_pass = backward_pass
+        self._sub_rnn= SubRNN(msg_size,layer_norm) 
+
         self._feed_label = feed_label
-        if backward_pass:
-            if separate_backward_rnn:
-                    self._back_sub_rnn = SubRNN() 
-            else:
-                self._back_sub_rnn = self._sub_rnns
         self._output_idx = output_idx
+        
+        dense_vsml= jax.vmap(self._sub_rnn.apply, in_axes=(None, None, 0,None,None,0,None,0,0))
+        self.dense_vsml = jax.vmap(dense_vsml,       in_axes=(None, None, None,0,0,None,None,0,0))
+        if(reduce=="mean"):
+            self.reduce_fn=jnp.mean
+        self.out_fn=output_fn
+            
 
 
 
-    def _tick(self, sub_rnns, layer_state: LayerState, reward: jnp.ndarray,
-              inp: jnp.ndarray) -> Tuple(LayerState, jnp.ndarray]:
 
-        srnn= sub_rnns
-        fwd_msg = jnp.pad(inp[..., None], (*[(0, 0)] * inp.ndim, (0, sub_rnn.msg_size - 1)))
-        bwd_msg = jnp.pad(error, ((0, 0), (0, sub_rnn.msg_size - 2)))
-        layer_states[0].incoming_fwd_msg = fwd_msg
-        layer_states[-1].incoming_bwd_msg = bwd_msg
-        output = None
+    def __call__(self, layer_state: LayerState, reward: jnp.ndarray,last_action: jnp.ndarray,
+              inp: jnp.ndarray):
 
+
+
+        incoming_fwd_msg = jnp.pad(inp,((0,0),(0,sub_rnns.msg_size - 1)))
+        incoming_bwd_msg = jnp.pad(last_action, ((0, 0), (0, sub_rnns.msg_size - 1)))
+        
         
         ls=layer_state
-        lstm_state, inc_fwd_msg, inc_bwd_msg,fwd_msg_bwd_msg = (ls.lstm_state,
-                                        ls.incoming_fwd_msg,
-                                        ls.incoming_bwd_msg)
+        lstm_h,lstm_c, fwd_msg, bwd_msg,fwd_msg_bwd_msg = (ls.lstm_h,ls.lstm_c,
+                                        ls.fwd_msg,
+                                        ls.bwd_msg)
         for _ in range(self._num_micro_ticks):
-            args = (srnn, jnp.mean, fwd_msg, bwd_msg, lstm_state)
-:
-            out = vsml_dense(*args)
-            
-            new_fwd_msg, new_bwd_msg, lstm_state = out
-        ls.lstm_state = lstm_state
+            args = (self.sub_rnns, jnp.mean, incoming_fwd_msg,incoming_bwd_msg, fwd_msg, bwd_msg, reward,lstm_h,lstm_c)
+            lstm_h,lstm_c,fwd_msg, bwd_msg = self.dense_vsml(*args)
+            fwd_msg = self.reduce_fn(fwd_msg, axis=0)
+            bwd_msg = self.reduce_fn(bwd_msg, axis=1)
+        layer_state=LayerState(lstm_h=lstm_h,lstm_c=lstm_c,fwd_msg=fwd_msg,bwd_msg=bwd_msg)
+        out = fwd_msg[:, self._output_idx]
         
-        if i > 0:
-            shape = layer_states[i - 1].incoming_bwd_msg.shape
-            layer_states[i - 1].incoming_bwd_msg = new_bwd_msg.reshape(shape)
-        if i < len(layer_states) - 1:
-            shape = layer_states[i + 1].incoming_fwd_msg.shape
-            layer_states[i + 1].incoming_fwd_msg = new_fwd_msg.reshape(shape)
+        if self.out_fn == 'tanh':
+            out = nn.tanh(out)
+        elif self.out_fn == 'softmax':
+            out = nn.softmax(out, axis=-1)
         else:
-            output = new_fwd_msg[:, self._output_idx]
-            if self._tanh_bound:
-                output = jnp.tanh(output / self._tanh_bound) * self._tanh_bound
+          if(self.out_fn!='categorical'):
+            raise ValueError(
+                'Unsupported output activation: {}'.format(self.out_fn))
+        
 
-        return layer_states, output
-
-
-
-
-
+        return layer_state, out
+    
+    
 
 
 
 
 
-    def _create_layer_state(self, spec: LayerSpec) -> LayerState:
-        sub_rnn = self._sub_rnns[0]
-        lstm_state = sub_rnn.initial_state(spec)
-        msg_size = sub_rnn.msg_size
-        new_msg = functools.partial(jnp.zeros, dtype=lstm_state.hidden.dtype)
-        if isinstance(spec, DenseSpec):
-            incoming_fwd_msg = new_msg((spec.in_size, msg_size))
-            incoming_bwd_msg = new_msg((spec.out_size, msg_size))
-        elif isinstance(spec, ConvSpec):
-            incoming_fwd_msg = new_msg((spec.in_height, spec.in_width,
-                                        spec.in_channels, msg_size))
-            incoming_bwd_msg = new_msg((spec.out_height, spec.out_width,
-                                        spec.out_channels, msg_size))
 
-        return LayerState(lstm_state=lstm_state,
-                          incoming_fwd_msg=incoming_fwd_msg,
-                          incoming_bwd_msg=incoming_bwd_msg)
 
-    def _merge_layer_states(self, layer_states: List[LayerState]) -> List[LayerState]:
-        def merge(state):
-            s1, s2 = jnp.split(state, [state.shape[-1] // 2], axis=-1)
-            merged_s1 = jnp.mean(s1, axis=0, keepdims=True)
-            new_s1 = jnp.broadcast_to(merged_s1, s1.shape)
-            return jnp.concatenate((new_s1, s2), axis=-1)
-        for ls in layer_states:
-            ls.lstm_state = jax.tree_map(merge, ls.lstm_state)
-        return layer_states
 
-    def __call__(self, inputs: jnp.ndarray, labels: jnp.ndarray) -> jnp.ndarray:
-        layer_states = [self._create_layer_state(spec) for spec in self._layer_specs]
-        layer_states = jax.tree_map(lambda ls: jnp.stack([ls] * inputs.shape[1]),
-                                    layer_states)
-        init_error = layer_states[-1].incoming_bwd_msg[..., :2]
 
-        def scan_tick(carry, x):
-            layer_states, error = carry
-            inp, label = x
-            if inp.shape[0] > 1:
-                layer_states = self._merge_layer_states(layer_states)
+class SymLA_Policy(PolicyNetwork):
+    def __init__(self,input_dim: int,
+                    msg_dim: int,
+                    hidden_dim:int,
+                    output_dim: int,
+                    num_micro_ticks: int,
+                    output_act_fn: str ="tanh",
+                    logger: logging.Logger=None):
 
-            new_layer_states, out = self._batched_tick(layer_states, error, inp)
-            new_error = self._loss_func_grad(out, label)
-            label_input = label if self._feed_label else jnp.zeros_like(label)
-            new_error = jnp.stack([new_error, label_input], axis=-1)
 
-            if self._backward_pass:
-                new_layer_states, _ = self._reverse_batched_tick(new_layer_states, new_error, inp)
-                new_error = jnp.zeros_like(new_error)
+            if logger is None:
+                        self._logger = create_logger(name='MetaRNNolicy')
+            else:
+                        self._logger = logger
+            model=MetaRNN(num_micro_ticks,msg_dim,output_idx=0,out_fn=output_act_fn)
+            
+    
+            
+            self.num_params, format_params_fn = get_params_format_fn(self.params)
+            self._logger.info('MetaRNNPolicy.num_params = {}'.format(self.num_params))
+            self.hidden_dim=hidden_dim
+            self.msg_dim=msg_dim
+            self.input_dim=input_dim
+            self.output_dim=output_dim
+            self._format_params_fn = (jax.vmap(format_params_fn))
+            self._forward_fn = (jax.vmap(model.apply))
+            
+            
+            #init
+            h= jnp.zeros((states.obs.shape[0],self.hidden_dim))
+            c= jnp.zeros((states.obs.shape[0],self.hidden_dim))
+            fwd_msg=jnp.zeros((states.obs.shape[0],self.output_dim,self.msg_dim))
+            bwd_msg=jnp.zeros((states.obs.shape[0],self.input_dim,self.msg_dim))
+            layer_state=LayerState(lstm_h=h,lstm_c=c,fwd_msg=fwd_msg,bwd_msg=bwd_msg)
+            
+            reward=jnp.zeros((1,1))
+            
+            last_action=jnp.zeros((1,output_dim))
+            inp=jnp.zeros((1,input_dim))
+    
+            self.params = model.init(jax.random.PRNGKey(0),layer_state=layer_state,reward=reward,last_action=last_action,inp=inp)
+            
+            
+    def reset(self, states: TaskState) -> PolicyState:
+        """Reset the policy.
+        Args:
+            TaskState - Initial observations.
+        Returns:
+            PolicyState. Policy internal states.
+        """
+        keys = jax.random.split(jax.random.PRNGKey(0), states.obs.shape[0])
+        h= jnp.zeros((states.obs.shape[0],self.hidden_dim))
+        c= jnp.zeros((states.obs.shape[0],self.hidden_dim))
+        fwd_msg=jnp.zeros((states.obs.shape[0],self.output_dim,self.msg_dim))
+        bwd_msg=jnp.zeros((states.obs.shape[0],self.input_dim,self.msg_dim))
+        layer_state=LayerState(lstm_h=h,lstm_c=c,fwd_msg=fwd_msg,bwd_msg=bwd_msg)
+        return SymlaPolicyState(layerState=layer_state,keys=keys)
 
-            return (new_layer_states, new_error), out
-        _, outputs = hk.scan(scan_tick, (layer_states, init_error),
-                             (inputs, labels))
-        return outputs
+
+
+    def get_actions(self,t_states: TaskState,params: jnp.ndarray,p_states: PolicyState):
+        params = self._format_params_fn(params)
+        layer_state,out=self._forward_fn(params,p_states.layerState, t_states.reward,t_states.last_action,t_states.obs)
+        return out, SymlaPolicyState(keys=p_states.keys,layerState=layer_state)
+
+
+
+
+
 
 
 

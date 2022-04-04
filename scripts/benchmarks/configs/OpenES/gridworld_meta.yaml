@@ -1,5 +1,5 @@
 es_name: "OpenES"
-problem_type: "gridworld_meta"
+problem_type: "gridworld_meta_b"
 normalize: false
 es_config:
   pop_size: 200
@@ -12,8 +12,10 @@ es_config:
     lrate_decay: 0.999
     lrate_limit: 0.001
     momentum: 0.0
-policy: "MLP"
-hidden_size: 64
+policy: "SymLA"
+msg_size: 8
+hidden_size: 16
+num_micro_ticks: 1
 num_tests: 100
 n_repeats: 16
 max_iter: 500

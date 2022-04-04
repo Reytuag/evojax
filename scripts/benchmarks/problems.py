@@ -6,6 +6,7 @@ import numpy as np
 from evojax.policy import MLPPolicy
 from evojax.policy import MetaRnnPolicy
 from evojax.policy.convnet import ConvNetPolicy
+from evojax.policy import SymLA_Policy
 
 
 def setup_problem(config, logger):
@@ -23,8 +24,36 @@ def setup_problem(config, logger):
         return setup_waterworld_ma(config)
     elif config["problem_type"] == "gridworld_meta":
     	return setup_gridworld(config)
+    elif config["problem_type"] == "gridworld_meta_b":
+    	return setup_gridworld(config)
 
 
+def setup_gridworld_b(config):
+
+    from evojax.task.gridworld_repop_bis import Gridworld
+
+    train_task = Gridworld(test=False,spawn_prob=config["spawn_prob"])
+    test_task = Gridworld(test=True,spawn_prob=config["spawn_prob"])
+    if(config["policy"]=='SymLA'):
+      policy=SymLA_Policy(
+      input_dim=train_task.obs_shape[0],
+      msg_dim=config["msg_size"],
+      hidden_dim=config["hidden_size"],
+      output_dim=train_task.act_shape[0],
+      num_micro_ticks=config['num_micro_ticks'],
+      output_act_fn="categorical")
+      
+    
+    else:
+      policy = MLPPolicy(
+            input_dim=train_task.obs_shape[0],
+            hidden_dims=[config["hidden_size"]] * 2,
+            
+            output_dim=train_task.act_shape[0],
+            output_act_fn="categorical"
+        )
+  
+    return train_task, test_task, policy
 
 def setup_gridworld(config):
 
@@ -38,6 +67,8 @@ def setup_gridworld(config):
       hidden_dim=config["hidden_size"],
       output_dim=train_task.act_shape[0],
       output_act_fn="categorical")
+      
+    
     else:
       policy = MLPPolicy(
             input_dim=train_task.obs_shape[0],
@@ -59,6 +90,7 @@ def setup_cartpole(config, hard=False):
     	input_dim=train_task.obs_shape[0],
     	hidden_dim=config["hidden_size"],
     	output_dim=train_task.act_shape[0],)
+    	
     else:
         from evojax.task.cartpole import CartPoleSwingUp
     
