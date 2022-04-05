@@ -39,34 +39,7 @@ class SymlaPolicyState:
     keys:jnp.array
 
 
-class SubRNN(nn.Module):
-    msg_size:int
-    layer_norm:bool
-    
-    def setup(self):
-      self._lstm = nn.recurrent.LSTMCell()
-      self._fwd_messenger = nn.Dense(self.msg_size)
-      self._bwd_messenger = nn.Dense(self.msg_size)
-      if self.layer_norm:
-            self._fwd_layer_norm = nn.LayerNorm((-1,), use_scale=True, use_bias=True)
-            self._bwd_layer_norm = nn.LayerNorm((-1,), use_scale=True, use_bias=True)
 
-        
-
-    def __call__(self, inc_fwd_msg: jnp.ndarray, inc_bwd_msg: jnp.ndarray,fwd_msg:jnp.ndarray,bwd_msg:jnp.ndarray,reward:jnp.ndarray,
-                 h:jnp.array,c:jnp.array,) :
-        
-        carry=(h,c)
-        inputs = jnp.concatenate([inc_fwd_msg,inc_bwd_msg,fwd_msg, bwd_msg,reward], axis=-1)
-        carry,outputs= self._lstm(carry,inputs)
-        h,c=carry
-        fwd_msg = self._fwd_messenger(outputs)
-        bwd_msg = self._bwd_messenger(outputs)
-        # replace layer norm
-        if self._use_layer_norm:
-            fwd_msg = self._fwd_layer_norm(fwd_msg)
-            bwd_msg = self._bwd_layer_norm(bwd_msg)
-        return h,c,fwd_msg, bwd_msg
 
 
 
@@ -77,10 +50,31 @@ class VSMLRNN(nn.Module):
     layer_norm:bool
     reduce:str
     output_fn:str
+
+    def forward_rnn(self,inc_fwd_msg: jnp.ndarray, inc_bwd_msg: jnp.ndarray,fwd_msg:jnp.ndarray,bwd_msg:jnp.ndarray,reward:jnp.ndarray,
+                 h:jnp.array,c:jnp.array):
+        carry=(h,c)
+        inputs = jnp.concatenate([inc_fwd_msg,inc_bwd_msg,fwd_msg, bwd_msg,reward], axis=-1)
+        carry,outputs= self._lstm(carry,inputs)
+        h,c=carry
+        fwd_msg = self._fwd_messenger(outputs)
+        bwd_msg = self._bwd_messenger(outputs)
+        # replace layer norm
+        if self.layer_norm:
+            fwd_msg = self._fwd_layer_norm(fwd_msg)
+            bwd_msg = self._bwd_layer_norm(bwd_msg)
+        return h,c,fwd_msg, bwd_msg
+
     def setup(self):
-      self.sub_rnn= SubRNN(self.msg_size,self.layer_norm) 
-      dense_vsml= jax.vmap(self.sub_rnn.apply, in_axes=( 1,None,None,1,None,1,1))
-      self.dense_vsml = jax.vmap(dense_vsml, in_axes=(None,1,1,None,None,1,1))
+      self._lstm = nn.recurrent.LSTMCell()
+      self._fwd_messenger = nn.Dense(self.msg_size)
+      self._bwd_messenger = nn.Dense(self.msg_size)
+      if self.layer_norm:
+            self._fwd_layer_norm = nn.LayerNorm((-1,), use_scale=True, use_bias=True)
+            self._bwd_layer_norm = nn.LayerNorm((-1,), use_scale=True, use_bias=True)
+
+      dense_vsml= jax.vmap(self.forward_rnn, in_axes=( 0,None,None,0,None,0,0))
+      self.dense_vsml = jax.vmap(dense_vsml, in_axes=(None,0,0,None,None,0,0))
       if(self.reduce=="mean"):
           self.reduce_fn=jnp.mean
 
@@ -92,9 +86,10 @@ class VSMLRNN(nn.Module):
               inp: jnp.ndarray):
 
 
-
-        incoming_fwd_msg = jnp.pad(inp,((0,0),(0,0),(0,self.sub_rnn.msg_size - 1)))
-        incoming_bwd_msg = jnp.pad(last_action, ((0,0),(0, 0), (0, self.sub_rnn.msg_size - 1)))
+        inp=jnp.expand_dims(inp,axis=-1)
+        last_action=jnp.expand_dims(last_action,axis=-1)
+        incoming_fwd_msg = jnp.pad(inp,((0,0),(0,self.msg_size - 1)))
+        incoming_bwd_msg = jnp.pad(last_action, ((0, 0), (0, self.msg_size - 1)))
         ls=layer_state
         lstm_h,lstm_c, fwd_msg, bwd_msg = (ls.lstm_h,ls.lstm_c,
                                         ls.fwd_msg,
@@ -102,10 +97,10 @@ class VSMLRNN(nn.Module):
         for _ in range(self.num_micro_ticks):
             
             lstm_h,lstm_c,fwd_msg, bwd_msg = self.dense_vsml( incoming_fwd_msg,incoming_bwd_msg, fwd_msg, bwd_msg, reward,lstm_h,lstm_c)
-            fwd_msg = self.reduce_fn(fwd_msg, axis=0)
-            bwd_msg = self.reduce_fn(bwd_msg, axis=1)
+            fwd_msg = self.reduce_fn(fwd_msg, axis=1)
+            bwd_msg = self.reduce_fn(bwd_msg, axis=0)
         layer_state=LayerState(lstm_h=lstm_h,lstm_c=lstm_c,fwd_msg=fwd_msg,bwd_msg=bwd_msg)
-        out = fwd_msg[:, self._output_idx]
+        out = fwd_msg[:, self.output_idx]
         
         if self.output_fn == 'tanh':
             out = nn.tanh(out)
@@ -156,16 +151,16 @@ class SymLA_Policy(PolicyNetwork):
             
             
             #init
-            h= jnp.zeros((1,self.output_dim,self.input_dim,self.hidden_dim))
-            c= jnp.zeros((1,self.output_dim,self.input_dim,self.hidden_dim))
-            fwd_msg=jnp.zeros((1,self.output_dim,self.msg_dim))
-            bwd_msg=jnp.zeros((1,self.input_dim,self.msg_dim))
+            h= jnp.zeros((self.output_dim,self.input_dim,self.hidden_dim))
+            c= jnp.zeros((self.output_dim,self.input_dim,self.hidden_dim))
+            fwd_msg=jnp.zeros((self.output_dim,self.msg_dim))
+            bwd_msg=jnp.zeros((self.input_dim,self.msg_dim))
             layer_state=LayerState(lstm_h=h,lstm_c=c,fwd_msg=fwd_msg,bwd_msg=bwd_msg)
             
-            reward=jnp.zeros((1,1))
+            reward=jnp.zeros((1))
             
-            last_action=jnp.zeros((1,output_dim,1))
-            inp=jnp.zeros((1,input_dim,1))
+            last_action=jnp.zeros((output_dim))
+            inp=jnp.zeros((input_dim))
     
             self.params = model.init(jax.random.PRNGKey(0),layer_state=layer_state,reward=reward,last_action=last_action,inp=inp)
             self.num_params, format_params_fn = get_params_format_fn(self.params)
@@ -180,8 +175,8 @@ class SymLA_Policy(PolicyNetwork):
             PolicyState. Policy internal states.
         """
         keys = jax.random.split(jax.random.PRNGKey(0), states.obs.shape[0])
-        h= jnp.zeros((states.obs.shape[0],self.hidden_dim))
-        c= jnp.zeros((states.obs.shape[0],self.hidden_dim))
+        h= jnp.zeros((states.obs.shape[0],self.output_dim,self.input_dim,self.hidden_dim))
+        c= jnp.zeros((states.obs.shape[0],self.output_dim,self.input_dim,self.hidden_dim))
         fwd_msg=jnp.zeros((states.obs.shape[0],self.output_dim,self.msg_dim))
         bwd_msg=jnp.zeros((states.obs.shape[0],self.input_dim,self.msg_dim))
         layer_state=LayerState(lstm_h=h,lstm_c=c,fwd_msg=fwd_msg,bwd_msg=bwd_msg)

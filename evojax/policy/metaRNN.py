@@ -69,7 +69,7 @@ class MetaRnnPolicy(PolicyNetwork):
             else:
                         self._logger = logger
             model=MetaRNN(output_dim,out_fn=output_act_fn)
-            self.params = model.init(jax.random.PRNGKey(0),jnp.zeros((1,hidden_dim)),jnp.zeros((1,hidden_dim)), jnp.zeros([1, input_dim]))
+            self.params = model.init(jax.random.PRNGKey(0),jnp.zeros((hidden_dim)),jnp.zeros((hidden_dim)), jnp.zeros([ input_dim]))
 
             self.num_params, format_params_fn = get_params_format_fn(self.params)
             self._logger.info('MetaRNNPolicy.num_params = {}'.format(self.num_params))

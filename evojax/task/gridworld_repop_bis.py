@@ -88,7 +88,7 @@ class Gridworld(VectorizedTask):
                  test: bool = False,spawn_prob=0.005):
 
         self.max_steps = max_steps
-        self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*3+6, ])
+        self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*3, ])
         self.act_shape = tuple([5, ])
         self.test = test
 
@@ -108,7 +108,7 @@ class Gridworld(VectorizedTask):
             repop1=jnp.zeros((), dtype=int)
 
 
-            return State(state=grid, obs=grid,last_action=jnp.zeros((5,)),reward=jnp.zeros((1,)),agent=agent,
+            return State(state=grid, obs=get_obs(state=grid,posx=posx,posy=posy),last_action=jnp.zeros((5,)),reward=jnp.zeros((1,)),agent=agent,
                          steps=jnp.zeros((), dtype=int),side=side,repop0=repop0,repop1=repop1, key=next_key)
         self._reset_fn = jax.jit(jax.vmap(reset_fn))
 
@@ -133,10 +133,10 @@ class Gridworld(VectorizedTask):
             action=jax.random.categorical(subkey,action)
             action=jax.nn.one_hot(action,5)
 
-            action=action.astype(jnp.int32)
+            action_int=action.astype(jnp.int32)
 
-            posx=state.agent.posx-action[1]+action[3]
-            posy=state.agent.posy-action[2]+action[4]
+            posx=state.agent.posx-action_int[1]+action_int[3]
+            posy=state.agent.posy-action_int[2]+action_int[4]
             posx=jnp.clip(posx,0,SIZE_GRID-1)
             posy=jnp.clip(posy,0,SIZE_GRID-1)
             grid=grid.at[state.agent.posx,state.agent.posy,0].set(0)
