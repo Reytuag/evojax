@@ -40,20 +40,17 @@ class SymlaPolicyState:
 
 
 class SubRNN(nn.Module):
-
-    def __init__(self,  msg_size: int, layer_norm: bool):
-        super().__init__()
-        self._lstm = nn.recurrent.LSTMCell()
-        self._fwd_messenger = nn.Dense(msg_size)
-        self._bwd_messenger = nn.Dense(msg_size)
-        #replace layer norm
-        if layer_norm:
+    msg_size:int
+    layer_norm:bool
+    
+    def setup(self):
+      self._lstm = nn.recurrent.LSTMCell()
+      self._fwd_messenger = nn.Dense(self.msg_size)
+      self._bwd_messenger = nn.Dense(self.msg_size)
+      if self.layer_norm:
             self._fwd_layer_norm = nn.LayerNorm((-1,), use_scale=True, use_bias=True)
             self._bwd_layer_norm = nn.LayerNorm((-1,), use_scale=True, use_bias=True)
-        self.msg_size = msg_size
-        self._init_rand_proportion = init_rand_proportion
-        self._use_layer_norm = layer_norm
-        
+
         
 
     def __call__(self, inc_fwd_msg: jnp.ndarray, inc_bwd_msg: jnp.ndarray,fwd_msg:jnp.ndarray,bwd_msg:jnp.ndarray,reward:jnp.ndarray,
@@ -73,24 +70,20 @@ class SubRNN(nn.Module):
 
 
 
-class VSMLRNN(nn.Module):
+class VSMLRNN(nn.Module):            
+    num_micro_ticks:int
+    msg_size:int
+    output_idx:int
+    layer_norm:bool
+    reduce:str
+    output_fn:str
+    def setup(self):
+      self.sub_rnn= SubRNN(self.msg_size,self.layer_norm) 
+      dense_vsml= jax.vmap(self.sub_rnn.apply, in_axes=( 1,None,None,1,None,1,1))
+      self.dense_vsml = jax.vmap(dense_vsml, in_axes=(None,1,1,None,None,1,1))
+      if(self.reduce=="mean"):
+          self.reduce_fn=jnp.mean
 
-    def __init__(self,  num_micro_ticks: int,msg_size:int,
-                 output_idx: int,layer_norm: bool, reduce="mean",output_fn="categorical"):
-        super().__init__()
-        self._num_micro_tics = num_micro_ticks
-        
-        self._sub_rnn= SubRNN(msg_size,layer_norm) 
-
-        self._feed_label = feed_label
-        self._output_idx = output_idx
-        
-        dense_vsml= jax.vmap(self._sub_rnn.apply, in_axes=(None, None, 0,None,None,0,None,0,0))
-        self.dense_vsml = jax.vmap(dense_vsml,       in_axes=(None, None, None,0,0,None,None,0,0))
-        if(reduce=="mean"):
-            self.reduce_fn=jnp.mean
-        self.out_fn=output_fn
-            
 
 
 
@@ -100,28 +93,26 @@ class VSMLRNN(nn.Module):
 
 
 
-        incoming_fwd_msg = jnp.pad(inp,((0,0),(0,sub_rnns.msg_size - 1)))
-        incoming_bwd_msg = jnp.pad(last_action, ((0, 0), (0, sub_rnns.msg_size - 1)))
-        
-        
+        incoming_fwd_msg = jnp.pad(inp,((0,0),(0,0),(0,self.sub_rnn.msg_size - 1)))
+        incoming_bwd_msg = jnp.pad(last_action, ((0,0),(0, 0), (0, self.sub_rnn.msg_size - 1)))
         ls=layer_state
-        lstm_h,lstm_c, fwd_msg, bwd_msg,fwd_msg_bwd_msg = (ls.lstm_h,ls.lstm_c,
+        lstm_h,lstm_c, fwd_msg, bwd_msg = (ls.lstm_h,ls.lstm_c,
                                         ls.fwd_msg,
                                         ls.bwd_msg)
-        for _ in range(self._num_micro_ticks):
-            args = (self.sub_rnns, jnp.mean, incoming_fwd_msg,incoming_bwd_msg, fwd_msg, bwd_msg, reward,lstm_h,lstm_c)
-            lstm_h,lstm_c,fwd_msg, bwd_msg = self.dense_vsml(*args)
+        for _ in range(self.num_micro_ticks):
+            
+            lstm_h,lstm_c,fwd_msg, bwd_msg = self.dense_vsml( incoming_fwd_msg,incoming_bwd_msg, fwd_msg, bwd_msg, reward,lstm_h,lstm_c)
             fwd_msg = self.reduce_fn(fwd_msg, axis=0)
             bwd_msg = self.reduce_fn(bwd_msg, axis=1)
         layer_state=LayerState(lstm_h=lstm_h,lstm_c=lstm_c,fwd_msg=fwd_msg,bwd_msg=bwd_msg)
         out = fwd_msg[:, self._output_idx]
         
-        if self.out_fn == 'tanh':
+        if self.output_fn == 'tanh':
             out = nn.tanh(out)
-        elif self.out_fn == 'softmax':
+        elif self.output_fn == 'softmax':
             out = nn.softmax(out, axis=-1)
         else:
-          if(self.out_fn!='categorical'):
+          if(self.output_fn!='categorical'):
             raise ValueError(
                 'Unsupported output activation: {}'.format(self.out_fn))
         
@@ -152,35 +143,35 @@ class SymLA_Policy(PolicyNetwork):
                         self._logger = create_logger(name='SymLAPolicy')
             else:
                         self._logger = logger
-            model=VSMLRNN(num_micro_ticks,msg_dim,output_idx=0,output_fn=output_act_fn,layer_norm=False)
+            model=VSMLRNN(num_micro_ticks=num_micro_ticks,msg_size=msg_dim,output_idx=0,output_fn=output_act_fn,reduce="mean",layer_norm=False)
             
     
-            
-            self.num_params, format_params_fn = get_params_format_fn(self.params)
-            self._logger.info('SymLAPolicy.num_params = {}'.format(self.num_params))
+
             self.hidden_dim=hidden_dim
             self.msg_dim=msg_dim
             self.input_dim=input_dim
             self.output_dim=output_dim
-            self._format_params_fn = (jax.vmap(format_params_fn))
+            
             self._forward_fn = (jax.vmap(model.apply))
             
             
             #init
-            h= jnp.zeros((states.obs.shape[0],self.hidden_dim))
-            c= jnp.zeros((states.obs.shape[0],self.hidden_dim))
-            fwd_msg=jnp.zeros((states.obs.shape[0],self.output_dim,self.msg_dim))
-            bwd_msg=jnp.zeros((states.obs.shape[0],self.input_dim,self.msg_dim))
+            h= jnp.zeros((1,self.output_dim,self.input_dim,self.hidden_dim))
+            c= jnp.zeros((1,self.output_dim,self.input_dim,self.hidden_dim))
+            fwd_msg=jnp.zeros((1,self.output_dim,self.msg_dim))
+            bwd_msg=jnp.zeros((1,self.input_dim,self.msg_dim))
             layer_state=LayerState(lstm_h=h,lstm_c=c,fwd_msg=fwd_msg,bwd_msg=bwd_msg)
             
             reward=jnp.zeros((1,1))
             
-            last_action=jnp.zeros((1,output_dim))
-            inp=jnp.zeros((1,input_dim))
+            last_action=jnp.zeros((1,output_dim,1))
+            inp=jnp.zeros((1,input_dim,1))
     
             self.params = model.init(jax.random.PRNGKey(0),layer_state=layer_state,reward=reward,last_action=last_action,inp=inp)
-            
-            
+            self.num_params, format_params_fn = get_params_format_fn(self.params)
+            self._logger.info('SymLAPolicy.num_params = {}'.format(self.num_params))
+            self._format_params_fn = (jax.vmap(format_params_fn))
+
     def reset(self, states: TaskState) -> PolicyState:
         """Reset the policy.
         Args:
