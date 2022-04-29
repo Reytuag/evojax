@@ -81,7 +81,7 @@ def get_init_state_fn(key: jnp.ndarray) -> jnp.ndarray:
 def test_recipes(items,recipes):
 
 	recipe_done=jnp.where(items[recipes[0]]*items[recipes[1]]>0,jnp.array([recipes[0],recipes[1],4]),jnp.zeros(3,jnp.int32))
-	recipe_done=jnp.where(items[recipes[2]]*items[3]>0,jnp.array([recipes[2],4,5]),recipe_done)
+	recipe_done=jnp.where(items[recipes[2]]*items[4]>0,jnp.array([recipes[2],4,5]),recipe_done)
 	return recipe_done
 	
 
