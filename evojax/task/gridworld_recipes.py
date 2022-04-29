@@ -80,8 +80,8 @@ def get_init_state_fn(key: jnp.ndarray) -> jnp.ndarray:
     return (grid)
 def test_recipes(items,recipes):
 
-	recipe_done=jnp.where(items[recipes[0]]*items[recipes[1]]>0,jnp.array([recipes[0],recipes[1],3]),jnp.zeros(3,jnp.int32))
-	recipe_done=jnp.where(items[recipes[2]]*items[3]>0,jnp.array([recipes[2],3,4]),recipe_done)
+	recipe_done=jnp.where(items[recipes[0]]*items[recipes[1]]>0,jnp.array([recipes[0],recipes[1],4]),jnp.zeros(3,jnp.int32))
+	recipe_done=jnp.where(items[recipes[2]]*items[3]>0,jnp.array([recipes[2],4,5]),recipe_done)
 	return recipe_done
 	
 
@@ -92,7 +92,7 @@ def drop(grid,posx,posy,inventory,recipes):
        reward=0
        #test recipe
        recipe_done=jax.lax.cond(grid[posx,posy,1:].sum()==2,test_recipes,lambda x,y:jnp.zeros(3,jnp.int32),*(grid[posx,posy,1:],recipes))
-       grid=jnp.where(recipe_done[2]>0,grid.at[posx,posy,recipe_done[0]+1].set(0).at[posx,posy,recipe_done[1]+1].set(0).at[posx,posy,recipe_done[2]+1].set(1),grid)
+       grid=jnp.where(recipe_done[2]>0,grid.at[posx,posy,recipe_done[0]].set(0).at[posx,posy,recipe_done[1]].set(0).at[posx,posy,recipe_done[2]].set(1),grid)
        reward=recipe_done[2]
        return grid,inventory,reward
        
@@ -124,7 +124,7 @@ class Gridworld(VectorizedTask):
             rand=jax.random.uniform(key)
             grid=jnp.where(rand>0.5,grid.at[1,4,1].set(1),grid.at[4,1,1].set(1))
             next_key, key = random.split(next_key)
-            permutation_recipe=jax.random.permutation(key,3)
+            permutation_recipe=jax.random.permutation(key,3)+1
             return State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jnp.zeros(1)]),last_action=jnp.zeros((7,)),reward=jnp.zeros((1,)),agent=agent,
                          steps=jnp.zeros((), dtype=int),permutation_recipe=permutation_recipe, key=next_key)
         self._reset_fn = jax.jit(jax.vmap(reset_fn))
