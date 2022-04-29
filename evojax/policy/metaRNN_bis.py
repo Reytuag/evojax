@@ -55,7 +55,7 @@ class metaRNNPolicyState(PolicyState):
 
 
 
-class MetaRnnPolicy(PolicyNetwork):
+class MetaRnnPolicy_b(PolicyNetwork):
 
     def __init__(self,input_dim: int,
                     hidden_dim: int,

@@ -5,6 +5,7 @@ import json
 import numpy as np
 from evojax.policy import MLPPolicy
 from evojax.policy import MetaRnnPolicy
+from evojax.policy import MetaRnnPolicy_b
 from evojax.policy.convnet import ConvNetPolicy
 from evojax.policy import SymLA_Policy
 
@@ -30,19 +31,24 @@ def setup_problem(config, logger):
 
 def setup_gridworld_b(config):
 
-    from evojax.task.gridworld_repop_bis import Gridworld
+    from evojax.task.gridworld_recipes import Gridworld
 
     train_task = Gridworld(test=False,spawn_prob=config["spawn_prob"])
     test_task = Gridworld(test=True,spawn_prob=config["spawn_prob"])
     if(config["policy"]=='SymLA'):
       policy=SymLA_Policy(
-      input_dim=train_task.obs_shape[0],
+      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
       msg_dim=config["msg_size"],
       hidden_dim=config["hidden_size"],
       output_dim=train_task.act_shape[0],
       num_micro_ticks=config['num_micro_ticks'],
       output_act_fn="categorical")
-      
+    elif(config["policy"]=='MetaRNN'):
+      policy=MetaRnnPolicy_b(
+      input_dim=train_task.obs_shape[0],
+      hidden_dim=config["hidden_size"],
+      output_dim=train_task.act_shape[0],
+      output_act_fn="categorical")
     else:
       policy = MLPPolicy(
             input_dim=train_task.obs_shape[0],
@@ -56,7 +62,7 @@ def setup_gridworld_b(config):
 
 def setup_gridworld(config):
 
-    from evojax.task.gridworld_meta import Gridworld
+    from evojax.task.gridworld_repop import Gridworld
 
     train_task = Gridworld(test=False,spawn_prob=config["spawn_prob"])
     test_task = Gridworld(test=True,spawn_prob=config["spawn_prob"])
@@ -208,4 +214,5 @@ def load_yaml(config_fname: str) -> dict:
     with open(config_fname) as file:
         yaml_config = yaml.load(file, Loader=loader)
     return yaml_config
+
 
