@@ -97,8 +97,8 @@ def drop(grid,posx,posy,inventory,recipes):
        return grid,inventory,reward
        
 def collect(grid,posx,posy,inventory):
-	inventory=jnp.where(grid[posx,posy,1:].sum()>0,jnp.argmax(grid[posx,posy,1:]),0)
-	grid=grid.at[posx,posy,inventory].add(-1)
+	inventory=jnp.where(grid[posx,posy,1:].sum()>0,jnp.argmax(grid[posx,posy,1:]+1),0)
+	grid=jnp.where(inventory>0,grid.at[posx,posy,inventory].add(-1),grid)
 	return grid,inventory
 
 
