@@ -91,7 +91,7 @@ def drop(grid,posx,posy,inventory,recipes):
        inventory=0
        reward=0
        #test recipe
-       recipe_done=jax.lax.cond(grid[posx,posy,1:].sum()==2,test_recipes,lambda x,y:jnp.zeros(3,jnp.int32),*(grid[posx,posy,1:],recipes))
+       recipe_done=jax.lax.cond(grid[posx,posy,1:].sum()==2,test_recipes,lambda x,y:jnp.zeros(3,jnp.int32),*(grid[posx,posy,:],recipes))
        grid=jnp.where(recipe_done[2]>0,grid.at[posx,posy,recipe_done[0]].set(0).at[posx,posy,recipe_done[1]].set(0).at[posx,posy,recipe_done[2]].set(1),grid)
        reward=recipe_done[2]
        return grid,inventory,reward
