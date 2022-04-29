@@ -69,12 +69,12 @@ def get_init_state_fn(key: jnp.ndarray) -> jnp.ndarray:
     grid=grid.at[posx,posy,0].set(1)
     pos_obj=jax.random.randint(key,(6,2),0,SIZE_GRID)
 	
-    grid=grid.at[pos_obj[0,0],pos_obj[0,1],1].set(1)
-    grid=grid.at[pos_obj[1,0],pos_obj[1,1],2].set(1)
-    grid=grid.at[pos_obj[2,0],pos_obj[2,1],3].set(1)
-    grid=grid.at[pos_obj[3,0],pos_obj[3,1],1].set(1)
-    grid=grid.at[pos_obj[4,0],pos_obj[4,1],2].set(1)
-    grid=grid.at[pos_obj[5,0],pos_obj[5,1],3].set(1)
+    grid=grid.at[pos_obj[0,0],pos_obj[0,1],1].add(1)
+    grid=grid.at[pos_obj[1,0],pos_obj[1,1],2].add(1)
+    grid=grid.at[pos_obj[2,0],pos_obj[2,1],3].add(1)
+    grid=grid.at[pos_obj[3,0],pos_obj[3,1],1].add(1)
+    grid=grid.at[pos_obj[4,0],pos_obj[4,1],2].add(1)
+    grid=grid.at[pos_obj[5,0],pos_obj[5,1],3].add(1)
     
 
     return (grid)
@@ -106,7 +106,7 @@ class Gridworld(VectorizedTask):
     """gridworld task."""
 
     def __init__(self,
-                 max_steps: int = 200,
+                 max_steps: int = 80,
                  test: bool = False,spawn_prob=0.005):
 
         self.max_steps = max_steps
@@ -158,8 +158,7 @@ class Gridworld(VectorizedTask):
             grid,inventory=jax.lax.cond(jnp.logical_and(action[6]>0,inventory==0),collect,(lambda a,b,c,d: (a,d)),*(grid,posx,posy,inventory))
             
 
-            
-
+          
 
 
             steps = state.steps + 1
