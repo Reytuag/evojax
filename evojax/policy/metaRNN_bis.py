@@ -21,7 +21,7 @@ class MetaRNN(nn.Module):
     out_fn:str
     def setup(self):
 
-        self._num_micro_ticks = 1
+        self._num_micro_ticks = 2
         self._lstm = nn.recurrent.LSTMCell()
         self._output_proj = nn.Dense(self.output_size)
 
@@ -94,5 +94,7 @@ class MetaRnnPolicy_b(PolicyNetwork):
     def get_actions(self,t_states: TaskState,params: jnp.ndarray,p_states: PolicyState):
         params = self._format_params_fn(params)
         inp=jnp.concatenate([t_states.obs,t_states.last_action,t_states.reward],axis=-1)
-        h,c,out=self._forward_fn(params,p_states.lstm_h,p_states.lstm_c, t_states.obs)
+        print(inp.shape)
+        h,c,out=self._forward_fn(params,p_states.lstm_h,p_states.lstm_c, inp)
         return out, metaRNNPolicyState(keys=p_states.keys,lstm_h=h,lstm_c=c)
+

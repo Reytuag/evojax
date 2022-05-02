@@ -4,6 +4,7 @@ import yaml
 import json
 import numpy as np
 from evojax.policy import MLPPolicy
+from evojax.policy import MLPPolicy_b
 from evojax.policy import MetaRnnPolicy
 from evojax.policy import MetaRnnPolicy_b
 from evojax.policy.convnet import ConvNetPolicy
@@ -45,13 +46,13 @@ def setup_gridworld_b(config):
       output_act_fn="categorical")
     elif(config["policy"]=='MetaRNN'):
       policy=MetaRnnPolicy_b(
-      input_dim=train_task.obs_shape[0],
+      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
       hidden_dim=config["hidden_size"],
       output_dim=train_task.act_shape[0],
       output_act_fn="categorical")
     else:
-      policy = MLPPolicy(
-            input_dim=train_task.obs_shape[0],
+      policy = MLPPolicy_b(
+            input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
             hidden_dims=[config["hidden_size"]] * 2,
             
             output_dim=train_task.act_shape[0],
@@ -214,5 +215,6 @@ def load_yaml(config_fname: str) -> dict:
     with open(config_fname) as file:
         yaml_config = yaml.load(file, Loader=loader)
     return yaml_config
+
 
 
