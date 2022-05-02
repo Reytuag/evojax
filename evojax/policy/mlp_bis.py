@@ -48,7 +48,7 @@ class MLP(nn.Module):
         return x
 
 
-class MLPPolicy(PolicyNetwork):
+class MLPPolicy_b(PolicyNetwork):
     """A general purpose multi-layer perceptron model."""
 
     def __init__(self,
