@@ -75,5 +75,7 @@ class MLPPolicy_b(PolicyNetwork):
                     params: jnp.ndarray,
                     p_states: PolicyState) -> Tuple[jnp.ndarray, PolicyState]:
         params = self._format_params_fn(params)
-        return self._forward_fn(params, t_states.obs), p_states
+        inp=jnp.concatenate([t_states.obs,t_states.last_action,t_states.reward],axis=-1)
+        return self._forward_fn(params, inp), p_states
+
 
