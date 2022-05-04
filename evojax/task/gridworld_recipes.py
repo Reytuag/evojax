@@ -67,7 +67,7 @@ def get_init_state_fn(key: jnp.ndarray) -> jnp.ndarray:
     grid=jnp.zeros((SIZE_GRID,SIZE_GRID,6))
     posx,posy=(0,0)
     grid=grid.at[posx,posy,0].set(1)
-    pos_obj=jax.random.randint(key,(6,2),0,SIZE_GRID)
+    pos_obj=jax.random.randint(key,(9,2),0,SIZE_GRID)
 	
     grid=grid.at[pos_obj[0,0],pos_obj[0,1],1].add(1)
     grid=grid.at[pos_obj[1,0],pos_obj[1,1],2].add(1)
@@ -75,6 +75,9 @@ def get_init_state_fn(key: jnp.ndarray) -> jnp.ndarray:
     grid=grid.at[pos_obj[3,0],pos_obj[3,1],1].add(1)
     grid=grid.at[pos_obj[4,0],pos_obj[4,1],2].add(1)
     grid=grid.at[pos_obj[5,0],pos_obj[5,1],3].add(1)
+    grid=grid.at[pos_obj[6,0],pos_obj[6,1],1].add(1)
+    grid=grid.at[pos_obj[7,0],pos_obj[7,1],2].add(1)
+    grid=grid.at[pos_obj[8,0],pos_obj[8,1],3].add(1)
     
 
     return (grid)
@@ -110,7 +113,7 @@ class Gridworld(VectorizedTask):
                  test: bool = False,spawn_prob=0.005):
 
         self.max_steps = max_steps
-        self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*5+1, ])
+        self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*5+6, ])
         self.act_shape = tuple([7, ])
         self.test = test
 
@@ -125,7 +128,8 @@ class Gridworld(VectorizedTask):
             grid=jnp.where(rand>0.5,grid.at[1,4,1].set(1),grid.at[4,1,1].set(1))
             next_key, key = random.split(next_key)
             permutation_recipe=jax.random.permutation(key,3)+1
-            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jnp.zeros(1)]),last_action=jnp.zeros((7,)),reward=jnp.zeros((1,)),agent=agent,
+            #permutation_recipe=jnp.arange(0,3)+1
+            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jnp.zeros(6)]),last_action=jnp.zeros((7,)),reward=jnp.zeros((1,)),agent=agent,
                          steps=jnp.zeros((), dtype=int),permutation_recipe=permutation_recipe, key=next_key)
         self._reset_fn = jax.jit(jax.vmap(reset_fn))
 
@@ -170,7 +174,7 @@ class Gridworld(VectorizedTask):
             grid = jax.lax.cond(
                 done, lambda x: get_init_state_fn(sub_key), lambda x: x, grid)
 
-            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jnp.zeros(1)*inventory]),last_action=action,reward=jnp.ones((1,))*reward,agent=AgentState(posx=posx,posy=posy,inventory=inventory),
+            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jax.nn.one_hot(inventory,6)]),last_action=action,reward=jnp.ones((1,))*reward,agent=AgentState(posx=posx,posy=posy,inventory=inventory),
                          steps=steps,permutation_recipe=state.permutation_recipe, key=key), reward, done
         self._step_fn = jax.jit(jax.vmap(step_fn))
 
@@ -181,6 +185,7 @@ class Gridworld(VectorizedTask):
              state: State,
              action: jnp.ndarray) -> Tuple[State, jnp.ndarray, jnp.ndarray]:
         return self._step_fn(state, action)
+
 
 
 
