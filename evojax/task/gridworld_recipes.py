@@ -97,7 +97,8 @@ def drop(grid,posx,posy,inventory,recipes):
        return grid,inventory,reward
        
 def collect(grid,posx,posy,inventory):
-	inventory=jnp.where(grid[posx,posy,1:].sum()>0,jnp.argmax(grid[posx,posy,1:])+1,0)
+	#inventory=jnp.where(grid[posx,posy,1:].sum()>0,jnp.argmax(grid[posx,posy,1:])+1,0)
+	inventory=jnp.where(grid[posx,posy,1:].sum()>0,jax.random.categorical(key,jnp.log(grid[posx,posy,1:]/(grid[posx,posy,1:].sum())))+1,0)
 	grid=jnp.where(inventory>0,grid.at[posx,posy,inventory].add(-1),grid)
 	return grid,inventory
 
@@ -162,8 +163,9 @@ class Gridworld(VectorizedTask):
             grid=grid.at[posx,posy,0].set(1)
             #collect or drop
             inventory=state.agent.inventory
+            key, subkey = random.split(key)
             grid,inventory,reward=jax.lax.cond(jnp.logical_and(action[5]>0,inventory>0),drop,(lambda a,b,c,d,e:(a,d,0)),*(grid,posx,posy,inventory,state.permutation_recipe))
-            grid,inventory=jax.lax.cond(jnp.logical_and(action[6]>0,inventory==0),collect,(lambda a,b,c,d: (a,d)),*(grid,posx,posy,inventory))
+            grid,inventory=jax.lax.cond(jnp.logical_and(action[6]>0,inventory==0),collect,(lambda a,b,c,d,e: (a,d)),*(grid,posx,posy,inventory,subkey))
             
 
           
@@ -172,7 +174,6 @@ class Gridworld(VectorizedTask):
             steps = state.steps + 1
             done = jnp.logical_or(grid[:,:,-1].sum()>0 ,steps>self.max_steps)
             steps = jnp.where(done, jnp.zeros((), jnp.int32), steps)
-            key, sub_key = random.split(key)
 
 
             cur_state=State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jax.nn.one_hot(inventory,6)]),last_action=action,reward=jnp.ones((1,))*reward,agent=AgentState(posx=posx,posy=posy,inventory=inventory),
