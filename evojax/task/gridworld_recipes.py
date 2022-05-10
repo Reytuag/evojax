@@ -96,7 +96,7 @@ def drop(grid,posx,posy,inventory,recipes):
        reward=recipe_done[2]
        return grid,inventory,reward
        
-def collect(grid,posx,posy,inventory):
+def collect(grid,posx,posy,inventory,key):
 	#inventory=jnp.where(grid[posx,posy,1:].sum()>0,jnp.argmax(grid[posx,posy,1:])+1,0)
 	inventory=jnp.where(grid[posx,posy,1:].sum()>0,jax.random.categorical(key,jnp.log(grid[posx,posy,1:]/(grid[posx,posy,1:].sum())))+1,0)
 	grid=jnp.where(inventory>0,grid.at[posx,posy,inventory].add(-1),grid)
