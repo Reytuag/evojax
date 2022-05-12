@@ -27,7 +27,7 @@ from evojax.task.base import VectorizedTask
 
 
 
-SIZE_GRID=3
+SIZE_GRID=2
 AGENT_VIEW=1
 
 
@@ -79,21 +79,23 @@ def get_init_state_fn(key: jnp.ndarray) -> jnp.ndarray:
 
     return (grid)
 def test_recipes(items,recipes):
-
+    
 	recipe_done=jnp.where(items[recipes[0]]*items[recipes[1]]>0,jnp.array([recipes[0],recipes[1],4]),jnp.zeros(3,jnp.int32))
 	recipe_done=jnp.where(items[recipes[2]]*items[4]>0,jnp.array([recipes[2],4,5]),recipe_done)
-	return recipe_done
+	product=recipe_done[2]
+	reward=jnp.select([product==0,product==4,product==5],[0.,1.,2.])
+	return recipe_done,reward
 	
 
 
 def drop(grid,posx,posy,inventory,recipes):
        grid=grid.at[posx,posy,inventory].add(1)
        inventory=0
-       reward=0
+       cost=0.
        #test recipe
-       recipe_done=jax.lax.cond(grid[posx,posy,1:].sum()==2,test_recipes,lambda x,y:jnp.zeros(3,jnp.int32),*(grid[posx,posy,:],recipes))
+       recipe_done,reward=jax.lax.cond(grid[posx,posy,1:].sum()==2,test_recipes,lambda x,y:(jnp.zeros(3,jnp.int32),0.),*(grid[posx,posy,:],recipes))
        grid=jnp.where(recipe_done[2]>0,grid.at[posx,posy,recipe_done[0]].set(0).at[posx,posy,recipe_done[1]].set(0).at[posx,posy,recipe_done[2]].set(1),grid)
-       reward=recipe_done[2]
+       reward=reward+cost
        return grid,inventory,reward
        
 def collect(grid,posx,posy,inventory,key):
@@ -107,7 +109,7 @@ class Gridworld(VectorizedTask):
     """gridworld task."""
 
     def __init__(self,
-                 max_steps: int = 50,
+                 max_steps: int = 200,
                  test: bool = False,spawn_prob=0.005):
 
         self.max_steps = max_steps
@@ -164,7 +166,7 @@ class Gridworld(VectorizedTask):
             #collect or drop
             inventory=state.agent.inventory
             key, subkey = random.split(key)
-            grid,inventory,reward=jax.lax.cond(jnp.logical_and(action[5]>0,inventory>0),drop,(lambda a,b,c,d,e:(a,d,0)),*(grid,posx,posy,inventory,state.permutation_recipe))
+            grid,inventory,reward=jax.lax.cond(jnp.logical_and(action[5]>0,inventory>0),drop,(lambda a,b,c,d,e:(a,d,0.)),*(grid,posx,posy,inventory,state.permutation_recipe))
             grid,inventory=jax.lax.cond(jnp.logical_and(action[6]>0,inventory==0),collect,(lambda a,b,c,d,e: (a,d)),*(grid,posx,posy,inventory,subkey))
             
 
@@ -193,6 +195,7 @@ class Gridworld(VectorizedTask):
              state: State,
              action: jnp.ndarray) -> Tuple[State, jnp.ndarray, jnp.ndarray]:
         return self._step_fn(state, action)
+
 
 
 
