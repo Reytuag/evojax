@@ -58,7 +58,7 @@ class SimpleGA(NEAlgorithm):
         self.sigma = sigma
 
         self.params = jnp.zeros((pop_size, param_size))
-        self._best_params = None
+        self._best_params = jnp.zeros((param_size))
 
         self.rand_key = jax.random.PRNGKey(seed=seed)
 
@@ -95,6 +95,7 @@ class SimpleGA(NEAlgorithm):
 
     def ask(self) -> jnp.ndarray:
         self.rand_key, self.params = self.ask_fn(self.rand_key, self.params)
+        self.params=jnp.concatenate([self.params[:-1],jnp.expand_dims(self._best_params,0)],axis=0)
         return self.params
 
     def tell(self, fitness: Union[np.ndarray, jnp.ndarray]) -> None:

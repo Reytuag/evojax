@@ -16,22 +16,35 @@ from evojax.policy.base import PolicyState
 from evojax.util import create_logger
 from evojax.util import get_params_format_fn
 
-class MetaRNN(nn.Module):
+class MetaRNN_b(nn.Module):
     output_size:int
     out_fn:str
+    hidden_layers:list
+    encoder_in:bool
+    encoder_size:int
     def setup(self):
 
-        self._num_micro_ticks = 2
+        self._num_micro_ticks = 1
         self._lstm = nn.recurrent.LSTMCell()
+        
+        self._hiddens=[(nn.Dense(size)) for size in self.hidden_layers]
+        #self._encoder=nn.Dense(64)
         self._output_proj = nn.Dense(self.output_size)
+        if(self.encoder_in):
+            self._encoder=nn.Dense(self.encoder_size)        
 
 
 
     def __call__(self,h,c, inputs: jnp.ndarray):
         carry=(h,c)
         # todo replace with scan
+        #inputs=self._encoder(inputs)
+        if(self.encoder_in):
+            inputs=jax.nn.tanh(self._encoder(inputs))
         for _ in range(self._num_micro_ticks):
             carry,out= self._lstm(carry,inputs)
+        for layer in self._hiddens:
+            out=jax.nn.tanh(layer(out))
         out = self._output_proj(out)
         h,c=carry
         if self.out_fn == 'tanh':
@@ -45,7 +58,7 @@ class MetaRNN(nn.Module):
         return h,c,out
 
 @dataclass
-class metaRNNPolicyState(PolicyState):
+class metaRNNPolicyState_b(PolicyState):
     lstm_h:jnp.array
     lstm_c:jnp.array
     keys:jnp.array
@@ -60,7 +73,10 @@ class MetaRnnPolicy_b(PolicyNetwork):
     def __init__(self,input_dim: int,
                     hidden_dim: int,
                     output_dim: int,
-                    output_act_fn: str ="tanh",
+                    output_act_fn: str ="categorical",
+                    hidden_layers: list= [32],
+                    encoder: bool=False,
+                    encoder_size:int=32,
                     logger: logging.Logger=None):
 
 
@@ -68,7 +84,7 @@ class MetaRnnPolicy_b(PolicyNetwork):
                         self._logger = create_logger(name='MetaRNNolicy')
             else:
                         self._logger = logger
-            model=MetaRNN(output_dim,out_fn=output_act_fn)
+            model=MetaRNN_b(output_dim,out_fn=output_act_fn,hidden_layers=hidden_layers,encoder_in=encoder,encoder_size=encoder_size)
             self.params = model.init(jax.random.PRNGKey(0),jnp.zeros((hidden_dim)),jnp.zeros((hidden_dim)), jnp.zeros([ input_dim]))
             
             self.num_params, format_params_fn = get_params_format_fn(self.params)
@@ -87,7 +103,7 @@ class MetaRnnPolicy_b(PolicyNetwork):
         keys = jax.random.split(jax.random.PRNGKey(0), states.obs.shape[0])
         h= jnp.zeros((states.obs.shape[0],self.hidden_dim))
         c= jnp.zeros((states.obs.shape[0],self.hidden_dim))
-        return metaRNNPolicyState(keys=keys,lstm_h=h,lstm_c=c)
+        return metaRNNPolicyState_b(keys=keys,lstm_h=h,lstm_c=c)
 
 
 
@@ -96,5 +112,5 @@ class MetaRnnPolicy_b(PolicyNetwork):
         inp=jnp.concatenate([t_states.obs,t_states.last_action,t_states.reward],axis=-1)
         print(inp.shape)
         h,c,out=self._forward_fn(params,p_states.lstm_h,p_states.lstm_c, inp)
-        return out, metaRNNPolicyState(keys=p_states.keys,lstm_h=h,lstm_c=c)
+        return out, metaRNNPolicyState_b(keys=p_states.keys,lstm_h=h,lstm_c=c)
 

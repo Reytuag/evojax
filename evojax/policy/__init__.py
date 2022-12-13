@@ -19,8 +19,10 @@ from .mlp_pi import PermutationInvariantPolicy
 from .convnet import ConvNetPolicy
 from .metaRNN import MetaRnnPolicy
 from .metaRNN_bis import MetaRnnPolicy_b
+from .metaRNN_ter import MetaRnnPolicy_t
 from .symla1layer import SymLA_Policy
+from .metaRNN_2layers import MetaRnnPolicy_b2
 
 
 __all__ = ['PolicyNetwork', 'MLPPolicy','MLPPolicy_b', 'PermutationInvariantPolicy',
-           'ConvNetPolicy', 'Seq2seqPolicy','MetaRnnPolicy','MetaRnnPolicy_b','SymLA_Policy']
+           'ConvNetPolicy', 'Seq2seqPolicy','MetaRnnPolicy','MetaRnnPolicy_b','MetaRnnPolicy_t','SymLA_Policy']

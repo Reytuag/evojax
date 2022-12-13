@@ -18,6 +18,8 @@ from .pgpe import PGPE
 from .ars import ARS
 from .simple_ga import SimpleGA
 from .open_es import OpenES
+from .cma_jax import CMA_ES_JAX
+from .map_elites import MAPElites
 
 Strategies = {
     "CMA": CMA,
@@ -25,6 +27,8 @@ Strategies = {
     "SimpleGA": SimpleGA,
     "ARS": ARS,
     "OpenES": OpenES,
+    "CMA_ES_JAX": CMA_ES_JAX,
+    "MAPElites": MAPElites,
 }
 
 __all__ = [
@@ -33,6 +37,8 @@ __all__ = [
     "PGPE",
     "ARS",
     "SimpleGA",
+    "CMA_ES_JAX",
     "OpenES",
+    "MAPElites",
     "Strategies",
 ]

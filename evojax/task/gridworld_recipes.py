@@ -68,7 +68,7 @@ def get_init_state_fn(key: jnp.ndarray) -> jnp.ndarray:
     posx,posy=(0,0)
     grid=grid.at[posx,posy,0].set(1)
     pos_obj=jax.random.randint(key,(6,2),0,SIZE_GRID)
-
+    pos_obj=jnp.array([[0,1],[1,0],[1,1]])
     grid=grid.at[pos_obj[0,0],pos_obj[0,1],1].add(1)
     grid=grid.at[pos_obj[1,0],pos_obj[1,1],2].add(1)
     grid=grid.at[pos_obj[2,0],pos_obj[2,1],3].add(1)
@@ -126,19 +126,20 @@ class Gridworld(VectorizedTask):
             
             next_key, key = random.split(next_key)
             permutation_recipe=jax.random.permutation(key,3)+1
+            permutation_recipe=jnp.where(jax.random.uniform(key)>0.5,jnp.array([1,2,3]),jnp.array([1,3,2]))
             return State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jnp.zeros(6)]),last_action=jnp.zeros((7,)),reward=jnp.zeros((1,)),agent=agent,
                          steps=jnp.zeros((), dtype=int),permutation_recipe=permutation_recipe, key=next_key)
         self._reset_fn = jax.jit(jax.vmap(reset_fn))
 
 
-        def rest_keep_recipe(key,recipes):
+        def rest_keep_recipe(key,recipes,steps):
           next_key, key = random.split(key)
           posx,posy=(0,0)
           agent=AgentState(posx=posx,posy=posy,inventory=0)
           grid=get_init_state_fn(key)
           
           return State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jnp.zeros(6)]),last_action=jnp.zeros((7,)),reward=jnp.zeros((1,)),agent=agent,
-                        steps=jnp.zeros((), dtype=int),permutation_recipe=recipes, key=next_key)
+                        steps=steps,permutation_recipe=recipes, key=next_key)
 
 
         def step_fn(state, action):
@@ -171,11 +172,23 @@ class Gridworld(VectorizedTask):
             
 
           
-
+            
 
             steps = state.steps + 1
             done = jnp.logical_or(grid[:,:,-1].sum()>0 ,steps>self.max_steps)
-            steps = jnp.where(done, jnp.zeros((), jnp.int32), steps)
+            
+            
+            key, subkey = random.split(key)
+            rand=jax.random.uniform(subkey)
+            catastrophic=jnp.logical_and(steps>30,rand<1)
+            done=jnp.logical_or(done, catastrophic)
+            a=state.permutation_recipe[1]
+            b=state.permutation_recipe[2]
+            
+            permutation_recipe=jnp.where(catastrophic,state.permutation_recipe.at[1].set(b).at[2].set(a), state.permutation_recipe)
+            
+            steps = jnp.where(catastrophic, jnp.zeros((), jnp.int32), steps)
+            
 
 
             cur_state=State(state=grid, obs=jnp.concatenate([get_obs(state=grid,posx=posx,posy=posy),jax.nn.one_hot(inventory,6)]),last_action=action,reward=jnp.ones((1,))*reward,agent=AgentState(posx=posx,posy=posy,inventory=inventory),
@@ -183,7 +196,7 @@ class Gridworld(VectorizedTask):
             
             #keep it in case we let agent several trials
             state = jax.lax.cond(
-                done, lambda x: rest_keep_recipe(key,state.permutation_recipe), lambda x: x, cur_state)
+                done, lambda x: rest_keep_recipe(key,permutation_recipe,steps), lambda x: x, cur_state)
             done=False
             return state, reward, done
         self._step_fn = jax.jit(jax.vmap(step_fn))
@@ -195,7 +208,6 @@ class Gridworld(VectorizedTask):
              state: State,
              action: jnp.ndarray) -> Tuple[State, jnp.ndarray, jnp.ndarray]:
         return self._step_fn(state, action)
-
 
 
 

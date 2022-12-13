@@ -111,6 +111,14 @@ class OpenES(NEAlgorithm):
         self.params, self.es_state = self.es.ask(
             ask_key, self.es_state, self.es_params
         )
+        #self.rand_key, key = jax.random.split(self.rand_key)
+        #rand=jax.random.uniform(key)
+        #a=36864
+        #mask=jnp.where(rand>0.5,jnp.concatenate([jnp.zeros((1,a)),jnp.ones((1,self.params.shape[1]-a))],axis=1),jnp.concatenate([jnp.ones((1,a)),jnp.zeros((1,self.params.shape[1]-a))],axis=1))
+        #self.params=self.es_state["mean"]+mask*(self.params-self.es_state["mean"])
+       
+        
+        
         return self.params
 
     def tell(self, fitness: Union[np.ndarray, jnp.ndarray]) -> None:
