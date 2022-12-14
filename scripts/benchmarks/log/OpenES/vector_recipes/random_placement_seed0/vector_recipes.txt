@@ -35,3 +35,10 @@ vector_recipes: 2022-12-14 13:59:59,348 [INFO] ==============================
 vector_recipes: 2022-12-14 14:00:23,596 [INFO] EvoJAX vector_recipes
 vector_recipes: 2022-12-14 14:00:23,596 [INFO] ==============================
 vector_recipes: 2022-12-14 14:00:27,155 [INFO] Start to train for 10000 iterations.
+vector_recipes: 2022-12-14 23:42:25,452 [INFO] EvoJAX vector_recipes
+vector_recipes: 2022-12-14 23:42:25,452 [INFO] ==============================
+vector_recipes: 2022-12-14 23:42:39,348 [INFO] EvoJAX vector_recipes
+vector_recipes: 2022-12-14 23:42:39,349 [INFO] ==============================
+vector_recipes: 2022-12-14 23:43:01,719 [INFO] EvoJAX vector_recipes
+vector_recipes: 2022-12-14 23:43:01,719 [INFO] ==============================
+vector_recipes: 2022-12-14 23:43:04,686 [INFO] Start to train for 10000 iterations.

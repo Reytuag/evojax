@@ -14,11 +14,7 @@ es_config:
     momentum: 0.0
   pop_size: 100
 es_name: OpenES
-gpu_id:
-- 0
-- 1
-- 2
-- 3
+gpu_id: None
 hidden_layers:
 - 64
 - 32
@@ -27,7 +23,7 @@ log_interval: 25
 max_iter: 10000
 model_dir: ''
 n_repeats: 100
-nb_items: 3
+nb_items: 5
 normalize: 0
 num_tests: 100
 policy: MetaRNN_t
