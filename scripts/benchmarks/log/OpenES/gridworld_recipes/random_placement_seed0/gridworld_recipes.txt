@@ -504,3 +504,13 @@ gridworld_recipes: 2022-07-13 21:43:24,043 [INFO] Training done, best_score=25.1
 gridworld_recipes: 2022-07-13 21:43:24,069 [INFO] Loaded model parameters from ./log/OpenES/gridworld_recipes/random_placement_seed0.
 gridworld_recipes: 2022-07-13 21:43:24,069 [INFO] Start to test the parameters.
 gridworld_recipes: 2022-07-13 21:43:24,164 [INFO] [TEST] #tests=100, max=49.0000, avg=21.1000, min=0.0000, std=19.5323
+gridworld_recipes: 2022-12-13 18:13:52,565 [INFO] EvoJAX gridworld_recipes
+gridworld_recipes: 2022-12-13 18:13:52,565 [INFO] ==============================
+gridworld_recipes: 2022-12-13 18:14:13,140 [INFO] EvoJAX gridworld_recipes
+gridworld_recipes: 2022-12-13 18:14:13,141 [INFO] ==============================
+gridworld_recipes: 2022-12-13 18:16:32,360 [INFO] EvoJAX gridworld_recipes
+gridworld_recipes: 2022-12-13 18:16:32,362 [INFO] ==============================
+gridworld_recipes: 2022-12-13 18:16:35,643 [INFO] Start to train for 10000 iterations.
+gridworld_recipes: 2022-12-13 18:20:35,842 [INFO] EvoJAX gridworld_recipes
+gridworld_recipes: 2022-12-13 18:20:35,842 [INFO] ==============================
+gridworld_recipes: 2022-12-13 18:20:38,617 [INFO] Start to train for 10000 iterations.
