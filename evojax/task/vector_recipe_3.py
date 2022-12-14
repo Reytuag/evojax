@@ -72,7 +72,7 @@ def try_recipe(grid,action, inventory,permutation_recipes):
     in_env=grid[action]>0
     recipe_done, reward = jax.lax.cond(in_env, test_recipes,
                                        lambda x, y,z: (jnp.zeros(3, jnp.int32), 0.), *(action,inventory, permutation_recipes))
-    grid = jnp.where(recipe_done[2] > 0,grid.at[inventory].set(1),grid)
+    grid = jnp.where(recipe_done[2] > 0,grid.at[inventory].set(0).at[action].set(0).at[recipe_done[2]].set(1),grid)
     inventory=jnp.where(recipe_done[2]>0,-1,inventory)
 
     return grid, inventory, reward
