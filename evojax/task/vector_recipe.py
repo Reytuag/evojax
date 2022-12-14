@@ -110,7 +110,7 @@ class Gridworld(VectorizedTask):
         def reset_fn(key):
             next_key, key = random.split(key)
             agent = AgentState(inventory=-1)
-            grid = get_init_state_fn(key)
+            grid = get_init_state_fn(key,self.nb_items)
 
             next_key, key = random.split(next_key)
             permutation_recipe = jax.random.permutation(key, self.nb_items)[:3]
@@ -127,7 +127,7 @@ class Gridworld(VectorizedTask):
             next_key, key = random.split(key)
 
             agent = AgentState(inventory=-1)
-            grid = get_init_state_fn(key)
+            grid = get_init_state_fn(key,nb_items)
 
             return State(state=grid, obs=jnp.concatenate([get_obs(state=grid), jnp.zeros(nb_items+2)]),
                          last_action=jnp.zeros((nb_items+2,)), reward=jnp.zeros((1,)), agent=agent,
