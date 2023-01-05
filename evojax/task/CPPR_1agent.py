@@ -145,41 +145,26 @@ class Gridworld(VectorizedTask):
 
         def reset_fn(key):
             next_key, key = random.split(key)
-            posx = random.randint(next_key, (nb_agents,), 1, SX - 1)
+            posx = random.randint(next_key, (1,), 1, SX - 1)
             next_key, key = random.split(key)
-            posy = random.randint(next_key, (nb_agents,), 1, SY - 1)
+            posy = random.randint(next_key, (1,), 1, SY - 1)
             next_key, key = random.split(key)
-            agents = AgentStates(posx=posx, posy=posy, seeds=jnp.zeros(nb_agents))
+            agents = AgentStates(posx=posx, posy=posy, seeds=jnp.zeros(1))
 
-            pos_food_x = random.randint(next_key, ( int(nb_agents/10),), 1, SX - 1)
+            pos_food_x = random.randint(next_key, ( 4,), 1, SX - 1)
             next_key, key = random.split(key)
-            pos_food_y = random.randint(next_key, ( int(nb_agents/10),), 1, SY - 1)
+            pos_food_y = random.randint(next_key, ( 4,), 1, SY - 1)
             next_key, key = random.split(key)
             grid = get_init_state_fn(key, SX, SY, posx, posy, pos_food_x, pos_food_y, self.climate_type,
                                      self.climate_var)
 
-            return State(state=grid, obs=get_obs_vector(grid, posx, posy), last_actions=jnp.zeros((nb_agents, 5)),
-                         rewards=jnp.zeros((nb_agents, 1)), agents=agents,
+            return State(state=grid, obs=get_obs_vector(grid, posx, posy), last_actions=jnp.zeros(( 5,)),
+                         rewards=jnp.zeros((1,)), agents=agents,
                          steps=jnp.zeros((), dtype=int), key=next_key)
 
-        self._reset_fn = jax.jit(reset_fn)
+        self._reset_fn = jax.jit(jax.vmap(reset_fn))
 
-        def reset_fn_pos_food(key, posx, posy, food):
-            next_key, key = random.split(key)
-            agents = AgentStates(posx=posx, posy=posy, seeds=jnp.zeros(nb_agents))
 
-            pos_food_x = random.randint(next_key, (8 * nb_agents,), 1, SX - 1)
-            next_key, key = random.split(key)
-            pos_food_y = random.randint(next_key, (8 * nb_agents,), 1, SY - 1)
-            next_key, key = random.split(key)
-            grid = get_init_state_fn(key, SX, SY, posx, posy, pos_food_x, pos_food_y)
-            grid = grid.at[:, :, 1].set(food)
-
-            return State(state=grid, obs=get_obs_vector(grid, posx, posy), last_actions=jnp.zeros((nb_agents, 5)),
-                         rewards=jnp.zeros((nb_agents, 1)), agents=agents,
-                         steps=jnp.zeros((), dtype=int), key=next_key)
-
-        self._reset_fn_pos_food = jax.jit(reset_fn_pos_food)
 
         def step_fn(state, actions):
             grid = state.state
@@ -187,8 +172,8 @@ class Gridworld(VectorizedTask):
             # move agent
             # maybe later make the agent to output the one hot categorical
             action_int = actions.astype(jnp.int32)
-            posx = state.agents.posx - action_int[:, 0] + action_int[:, 2]
-            posy = state.agents.posy - action_int[:, 1] + action_int[:, 3]
+            posx = state.agents.posx - action_int[ 0] + action_int[ 2]
+            posy = state.agents.posy - action_int[ 1] + action_int[ 3]
 
             # wall
             hit_wall = state.state[posx, posy, 2] > 0
@@ -228,10 +213,10 @@ class Gridworld(VectorizedTask):
             grid = grid.at[:, :, 1].add(random.bernoulli(next_key, num_neighbs))
 
             ### planting seeds
-            rewards = rewards - action_int[:, 4]
-            grid = grid.at[posx, posy, 1].add(jnp.int8(action_int[:, 4] * seeds))
+            rewards = rewards - action_int[ 4]
+            grid = grid.at[posx, posy, 1].add(jnp.int8(action_int[ 4] * seeds))
             grid = grid.at[:, :, 1].set(jnp.clip(grid[:, :, 1], 0, 1))
-            seeds = seeds - action_int[:, 4]
+            seeds = seeds - action_int[ 4]
 
             ####
             steps = state.steps + 1
@@ -239,7 +224,7 @@ class Gridworld(VectorizedTask):
             done = (steps > self.max_steps)
             steps = jnp.where(done, jnp.zeros((), jnp.int32), steps)
             cur_state = State(state=grid, obs=get_obs_vector(grid, posx, posy), last_actions=actions,
-                              rewards=jnp.expand_dims(rewards, -1),
+                              rewards=rewards*jnp.ones((1,)),
                               agents=AgentStates(posx=posx, posy=posy, seeds=seeds),
                               steps=steps, key=key)
             # keep it in case we let agent several trials
@@ -248,7 +233,7 @@ class Gridworld(VectorizedTask):
 
             return cur_state, state, rewards, done
 
-        self._step_fn = jax.jit(step_fn)
+        self._step_fn = jax.jit(jax.vmap(step_fn))
 
     def reset(self, key: jnp.ndarray) -> State:
         return self._reset_fn(key)
