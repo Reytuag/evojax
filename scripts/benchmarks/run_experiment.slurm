@@ -5,14 +5,13 @@
 #SBATCH --input=none
 #SBATCH --mail-user=gautier.hamon@inria.fr
 #SBATCH --gres=gpu:4
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=8
 #SBATCH -o run_experiment.slurm.out
 #SBATCH -e run_experiment.slurm.err
-#SBATCH --array=0-1
 
 
 
-python train.py -config configs/OpenES/gridworld_recipes${SLURM_ARRAY_TASK_ID}.yaml
+python train.py -config configs/OpenES/vector_recipes.yaml
 
 
 

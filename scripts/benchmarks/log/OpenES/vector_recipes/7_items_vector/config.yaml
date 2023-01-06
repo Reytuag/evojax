@@ -26,13 +26,13 @@ hidden_size: 128
 log_interval: 25
 max_iter: 10000
 model_dir: ''
-n_repeats: 100
+n_repeats: 10
 nb_items: 5
 normalize: 0
 num_tests: 100
 policy: MetaRNN_t
 problem_type: vector_recipes
-search_eval_id: random_placement_seed0
+search_eval_id: 7_items_vector
 seed: 0
 spawn_prob: 0.005
 test_interval: 100

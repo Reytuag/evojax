@@ -75,8 +75,8 @@ class AgentStates(object):
 @dataclass
 class State(TaskState):
     obs: jnp.int8
-    last_actions: jnp.int8
-    rewards: jnp.int8
+    last_action: jnp.int8
+    reward: jnp.int8
     state: jnp.int8
     agents: AgentStates
     steps: jnp.int32
@@ -108,7 +108,7 @@ def get_init_state_fn(key: jnp.ndarray, SX, SY, posx, posy, pos_food_x, pos_food
             new_array = jnp.append(new_array, new_col)
         new_array = jnp.transpose(jnp.reshape(new_array, (SY, SX)))
         grid = grid.at[:, :, 3].set(new_array)
-    # grid=grid.at[:,:,3].set(5)
+    grid=grid.at[:,:,3].set(1)
 
     grid = grid.at[0, :, 2].set(1)
     grid = grid.at[-1, :, 2].set(1)
@@ -117,7 +117,7 @@ def get_init_state_fn(key: jnp.ndarray, SX, SY, posx, posy, pos_food_x, pos_food
     return (grid)
 
 
-get_obs_vector = jax.vmap(get_ob, in_axes=(None, 0, 0), out_axes=0)
+get_obs_vector = get_ob
 
 
 class Gridworld(VectorizedTask):
@@ -128,12 +128,12 @@ class Gridworld(VectorizedTask):
                  nb_agents: int = 100,
                  SX=300,
                  SY=100,
-                 climate_type="noisy",
+                 climate_type="constant",
                  climate_var=0.1,
                  test: bool = False):
         self.max_steps = max_steps
 
-        self.obs_shape = (5, 11, 4)
+        self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*3+1, ])
         # self.obs_shape=11*5*4
         self.act_shape = tuple([4, ])
         self.test = test
@@ -158,8 +158,8 @@ class Gridworld(VectorizedTask):
             grid = get_init_state_fn(key, SX, SY, posx, posy, pos_food_x, pos_food_y, self.climate_type,
                                      self.climate_var)
 
-            return State(state=grid, obs=get_obs_vector(grid, posx, posy), last_actions=jnp.zeros(( 5,)),
-                         rewards=jnp.zeros((1,)), agents=agents,
+            return State(state=grid, obs=get_obs_vector(grid, posx[0], posy[0]), last_action=jnp.zeros(( 5,)),
+                         reward=jnp.zeros((1,)), agents=agents,
                          steps=jnp.zeros((), dtype=int), key=next_key)
 
         self._reset_fn = jax.jit(jax.vmap(reset_fn))
@@ -171,7 +171,12 @@ class Gridworld(VectorizedTask):
 
             # move agent
             # maybe later make the agent to output the one hot categorical
-            action_int = actions.astype(jnp.int32)
+            key, subkey = random.split(state.key)
+            #maybe later make the agent to output the one hot categorical
+            actions=jax.random.categorical(subkey,actions)
+            actions=jax.nn.one_hot(actions,5)
+
+            action_int=actions.astype(jnp.int32)
             posx = state.agents.posx - action_int[ 0] + action_int[ 2]
             posy = state.agents.posy - action_int[ 1] + action_int[ 3]
 
@@ -183,28 +188,34 @@ class Gridworld(VectorizedTask):
             posx = jnp.clip(posx, 0, SX - 1)
             posy = jnp.clip(posy, 0, SY - 1)
             grid = grid.at[state.agents.posx, state.agents.posy, 0].set(0)
-            grid = grid.at[posx, posy, 0].set(1)
+            grid = grid.at[posx, posy, 0].add(1)
 
             ### collect food and seeds
             seeds = state.agents.seeds + jnp.int8((grid[posx, posy, 1] > 0))
 
-            rewards = (grid[posx, posy, 1] > 0) * (1 / (grid[posx, posy, 0] + 1e-10))
+            reward = (grid[posx[0], posy[0], 1] > 0) * (1 / (grid[posx[0], posy[0], 0] + 1e-10))
             grid = grid.at[posx, posy, 1].set(0)
 
             # regrow
-            num_neighbs = jax.scipy.signal.convolve2d(grid[:, :, 1], jnp.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]]),
-                                                      mode="same")
+            #num_neighbs = jax.scipy.signal.convolve2d(grid[:, :, 1], jnp.array([[1, 1, 1], [1, 0, 1], [1, 1, 1]]),
+            #                                          mode="same")
+            
+            
+            num_neighbs=(jnp.roll(grid[:,:,1],(1,0),(0,1))+jnp.roll(grid[:,:,1],(-1,0),(0,1))+jnp.roll(grid[:,:,1],(0,1),(0,1))+jnp.roll(grid[:,:,1],(0,-1),(0,1))+jnp.roll(grid[:,:,1],(1,-1),(0,1))+jnp.roll(grid[:,:,1],(1,1),(0,1))+jnp.roll(grid[:,:,1],(-1,-1),(0,1))
+                        +jnp.roll(grid[:,:,1],(-1,1),(0,1)))
             scale = grid[:, :, 3]
-            scale_constant = 10000
+            scale_constant = 1
+            
             num_neighbs = jnp.where(num_neighbs == 0, 0, num_neighbs)
-            num_neighbs = jnp.where(num_neighbs == 1, 0.01/10, num_neighbs)
-            num_neighbs = jnp.where(num_neighbs == 2, 0.01/scale_constant, num_neighbs)
-            num_neighbs = jnp.where(num_neighbs == 3, 0.05/scale_constant, num_neighbs)
-            num_neighbs = jnp.where(num_neighbs == 4, 0.05/scale_constant, num_neighbs)
-            num_neighbs = jnp.where(num_neighbs > 4, 0.01/scale_constant, num_neighbs)
+            num_neighbs = jnp.where(num_neighbs == 1, 0.02/10, num_neighbs)
+            num_neighbs = jnp.where(num_neighbs == 2, 0.02/scale_constant, num_neighbs)
+            num_neighbs = jnp.where(num_neighbs == 3, 0.1/scale_constant, num_neighbs)
+            num_neighbs = jnp.where(num_neighbs == 4, 0.1/scale_constant, num_neighbs)
+            num_neighbs = jnp.where(num_neighbs > 4, 0.02/scale_constant, num_neighbs)
             num_neighbs = jnp.where(num_neighbs > 6, -0.05/scale_constant, num_neighbs)
             #print(jnp.sum(num_neighbs))
             num_neighbs = jnp.multiply(num_neighbs, scale)
+            num_neighbs=num_neighbs-grid[:,:,4]
             #print("after", jnp.sum(num_neighbs))
             # modulate the probability with the climate value
             # probability=probability*jnp.clip(grid[:,:,3]/2000-grid[:,:,2],0,1)
@@ -212,26 +223,23 @@ class Gridworld(VectorizedTask):
             # grid=grid.at[:,:,1].add(random.bernoulli(next_key, num_neighbs))
             grid = grid.at[:, :, 1].add(random.bernoulli(next_key, num_neighbs))
 
-            ### planting seeds
-            rewards = rewards - action_int[ 4]
-            grid = grid.at[posx, posy, 1].add(jnp.int8(action_int[ 4] * seeds))
-            grid = grid.at[:, :, 1].set(jnp.clip(grid[:, :, 1], 0, 1))
-            seeds = seeds - action_int[ 4]
-
+            
+            
             ####
             steps = state.steps + 1
 
-            done = (steps > self.max_steps)
+            reset = (grid[:,:,1].sum()<1)
+            done= steps>self.max_steps
             steps = jnp.where(done, jnp.zeros((), jnp.int32), steps)
-            cur_state = State(state=grid, obs=get_obs_vector(grid, posx, posy), last_actions=actions,
-                              rewards=rewards*jnp.ones((1,)),
+            cur_state = State(state=grid, obs=get_obs_vector(grid, posx[0], posy[0]), last_action=actions,
+                              reward=reward*jnp.ones((1,)),
                               agents=AgentStates(posx=posx, posy=posy, seeds=seeds),
                               steps=steps, key=key)
             # keep it in case we let agent several trials
             state = jax.lax.cond(
-                done, lambda x: reset_fn(state.key), lambda x: x, cur_state)
+                reset, lambda x: reset_fn(state.key), lambda x: x, cur_state)
 
-            return cur_state, state, rewards, done
+            return state, reward, done
 
         self._step_fn = jax.jit(jax.vmap(step_fn))
 

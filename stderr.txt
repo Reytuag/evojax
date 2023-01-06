@@ -1,0 +1,960 @@
+[D 14:53:32.839 NotebookApp] Searching ['/gpfsdswork/projects/rech/imi/uzw47io/evojax', '/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter', '/linkhome/rech/genini01/uzw47io/.local/etc/jupyter', '/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter', '/usr/local/etc/jupyter', '/etc/jupyter'] for config files
+[D 14:53:32.840 NotebookApp] Looking for jupyter_config in /etc/jupyter
+[D 14:53:32.840 NotebookApp] Looking for jupyter_config in /usr/local/etc/jupyter
+[D 14:53:32.840 NotebookApp] Looking for jupyter_config in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter
+[D 14:53:32.840 NotebookApp] Loaded config file: /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/jupyter_config.json
+[D 14:53:32.840 NotebookApp] Looking for jupyter_config in /linkhome/rech/genini01/uzw47io/.local/etc/jupyter
+[D 14:53:32.840 NotebookApp] Looking for jupyter_config in /gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter
+[D 14:53:32.840 NotebookApp] Looking for jupyter_config in /gpfsdswork/projects/rech/imi/uzw47io/evojax
+[D 14:53:32.855 NotebookApp] Looking for jupyter_notebook_config in /etc/jupyter
+[D 14:53:32.855 NotebookApp] Looking for jupyter_notebook_config in /usr/local/etc/jupyter
+[D 14:53:32.855 NotebookApp] Looking for jupyter_notebook_config in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter
+[D 14:53:32.856 NotebookApp] Loaded config file: /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/jupyter_notebook_config.json
+[D 14:53:32.856 NotebookApp] Looking for jupyter_notebook_config in /linkhome/rech/genini01/uzw47io/.local/etc/jupyter
+[D 14:53:32.857 NotebookApp] Looking for jupyter_notebook_config in /gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter
+[D 14:53:32.857 NotebookApp] Loaded config file: /gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/jupyter_notebook_config.py
+[D 14:53:32.857 NotebookApp] Loaded config file: /gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/jupyter_notebook_config.json
+[D 14:53:32.857 NotebookApp] Looking for jupyter_notebook_config in /gpfsdswork/projects/rech/imi/uzw47io/evojax
+[D 14:53:32.859 NotebookApp] [nb_conda_kernels] refreshing conda info
+[I 14:53:42.079 NotebookApp] [nb_conda_kernels] enabled, 42 kernels found
+[D 14:53:42.167 NotebookApp] Paths used for configuration of jupyter_notebook_config: 
+    	/etc/jupyter/jupyter_notebook_config.json
+[D 14:53:42.167 NotebookApp] Paths used for configuration of jupyter_notebook_config: 
+    	/usr/local/etc/jupyter/jupyter_notebook_config.json
+[D 14:53:42.169 NotebookApp] Paths used for configuration of jupyter_notebook_config: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/jupyter_notebook_config.d/ipyparallel.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/jupyter_notebook_config.d/jupyterlab.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/jupyter_notebook_config.json
+[D 14:53:42.172 NotebookApp] Paths used for configuration of jupyter_notebook_config: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/jupyter_notebook_config.d/jupyterlab.json
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/jupyter_notebook_config.json
+[D 14:53:42.203 NotebookApp] Paths used for configuration of jupyter_notebook_config: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/jupyter_notebook_config.json
+[I 14:53:46.661 NotebookApp] Loading IPython parallel extension
+[D 14:53:46.745 NotebookApp] [jupyter_nbextensions_configurator] Loading 0.4.1
+[D 14:53:46.746 NotebookApp] [jupyter_nbextensions_configurator]   Editing templates path to add /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/templates
+[D 14:53:46.746 NotebookApp] [jupyter_nbextensions_configurator]   Editing nbextensions path to add /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static
+[D 14:53:46.749 NotebookApp] [jupyter_nbextensions_configurator]   Adding new handlers
+[I 14:53:46.750 NotebookApp] [jupyter_nbextensions_configurator] enabled 0.4.1
+[I 14:53:53.053 NotebookApp] jupyter_tensorboard extension loaded.
+[W 2023-01-06 14:53:53.736 LabApp] Config option `kernel_spec_manager_class` not recognized by `LabApp`.
+[W 2023-01-06 14:53:53.739 LabApp] 'notebook_dir' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.739 LabApp] 'notebook_dir' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.739 LabApp] 'notebook_dir' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.739 LabApp] 'base_url' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.739 LabApp] 'port' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.739 LabApp] 'ip' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.739 LabApp] 'certfile' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.739 LabApp] 'keyfile' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.739 LabApp] 'keyfile' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.739 LabApp] 'password' has moved from NotebookApp to ServerApp. This config will be passed to ServerApp. Be sure to update your config before our next release.
+[W 2023-01-06 14:53:53.740 LabApp] Config option `kernel_spec_manager_class` not recognized by `LabApp`.
+[I 2023-01-06 14:53:53.748 LabApp] JupyterLab extension loaded from /linkhome/rech/genini01/uzw47io/.local/lib/python3.9/site-packages/jupyterlab
+[I 2023-01-06 14:53:53.748 LabApp] JupyterLab application directory is /gpfsdswork/projects/rech/imi/uzw47io/.local/share/jupyter/lab
+[I 14:53:53.754 NotebookApp] Serving notebooks from local directory: /gpfswork/rech/imi/uzw47io
+[I 14:53:53.754 NotebookApp] Jupyter Notebook 6.4.10 is running at:
+[I 14:53:53.754 NotebookApp] https://r8i7n6:8009/r8i7n6_8009/
+[I 14:53:53.754 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[I 14:53:55.176 NotebookApp] 302 GET /r8i7n6_8009/ (10.148.0.38) 0.580000ms
+[I 14:53:55.207 NotebookApp] 302 GET /r8i7n6_8009/tree? (10.148.0.38) 0.610000ms
+[D 14:53:55.237 NotebookApp] Using contents: services/contents
+[D 14:53:55.301 NotebookApp] Path base/images/favicon.ico served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/base/images/favicon.ico
+[D 14:53:55.314 NotebookApp] Path components/jquery-ui/themes/smoothness/jquery-ui.min.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/jquery-ui/themes/smoothness/jquery-ui.min.css
+[D 14:53:55.320 NotebookApp] Path components/jquery-typeahead/dist/jquery.typeahead.min.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/jquery-typeahead/dist/jquery.typeahead.min.css
+[D 14:53:55.328 NotebookApp] Path style/style.min.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/style/style.min.css
+[D 14:53:55.343 NotebookApp] Path auth/css/override.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/auth/css/override.css
+[D 14:53:55.345 NotebookApp] Path components/es6-promise/promise.min.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/es6-promise/promise.min.js
+[D 14:53:55.358 NotebookApp] Path components/react/react.production.min.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/react/react.production.min.js
+[D 14:53:55.366 NotebookApp] Path components/react/react-dom.production.min.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/react/react-dom.production.min.js
+[D 14:53:55.376 NotebookApp] Path components/create-react-class/index.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/create-react-class/index.js
+[D 14:53:55.383 NotebookApp] Path components/requirejs/require.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/requirejs/require.js
+[D 14:53:55.393 NotebookApp] Path base/images/logo.png served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/base/images/logo.png
+[D 14:53:55.403 NotebookApp] 200 GET /r8i7n6_8009/login?next=%2Fr8i7n6_8009%2Ftree%3F (10.148.0.38) 167.590000ms
+[D 14:53:55.549 NotebookApp] 200 GET /r8i7n6_8009/static/components/jquery-ui/themes/smoothness/jquery-ui.min.css?v=fb45616eef2c454960f91fcd2a04efeda84cfacccf0c5d741ba2793dc1dbd6d3ab01aaae6485222945774c7d7a9a2e9fb87e0d8ef1ea96893aa6906147a371bb (10.148.0.38) 0.930000ms
+[D 14:53:55.580 NotebookApp] 200 GET /r8i7n6_8009/static/components/jquery-typeahead/dist/jquery.typeahead.min.css?v=5edf53bf6bb9c3b1ddafd8594825a7e2ed621f19423e569c985162742f63911c09eba2c529f8fb47aebf27fafdfe287d563347f58c1126b278189a18871b6a9a (10.148.0.38) 0.700000ms
+[D 14:53:55.581 NotebookApp] 200 GET /r8i7n6_8009/static/style/style.min.css?v=b092d0a2da5df36f2b073ddb4eafcd6c8094c4fa21b6dcd3f7185ce16c04ad66424083d785b81607a26b4b85b69a560574ada7db75262c886655f99d651c482e (10.148.0.38) 1.070000ms
+[D 14:53:55.592 NotebookApp] 200 GET /r8i7n6_8009/static/auth/css/override.css?v=7d24c52c4d63c7ed3ca286c051f232acd6a5ee3ed2aa32f56bea22ef20a2e3d184a638aad5602a39e8d5ef9a66ed93fdbaf80cf979948a947bab117618bd6486 (10.148.0.38) 0.740000ms
+[D 14:53:55.594 NotebookApp] Path custom.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/custom/custom.css
+[D 14:53:55.595 NotebookApp] 200 GET /r8i7n6_8009/custom/custom.css (10.148.0.38) 2.480000ms
+[D 14:53:55.596 NotebookApp] 200 GET /r8i7n6_8009/static/components/es6-promise/promise.min.js?v=bea335d74136a63ae1b5130f5ac9a50c6256a5f435e6e09fef599491a84d834a8b0f011ca3eaaca3b4ab6a2da2d3e1191567a2f171e60da1d10e5b9d52f84184 (10.148.0.38) 0.800000ms
+[D 14:53:55.597 NotebookApp] 200 GET /r8i7n6_8009/static/components/react/react.production.min.js?v=9a0aaf84a316c8bedd6c2ff7d5b5e0a13f8f84ec02442346cba0b842c6c81a6bf6176e64f3675c2ebf357cb5bb048e0b527bd39377c95681d22468da3d5de735 (10.148.0.38) 0.720000ms
+[D 14:53:55.615 NotebookApp] 200 GET /r8i7n6_8009/static/components/react/react-dom.production.min.js?v=6fc58c1c4736868ff84f57bd8b85f2bdb985993a9392718f3b4af4bfa10fb4efba2b4ddd68644bd2a8daf0619a3844944c9c43f8528364a1aa6fc01ec1b8ae84 (10.148.0.38) 0.780000ms
+[D 14:53:55.640 NotebookApp] 200 GET /r8i7n6_8009/static/components/requirejs/require.js?v=d37b48bb2137faa0ab98157e240c084dd5b1b5e74911723aa1d1f04c928c2a03dedf922d049e4815f7e5a369faa2e6b6a1000aae958b7953b5cc60411154f593 (10.148.0.38) 0.790000ms
+[D 14:53:55.641 NotebookApp] 200 GET /r8i7n6_8009/static/components/create-react-class/index.js?v=894ad57246e682b4cfbe7cd5e408dcd6b38d06af4de4f3425991e2676fdc2ef1732cbd19903104198878ae77de12a1996de3e7da3a467fb226bdda8f4618faec (10.148.0.38) 0.660000ms
+[D 14:53:55.717 NotebookApp] 200 GET /r8i7n6_8009/static/base/images/logo.png?v=a2a176ee3cee251ffddf5fa21fe8e43727a9e5f87a06f9c91ad7b776d9e9d3d5e0159c16cc188a3965e00375fb4bc336c16067c688f5040c0c2d4bfdb852a9e4 (10.148.0.38) 0.660000ms
+[D 14:53:55.724 NotebookApp] Path auth/js/main.min.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/auth/js/main.min.js
+[D 14:53:55.737 NotebookApp] 200 GET /r8i7n6_8009/static/auth/js/main.min.js?v=20230106145342 (10.148.0.38) 14.200000ms
+[D 14:53:55.828 NotebookApp] 200 GET /r8i7n6_8009/static/base/images/favicon.ico?v=50afa725b5de8b00030139d09b38620224d4e7dba47c07ef0e86d4643f30c9bfe6bb7e1a4a1c561aa32834480909a4b6fe7cd1e17f7159330b6b5914bf45a880 (10.148.0.38) 0.690000ms
+[I 14:53:56.982 NotebookApp] 302 POST /r8i7n6_8009/login?next=%2Fr8i7n6_8009%2Ftree%3F (10.148.0.38) 25.890000ms
+[D 14:53:57.013 NotebookApp] Using contents: services/contents
+[D 14:53:57.045 NotebookApp] Path tree/js/main.min.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/tree/js/main.min.js
+[D 14:53:57.065 NotebookApp] 200 GET /r8i7n6_8009/tree? (10.148.0.38) 52.210000ms
+[D 14:53:57.141 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.css (10.148.0.38) 0.690000ms
+[D 14:53:57.145 NotebookApp] 200 GET /r8i7n6_8009/static/tree/js/main.min.js?v=dab772273166ac9f0f558594df24e3c759850e5235dc1b578b63bc5acc95cdde555c0f3a598db857a1d5c72e298c6ffe30932d59a11929a5ffbd06fa69143e67 (10.148.0.38) 2.800000ms
+[D 14:53:57.416 NotebookApp] Path services/contents.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/services/contents.js
+[D 14:53:57.430 NotebookApp] 200 GET /r8i7n6_8009/static/services/contents.js?v=20230106145342 (10.148.0.38) 15.630000ms
+[D 14:53:57.465 NotebookApp] Paths used for configuration of tree: 
+    	/etc/jupyter/nbconfig/tree.json
+[D 14:53:57.466 NotebookApp] Paths used for configuration of tree: 
+    	/usr/local/etc/jupyter/nbconfig/tree.json
+[D 14:53:57.468 NotebookApp] Paths used for configuration of tree: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/tree.d/ipyparallel.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/tree.json
+[D 14:53:57.470 NotebookApp] Paths used for configuration of tree: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/tree.json
+[D 14:53:57.471 NotebookApp] Paths used for configuration of tree: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/tree.json
+[D 14:53:57.472 NotebookApp] 200 GET /r8i7n6_8009/api/config/tree?_=1673013237376 (10.148.0.38) 7.550000ms
+[D 14:53:57.479 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:53:57.479 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:53:57.480 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:53:57.480 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:53:57.480 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:53:57.481 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013237377 (10.148.0.38) 3.750000ms
+[D 14:53:57.486 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237378 (10.148.0.38) 0.620000ms
+[D 14:53:57.487 NotebookApp] Found kernel xpython-raw in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/kernels
+[D 14:53:57.487 NotebookApp] Found kernel xpython in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/kernels
+[D 14:53:57.487 NotebookApp] Found kernel python3 in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/kernels
+[D 14:53:58.257 NotebookApp] 200 GET /r8i7n6_8009/api/kernelspecs (10.148.0.38) 771.160000ms
+[D 14:53:58.258 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237380 (10.148.0.38) 0.870000ms
+[D 14:53:58.267 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237379 (10.148.0.38) 2.100000ms
+[D 14:53:58.271 NotebookApp] Path components/font-awesome/fonts/fontawesome-webfont.woff2 served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/font-awesome/fonts/fontawesome-webfont.woff2
+[D 14:53:58.283 NotebookApp] 200 GET /r8i7n6_8009/static/components/font-awesome/fonts/fontawesome-webfont.woff2?v=4.7.0 (10.148.0.38) 15.250000ms
+[D 14:53:58.284 NotebookApp] Path custom.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/custom/custom.js
+[D 14:53:58.285 NotebookApp] 200 GET /r8i7n6_8009/custom/custom.js?v=20230106145342 (10.148.0.38) 16.140000ms
+[D 14:53:58.288 NotebookApp] Path ipyparallel/main.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/nbextensions/ipyparallel/main.js
+[D 14:53:58.288 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/ipyparallel/main.js?v=20230106145342 (10.148.0.38) 3.380000ms
+[D 14:53:58.397 NotebookApp] Path nbextensions_configurator/tree_tab/main.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static/nbextensions_configurator/tree_tab/main.js
+[D 14:53:58.397 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/nbextensions_configurator/tree_tab/main.js?v=20230106145342 (10.148.0.38) 3.920000ms
+[D 14:53:58.402 NotebookApp] Path jupyter_tensorboard/tree.js served from /gpfs7kw/linkhome/rech/genini01/uzw47io/.local/share/jupyter/nbextensions/jupyter_tensorboard/tree.js
+[D 14:53:58.404 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/jupyter_tensorboard/tree.js?v=20230106145342 (10.148.0.38) 3.790000ms
+[D 14:53:58.591 NotebookApp] 200 GET /r8i7n6_8009/api/contents?type=directory&_=1673013237381 (10.148.0.38) 187.080000ms
+[D 14:53:58.603 NotebookApp] Path ipyparallel/clusterlist.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/nbextensions/ipyparallel/clusterlist.js
+[D 14:53:58.617 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/ipyparallel/clusterlist.js?v=20230106145342 (10.148.0.38) 15.420000ms
+[D 14:53:58.618 NotebookApp] Path nbextensions_configurator/render/render.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static/nbextensions_configurator/render/render.js
+[D 14:53:58.631 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/nbextensions_configurator/render/render.js?v=20230106145342 (10.148.0.38) 29.250000ms
+[D 14:53:58.632 NotebookApp] Path nbextensions_configurator/main.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static/nbextensions_configurator/main.js
+[D 14:53:58.639 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/nbextensions_configurator/main.js?v=20230106145342 (10.148.0.38) 36.700000ms
+[D 14:53:58.640 NotebookApp] Path jupyter_tensorboard/tensorboardlist.js served from /gpfs7kw/linkhome/rech/genini01/uzw47io/.local/share/jupyter/nbextensions/jupyter_tensorboard/tensorboardlist.js
+[D 14:53:58.642 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/jupyter_tensorboard/tensorboardlist.js?v=20230106145342 (10.148.0.38) 3.230000ms
+[D 14:53:58.747 NotebookApp] Path base/js/security.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/base/js/security.js
+[D 14:53:58.748 NotebookApp] 200 GET /r8i7n6_8009/static/base/js/security.js?v=20230106145342 (10.148.0.38) 3.670000ms
+[D 14:53:58.754 NotebookApp] Path notebook/js/mathjaxutils.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/notebook/js/mathjaxutils.js
+[D 14:53:58.755 NotebookApp] 200 GET /r8i7n6_8009/static/notebook/js/mathjaxutils.js?v=20230106145342 (10.148.0.38) 6.780000ms
+[D 14:53:58.758 NotebookApp] Path components/codemirror/addon/runmode/runmode.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/addon/runmode/runmode.js
+[D 14:53:58.759 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/addon/runmode/runmode.js?v=20230106145342 (10.148.0.38) 3.720000ms
+[D 14:53:58.761 NotebookApp] Path notebook/js/codemirror-ipythongfm.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/notebook/js/codemirror-ipythongfm.js
+[D 14:53:58.762 NotebookApp] 200 GET /r8i7n6_8009/static/notebook/js/codemirror-ipythongfm.js?v=20230106145342 (10.148.0.38) 2.350000ms
+[D 14:53:58.776 NotebookApp] Path components/codemirror/mode/gfm/gfm.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/mode/gfm/gfm.js
+[D 14:53:58.797 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/mode/gfm/gfm.js?v=20230106145342 (10.148.0.38) 34.500000ms
+[D 14:53:58.798 NotebookApp] Path notebook/js/codemirror-ipython.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/notebook/js/codemirror-ipython.js
+[D 14:53:58.799 NotebookApp] 200 GET /r8i7n6_8009/static/notebook/js/codemirror-ipython.js?v=20230106145342 (10.148.0.38) 2.180000ms
+[D 14:53:58.810 NotebookApp] Path ipyparallel/clusterlist.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/nbextensions/ipyparallel/clusterlist.css
+[D 14:53:58.812 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/ipyparallel/clusterlist.css (10.148.0.38) 3.350000ms
+[D 14:53:58.812 NotebookApp] Path jupyter_tensorboard/style.css served from /gpfs7kw/linkhome/rech/genini01/uzw47io/.local/share/jupyter/nbextensions/jupyter_tensorboard/style.css
+[D 14:53:58.813 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/jupyter_tensorboard/style.css (10.148.0.38) 4.070000ms
+[D 14:53:58.813 NotebookApp] 200 GET /r8i7n6_8009/api/tensorboard?_=1673013237383 (10.148.0.38) 4.060000ms
+[D 14:53:58.835 NotebookApp] Loading profile /gpfs7kw/linkhome/rech/genini01/uzw47io/.ipython/profile_default
+[D 14:53:58.836 NotebookApp] Config changed: {'ProfileDir': {'location': '/gpfs7kw/linkhome/rech/genini01/uzw47io/.ipython/profile_default'}}
+[D 14:53:58.926 NotebookApp] Using existing profile dir: '/gpfs7kw/linkhome/rech/genini01/uzw47io/.ipython/profile_default'
+[D 14:53:58.926 NotebookApp] Searching path ['/gpfs7kw/linkhome/rech/genini01/uzw47io/.ipython/profile_default', '/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/ipython', '/usr/local/etc/ipython', '/etc/ipython'] for config files
+[D 14:53:58.926 NotebookApp] Attempting to load config file: ipython_config.py
+[D 14:53:58.927 NotebookApp] Looking for ipython_config in /etc/ipython
+[D 14:53:58.927 NotebookApp] Looking for ipython_config in /usr/local/etc/ipython
+[D 14:53:58.927 NotebookApp] Looking for ipython_config in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/ipython
+[D 14:53:58.927 NotebookApp] Looking for ipython_config in /gpfs7kw/linkhome/rech/genini01/uzw47io/.ipython/profile_default
+[D 14:53:58.928 NotebookApp] Attempting to load config file: ipcluster_config.py
+[D 14:53:58.928 NotebookApp] Looking for ipcluster_config in /etc/ipython
+[D 14:53:58.928 NotebookApp] Looking for ipcluster_config in /usr/local/etc/ipython
+[D 14:53:58.929 NotebookApp] Looking for ipcluster_config in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/ipython
+[D 14:53:58.929 NotebookApp] Looking for ipcluster_config in /gpfs7kw/linkhome/rech/genini01/uzw47io/.ipython/profile_default
+[D 14:53:59.064 NotebookApp] 200 GET /r8i7n6_8009/ipyparallel/clusters?_=1673013237382 (10.148.0.38) 249.690000ms
+[D 14:53:59.078 NotebookApp] Path notebook/js/quickhelp.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/notebook/js/quickhelp.js
+[D 14:53:59.087 NotebookApp] 200 GET /r8i7n6_8009/static/notebook/js/quickhelp.js?v=20230106145342 (10.148.0.38) 11.440000ms
+[D 14:53:59.088 NotebookApp] Path nbextensions_configurator/kse_components.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static/nbextensions_configurator/kse_components.js
+[D 14:53:59.097 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/nbextensions_configurator/kse_components.js?v=20230106145342 (10.148.0.38) 20.660000ms
+[D 14:53:59.098 NotebookApp] Path components/sanitizer/index.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/sanitizer/index.js
+[D 14:53:59.116 NotebookApp] 200 GET /r8i7n6_8009/static/components/sanitizer/index.js?v=20230106145342 (10.148.0.38) 39.460000ms
+[D 14:53:59.117 NotebookApp] Path base/js/mathjaxutils.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/base/js/mathjaxutils.js
+[D 14:53:59.133 NotebookApp] 200 GET /r8i7n6_8009/static/base/js/mathjaxutils.js?v=20230106145342 (10.148.0.38) 56.070000ms
+[D 14:53:59.141 NotebookApp] Path components/jquery-ui/jquery-ui.min.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/jquery-ui/jquery-ui.min.js
+[D 14:53:59.157 NotebookApp] 200 GET /r8i7n6_8009/static/components/jquery-ui/jquery-ui.min.js?v=20230106145342 (10.148.0.38) 17.030000ms
+[D 14:53:59.160 NotebookApp] Path components/codemirror/addon/mode/multiplex.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/addon/mode/multiplex.js
+[D 14:53:59.168 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/addon/mode/multiplex.js?v=20230106145342 (10.148.0.38) 10.260000ms
+[D 14:53:59.169 NotebookApp] Path components/codemirror/mode/python/python.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/mode/python/python.js
+[D 14:53:59.182 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/mode/python/python.js?v=20230106145342 (10.148.0.38) 23.860000ms
+[D 14:53:59.184 NotebookApp] Path components/codemirror/mode/stex/stex.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/mode/stex/stex.js
+[D 14:53:59.190 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/mode/stex/stex.js?v=20230106145342 (10.148.0.38) 7.640000ms
+[D 14:53:59.195 NotebookApp] Path components/codemirror/mode/markdown/markdown.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/mode/markdown/markdown.js
+[D 14:53:59.208 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/mode/markdown/markdown.js?v=20230106145342 (10.148.0.38) 14.350000ms
+[D 14:53:59.242 NotebookApp] Path components/codemirror/addon/mode/overlay.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/addon/mode/overlay.js
+[D 14:53:59.243 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/addon/mode/overlay.js?v=20230106145342 (10.148.0.38) 2.480000ms
+[D 14:53:59.248 NotebookApp] Path nbextensions_configurator/quickhelp_shim.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static/nbextensions_configurator/quickhelp_shim.js
+[D 14:53:59.255 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/nbextensions_configurator/quickhelp_shim.js?v=20230106145342 (10.148.0.38) 7.960000ms
+[D 14:53:59.365 NotebookApp] Path components/codemirror/mode/xml/xml.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/mode/xml/xml.js
+[D 14:53:59.375 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/mode/xml/xml.js?v=20230106145342 (10.148.0.38) 11.250000ms
+[D 14:53:59.409 NotebookApp] Path nbextensions_configurator/main.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static/nbextensions_configurator/main.css
+[D 14:53:59.413 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/nbextensions_configurator/main.css?v=20230106145342 (10.148.0.38) 4.530000ms
+[D 14:53:59.417 NotebookApp] Path nbextensions_configurator/render/rendermd.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static/nbextensions_configurator/render/rendermd.css
+[D 14:53:59.418 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/nbextensions_configurator/render/rendermd.css?v=20230106145342 (10.148.0.38) 2.660000ms
+[D 14:53:59.421 NotebookApp] Paths used for configuration of notebook: 
+    	/etc/jupyter/nbconfig/notebook.json
+[D 14:53:59.422 NotebookApp] Paths used for configuration of notebook: 
+    	/usr/local/etc/jupyter/nbconfig/notebook.json
+[D 14:53:59.423 NotebookApp] Paths used for configuration of notebook: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.d/jupyterlab-plotly.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.d/open3d.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.d/widgetsnbextension.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.json
+[D 14:53:59.426 NotebookApp] Paths used for configuration of notebook: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/notebook.json
+[D 14:53:59.427 NotebookApp] Paths used for configuration of notebook: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/notebook.json
+[D 14:53:59.427 NotebookApp] 200 GET /r8i7n6_8009/api/config/notebook?_=1673013237384 (10.148.0.38) 6.760000ms
+[D 14:53:59.433 NotebookApp] Paths used for configuration of notebook: 
+    	/etc/jupyter/nbconfig/notebook.json
+[D 14:53:59.433 NotebookApp] Paths used for configuration of notebook: 
+    	/usr/local/etc/jupyter/nbconfig/notebook.json
+[D 14:53:59.434 NotebookApp] Paths used for configuration of notebook: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.d/jupyterlab-plotly.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.d/open3d.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.d/widgetsnbextension.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.json
+[D 14:53:59.434 NotebookApp] Paths used for configuration of notebook: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/notebook.json
+[D 14:53:59.435 NotebookApp] Paths used for configuration of notebook: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/notebook.json
+[D 14:53:59.435 NotebookApp] 200 GET /r8i7n6_8009/api/config/notebook?_=1673013237385 (10.148.0.38) 3.100000ms
+[D 14:53:59.437 NotebookApp] Paths used for configuration of edit: 
+    	/etc/jupyter/nbconfig/edit.json
+[D 14:53:59.437 NotebookApp] Paths used for configuration of edit: 
+    	/usr/local/etc/jupyter/nbconfig/edit.json
+[D 14:53:59.438 NotebookApp] Paths used for configuration of edit: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/edit.json
+[D 14:53:59.438 NotebookApp] Paths used for configuration of edit: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/edit.json
+[D 14:53:59.439 NotebookApp] Paths used for configuration of edit: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/edit.json
+[D 14:53:59.439 NotebookApp] 200 GET /r8i7n6_8009/api/config/edit?_=1673013237386 (10.148.0.38) 3.320000ms
+[D 14:53:59.442 NotebookApp] Paths used for configuration of edit: 
+    	/etc/jupyter/nbconfig/edit.json
+[D 14:53:59.443 NotebookApp] Paths used for configuration of edit: 
+    	/usr/local/etc/jupyter/nbconfig/edit.json
+[D 14:53:59.443 NotebookApp] Paths used for configuration of edit: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/edit.json
+[D 14:53:59.443 NotebookApp] Paths used for configuration of edit: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/edit.json
+[D 14:53:59.444 NotebookApp] Paths used for configuration of edit: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/edit.json
+[D 14:53:59.444 NotebookApp] 200 GET /r8i7n6_8009/api/config/edit?_=1673013237387 (10.148.0.38) 3.210000ms
+[D 14:53:59.447 NotebookApp] Paths used for configuration of tree: 
+    	/etc/jupyter/nbconfig/tree.json
+[D 14:53:59.448 NotebookApp] Paths used for configuration of tree: 
+    	/usr/local/etc/jupyter/nbconfig/tree.json
+[D 14:53:59.448 NotebookApp] Paths used for configuration of tree: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/tree.d/ipyparallel.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/tree.json
+[D 14:53:59.449 NotebookApp] Paths used for configuration of tree: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/tree.json
+[D 14:53:59.449 NotebookApp] Paths used for configuration of tree: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/tree.json
+[D 14:53:59.449 NotebookApp] 200 GET /r8i7n6_8009/api/config/tree?_=1673013237388 (10.148.0.38) 2.960000ms
+[D 14:53:59.453 NotebookApp] Paths used for configuration of tree: 
+    	/etc/jupyter/nbconfig/tree.json
+[D 14:53:59.453 NotebookApp] Paths used for configuration of tree: 
+    	/usr/local/etc/jupyter/nbconfig/tree.json
+[D 14:53:59.454 NotebookApp] Paths used for configuration of tree: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/tree.d/ipyparallel.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/tree.json
+[D 14:53:59.454 NotebookApp] Paths used for configuration of tree: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/tree.json
+[D 14:53:59.455 NotebookApp] Paths used for configuration of tree: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/tree.json
+[D 14:53:59.455 NotebookApp] 200 GET /r8i7n6_8009/api/config/tree?_=1673013237389 (10.148.0.38) 2.930000ms
+[D 14:53:59.459 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:53:59.459 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:53:59.459 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:53:59.460 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:53:59.460 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:53:59.461 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013237390 (10.148.0.38) 2.640000ms
+[D 14:53:59.462 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:53:59.462 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:53:59.463 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:53:59.463 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:53:59.463 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:53:59.464 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013237391 (10.148.0.38) 2.660000ms
+[D 14:53:59.488 NotebookApp] [jupyter_nbextensions_configurator] Looking for nbextension yaml descriptor files in /gpfs7kw/linkhome/rech/genini01/uzw47io/.local/share/jupyter/nbextensions
+[D 14:53:59.488 NotebookApp] [jupyter_nbextensions_configurator] Looking for nbextension yaml descriptor files in /linkhome/rech/genini01/uzw47io/.local/share/jupyter/nbextensions
+[D 14:53:59.489 NotebookApp] [jupyter_nbextensions_configurator] Looking for nbextension yaml descriptor files in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/nbextensions
+[D 14:53:59.491 NotebookApp] [jupyter_nbextensions_configurator] Looking for nbextension yaml descriptor files in /usr/local/share/jupyter/nbextensions
+[D 14:53:59.491 NotebookApp] [jupyter_nbextensions_configurator] Looking for nbextension yaml descriptor files in /usr/share/jupyter/nbextensions
+[D 14:53:59.491 NotebookApp] [jupyter_nbextensions_configurator] Looking for nbextension yaml descriptor files in /gpfs7kw/linkhome/rech/genini01/uzw47io/.ipython/nbextensions
+[D 14:53:59.491 NotebookApp] [jupyter_nbextensions_configurator] Looking for nbextension yaml descriptor files in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static
+[D 14:53:59.494 NotebookApp] [jupyter_nbextensions_configurator] Found nbextension 'Nbextensions edit menu item' in nbextensions_configurator/config_menu/config_menu.yaml
+[D 14:53:59.495 NotebookApp] [jupyter_nbextensions_configurator] Found nbextension 'Nbextensions dashboard tab' in nbextensions_configurator/tree_tab/tree_tab.yaml
+[D 14:53:59.495 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/nbextensions_configurator/list?_=1673013237392 (10.148.0.38) 7.520000ms
+[D 14:54:01.031 NotebookApp] Using contents: services/contents
+[D 14:54:01.078 NotebookApp] Path base/images/favicon-notebook.ico served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/base/images/favicon-notebook.ico
+[D 14:54:01.080 NotebookApp] Path components/bootstrap-tour/build/css/bootstrap-tour.min.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/bootstrap-tour/build/css/bootstrap-tour.min.css
+[D 14:54:01.082 NotebookApp] Path components/codemirror/lib/codemirror.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/lib/codemirror.css
+[D 14:54:01.089 NotebookApp] Path notebook/css/override.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/notebook/css/override.css
+[D 14:54:02.607 NotebookApp] Path components/text-encoding/lib/encoding.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/text-encoding/lib/encoding.js
+[D 14:54:02.617 NotebookApp] Path notebook/js/main.min.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/notebook/js/main.min.js
+[D 14:54:02.647 NotebookApp] 200 GET /r8i7n6_8009/notebooks/evojax_CPPR_1.ipynb (10.148.0.38) 1616.140000ms
+[D 14:54:02.820 NotebookApp] Path components/MathJax/MathJax.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/MathJax/MathJax.js
+[D 14:54:02.835 NotebookApp] 200 GET /r8i7n6_8009/static/components/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full,Safe&delayStartupUntil=configured (10.148.0.38) 16.700000ms
+[D 14:54:02.841 NotebookApp] 200 GET /r8i7n6_8009/static/components/bootstrap-tour/build/css/bootstrap-tour.min.css?v=95c93e52db61ab29625defe55361384ce6776a7d303b97da5a73fef5ddf8e391a6223599a0b58669476bd71645a4f0022df0517c88b0c05df80ba465e36f5417 (10.148.0.38) 0.780000ms
+[D 14:54:02.842 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/lib/codemirror.css?v=81fecb54f83101e2bbe6d2e3131e252ac83f2910366100ca83ba4834f5d41754c837f306eecfdceed05f9c9111614942e2ced5acdd8040746b66c6bef0141d0e (10.148.0.38) 0.730000ms
+[D 14:54:02.884 NotebookApp] 200 GET /r8i7n6_8009/static/notebook/css/override.css?v=16733f6ba5f2224692fe4e654f3cbb2e3cae82f1df06ca53aa1cb88b147465f16c968c0898e2b0203a7ad3a469f82b959e26bb4b27b790f7f364c4336449b0aa (10.148.0.38) 0.730000ms
+[D 14:54:02.899 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.css (10.148.0.38) 0.650000ms
+[D 14:54:02.952 NotebookApp] 200 GET /r8i7n6_8009/static/components/text-encoding/lib/encoding.js?v=737ac6f9f978afb6348b5914877e7d7136de7465cd4cdf389bad9a6b3ad5ceffbfb23febc75c23378967d7d36f98f5388208e8eb78c80f2bf47e8f8c000481ad (10.148.0.38) 0.840000ms
+[D 14:54:02.963 NotebookApp] Path components/MathJax/config/TeX-AMS-MML_HTMLorMML-full.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/MathJax/config/TeX-AMS-MML_HTMLorMML-full.js
+[D 14:54:02.975 NotebookApp] 200 GET /r8i7n6_8009/static/components/MathJax/config/TeX-AMS-MML_HTMLorMML-full.js?V=2.7.9 (10.148.0.38) 14.700000ms
+[D 14:54:02.990 NotebookApp] 200 GET /r8i7n6_8009/static/notebook/js/main.min.js?v=d20cedcdfe41831d9a4ce0b46c51f1c5b6783a774c68a8f8282f390e1f7eef860df037874bac2a7dd7328cae8a84bebab3b573164a3a7dab138c32db01461d3c (10.148.0.38) 37.460000ms
+[D 14:54:03.143 NotebookApp] Path components/MathJax/config/Safe.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/MathJax/config/Safe.js
+[D 14:54:03.144 NotebookApp] 200 GET /r8i7n6_8009/static/components/MathJax/config/Safe.js?V=2.7.9 (10.148.0.38) 1.750000ms
+[D 14:54:03.372 NotebookApp] 200 GET /r8i7n6_8009/static/base/images/favicon-notebook.ico?v=eb02bb6f6435d048eba1bf1bd3b3621f8c14f26518dbadd8efd4ee6ee2721caf2367bc0cbc27d2ee2c35bc3b035aad07c6d625422b9445bf301897f493d0edc5 (10.148.0.38) 0.970000ms
+[D 14:54:03.798 NotebookApp] Paths used for configuration of notebook: 
+    	/etc/jupyter/nbconfig/notebook.json
+[D 14:54:03.799 NotebookApp] Paths used for configuration of notebook: 
+    	/usr/local/etc/jupyter/nbconfig/notebook.json
+[D 14:54:03.799 NotebookApp] Paths used for configuration of notebook: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.d/jupyterlab-plotly.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.d/open3d.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.d/widgetsnbextension.json
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/notebook.json
+[D 14:54:03.800 NotebookApp] Paths used for configuration of notebook: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/notebook.json
+[D 14:54:03.800 NotebookApp] Paths used for configuration of notebook: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/notebook.json
+[D 14:54:03.801 NotebookApp] 200 GET /r8i7n6_8009/api/config/notebook?_=1673013243332 (10.148.0.38) 3.190000ms
+[D 14:54:03.802 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:54:03.802 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:54:03.803 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:54:03.803 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:54:03.804 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:54:03.804 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013243333 (10.148.0.38) 2.660000ms
+[D 14:54:03.814 NotebookApp] Path components/MathJax/extensions/TeX/newcommand.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/MathJax/extensions/TeX/newcommand.js
+[D 14:54:03.815 NotebookApp] 200 GET /r8i7n6_8009/static/components/MathJax/extensions/TeX/newcommand.js?V=2.7.9 (10.148.0.38) 3.410000ms
+[D 14:54:03.822 NotebookApp] Path components/MathJax/extensions/MathML/content-mathml.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/MathJax/extensions/MathML/content-mathml.js
+[D 14:54:03.824 NotebookApp] 200 GET /r8i7n6_8009/static/components/MathJax/extensions/MathML/content-mathml.js?V=2.7.9 (10.148.0.38) 3.730000ms
+[D 14:54:03.825 NotebookApp] Path components/MathJax/extensions/TeX/begingroup.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/MathJax/extensions/TeX/begingroup.js
+[D 14:54:03.826 NotebookApp] 200 GET /r8i7n6_8009/static/components/MathJax/extensions/TeX/begingroup.js?V=2.7.9 (10.148.0.38) 1.500000ms
+[D 14:54:03.837 NotebookApp] Found kernel xpython-raw in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/kernels
+[D 14:54:03.837 NotebookApp] Found kernel xpython in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/kernels
+[D 14:54:03.837 NotebookApp] Found kernel python3 in /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/kernels
+[D 14:54:03.843 NotebookApp] 304 GET /r8i7n6_8009/api/kernelspecs (10.148.0.38) 6.730000ms
+[W 14:54:04.086 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 14:54:04.121 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?type=notebook&_=1673013243334 (10.148.0.38) 190.410000ms
+[D 14:54:04.132 NotebookApp] Path components/MathJax/jax/output/HTML-CSS/fonts/STIX-Web/fontdata.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/MathJax/jax/output/HTML-CSS/fonts/STIX-Web/fontdata.js
+[D 14:54:04.138 NotebookApp] 200 GET /r8i7n6_8009/static/components/MathJax/jax/output/HTML-CSS/fonts/STIX-Web/fontdata.js?V=2.7.9 (10.148.0.38) 9.170000ms
+[D 14:54:04.181 NotebookApp] 200 GET /r8i7n6_8009/api/contents/imgc-marl?type=directory&_=1673013237393 (10.148.0.38) 42.500000ms
+[D 14:54:06.856 NotebookApp] Instantiating kernel 'Python 3 (ipykernel)' with kernel provisioner: local-provisioner
+[D 14:54:06.873 NotebookApp] Starting kernel: ['/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/bin/python', '-m', 'ipykernel_launcher', '-f', '/gpfsdswork/projects/rech/imi/uzw47io/.local/share/jupyter/runtime/kernel-67c90938-7d68-4f41-949e-cdfb7f5e00fe.json']
+[D 14:54:06.884 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb/checkpoints?_=1673013243335 (10.148.0.38) 10.840000ms
+[D 14:54:06.885 NotebookApp] Connecting to: tcp://127.0.0.1:47389
+[D 14:54:06.891 NotebookApp] Serving kernel resource from: /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/kernels/python3
+[D 14:54:06.903 NotebookApp] 200 GET /r8i7n6_8009/kernelspecs/python3/logo-64x64.png (10.148.0.38) 13.190000ms
+[D 14:54:06.903 NotebookApp] Connecting to: tcp://127.0.0.1:52221
+[I 14:54:06.904 NotebookApp] Kernel started: 67c90938-7d68-4f41-949e-cdfb7f5e00fe, name: python3
+[D 14:54:06.904 NotebookApp] Kernel args: {'kernel_name': 'python3', 'cwd': '/gpfswork/rech/imi/uzw47io'}
+[D 14:54:06.905 NotebookApp] 201 POST /r8i7n6_8009/api/sessions (10.148.0.38) 70.320000ms
+[D 14:54:07.110 NotebookApp] Initializing websocket connection /r8i7n6_8009/api/kernels/67c90938-7d68-4f41-949e-cdfb7f5e00fe/channels
+[D 14:54:07.112 NotebookApp] Requesting kernel info from 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:54:07.112 NotebookApp] Connecting to: tcp://127.0.0.1:51503
+[D 14:54:07.644 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.js?v=20230106145342 (10.148.0.38) 1.000000ms
+[D 14:54:07.650 NotebookApp] Path jupyterlab-plotly/extension.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/nbextensions/jupyterlab-plotly/extension.js
+[D 14:54:07.651 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/jupyterlab-plotly/extension.js?v=20230106145342 (10.148.0.38) 1.830000ms
+[D 14:54:07.653 NotebookApp] Path open3d/extension.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/nbextensions/open3d/extension.js
+[D 14:54:07.653 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/open3d/extension.js?v=20230106145342 (10.148.0.38) 1.760000ms
+[D 14:54:07.936 NotebookApp] Path jupyter-js-widgets/extension.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/share/jupyter/nbextensions/jupyter-js-widgets/extension.js
+[D 14:54:07.956 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/jupyter-js-widgets/extension.js?v=20230106145342 (10.148.0.38) 21.470000ms
+[D 14:54:07.962 NotebookApp] Path nbextensions_configurator/config_menu/main.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/jupyter_nbextensions_configurator/static/nbextensions_configurator/config_menu/main.js
+[D 14:54:07.963 NotebookApp] 200 GET /r8i7n6_8009/nbextensions/nbextensions_configurator/config_menu/main.js?v=20230106145342 (10.148.0.38) 1.780000ms
+[D 14:54:07.965 NotebookApp] Path components/MathJax/extensions/Safe.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/MathJax/extensions/Safe.js
+[D 14:54:07.966 NotebookApp] 200 GET /r8i7n6_8009/static/components/MathJax/extensions/Safe.js?V=2.7.9 (10.148.0.38) 2.700000ms
+[D 14:54:08.026 NotebookApp] Received kernel info: {'status': 'ok', 'protocol_version': '5.3', 'implementation': 'ipython', 'implementation_version': '8.2.0', 'language_info': {'name': 'python', 'version': '3.9.12', 'mimetype': 'text/x-python', 'codemirror_mode': {'name': 'ipython', 'version': 3}, 'pygments_lexer': 'ipython3', 'nbconvert_exporter': 'python', 'file_extension': '.py'}, 'banner': "Python 3.9.12 | packaged by conda-forge | (main, Mar 24 2022, 23:25:59) \nType 'copyright', 'credits' or 'license' for more information\nIPython 8.2.0 -- An enhanced Interactive Python. Type '?' for help.\n", 'help_links': [{'text': 'Python Reference', 'url': 'https://docs.python.org/3.9'}, {'text': 'IPython Reference', 'url': 'https://ipython.org/documentation.html'}, {'text': 'NumPy Reference', 'url': 'https://docs.scipy.org/doc/numpy/reference/'}, {'text': 'SciPy Reference', 'url': 'https://docs.scipy.org/doc/scipy/reference/'}, {'text': 'Matplotlib Reference', 'url': 'https://matplotlib.org/contents.html'}, {'text': 'SymPy Reference', 'url': 'http://docs.sympy.org/latest/index.html'}, {'text': 'pandas Reference', 'url': 'https://pandas.pydata.org/pandas-docs/stable/'}]}
+[D 14:54:08.027 NotebookApp] 101 GET /r8i7n6_8009/api/kernels/67c90938-7d68-4f41-949e-cdfb7f5e00fe/channels?session_id=6e7a399dd7794331b6e7a03acc784ffa (10.148.0.38) 916.680000ms
+[D 14:54:08.027 NotebookApp] Opening websocket /r8i7n6_8009/api/kernels/67c90938-7d68-4f41-949e-cdfb7f5e00fe/channels
+[D 14:54:08.027 NotebookApp] Getting buffer for 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:54:08.027 NotebookApp] Connecting to: tcp://127.0.0.1:52221
+[D 14:54:08.028 NotebookApp] Connecting to: tcp://127.0.0.1:51503
+[D 14:54:08.028 NotebookApp] Connecting to: tcp://127.0.0.1:47389
+[D 14:54:08.028 NotebookApp] Connecting to: tcp://127.0.0.1:49717
+[D 14:54:08.028 NotebookApp] Connecting to: tcp://127.0.0.1:51503
+[D 14:54:08.028 NotebookApp] Connecting to: tcp://127.0.0.1:47389
+[D 14:54:08.029 NotebookApp] Nudge: attempt 1 on kernel 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:54:08.031 NotebookApp] Nudge: IOPub received: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:54:08.031 NotebookApp] Nudge: resolving iopub future: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:54:08.032 NotebookApp] Nudge: shell info reply received: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:54:08.032 NotebookApp] Nudge: resolving shell future: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:54:08.032 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:54:08.032 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:54:08.077 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:54:08.078 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:54:08.090 NotebookApp] 200 GET /r8i7n6_8009/static/base/images/favicon-notebook.ico (10.148.0.38) 0.710000ms
+[D 14:54:08.197 NotebookApp] 200 GET /r8i7n6_8009/api/contents?type=directory&_=1673013237394 (10.148.0.38) 4.670000ms
+[IPKernelApp] ERROR | No such comm target registered: jupyter.widget.control
+[D 14:54:08.653 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:54:08.653 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: comm_close
+[IPKernelApp] WARNING | No such comm: 6dcdd0bc-1c48-486c-939d-517de41c4c88
+[D 14:54:08.654 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:54:08.654 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:54:08.655 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:54:08.758 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:54:08.758 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:54:09.579 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax?type=directory&_=1673013237395 (10.148.0.38) 70.360000ms
+[D 14:54:12.762 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax?type=directory&_=1673013237396 (10.148.0.38) 8.640000ms
+[D 14:54:15.024 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/policy?type=directory&_=1673013237397 (10.148.0.38) 25.890000ms
+[D 14:54:26.560 NotebookApp] Using contents: services/contents
+[D 14:54:26.581 NotebookApp] Path base/images/favicon-file.ico served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/base/images/favicon-file.ico
+[D 14:54:26.583 NotebookApp] Path components/codemirror/addon/dialog/dialog.css served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/addon/dialog/dialog.css
+[D 14:54:26.586 NotebookApp] Path edit/js/main.min.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/edit/js/main.min.js
+[D 14:54:26.609 NotebookApp] 200 GET /r8i7n6_8009/edit/evojax/evojax/policy/metaRNN_bis.py (10.148.0.38) 49.810000ms
+[D 14:54:26.680 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/addon/dialog/dialog.css?v=e7f5db4afaccf8a00c10d62c3693642323d3fcf17604a4797803df04e4f144a944dc646c2fda20548df538ada775570127b2a15403996a171ced1769697f3ee4 (10.148.0.38) 0.810000ms
+[D 14:54:26.705 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.css (10.148.0.38) 0.680000ms
+[D 14:54:26.741 NotebookApp] 200 GET /r8i7n6_8009/static/edit/js/main.min.js?v=0b76687aad8cb304492295ba94a624826ac61b54fb8039cab8235d2ad2a1e45c4bbbdd38ef6f38ec423bf9d0cbac777277eccaad829abe56a0e471ddaa1c0936 (10.148.0.38) 27.480000ms
+[D 14:54:26.979 NotebookApp] 200 GET /r8i7n6_8009/static/base/images/favicon-file.ico?v=f9f0a782d7d67b3a57bf7dce251d771b405c7890604576ec8b9a621a39d7670f6b43ffabef1e566f1cd741ee302e15977d9e1cf60bbacebafe75787b9916415c (10.148.0.38) 0.740000ms
+[D 14:54:26.984 NotebookApp] Paths used for configuration of edit: 
+    	/etc/jupyter/nbconfig/edit.json
+[D 14:54:26.984 NotebookApp] Paths used for configuration of edit: 
+    	/usr/local/etc/jupyter/nbconfig/edit.json
+[D 14:54:26.984 NotebookApp] Paths used for configuration of edit: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/edit.json
+[D 14:54:26.985 NotebookApp] Paths used for configuration of edit: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/edit.json
+[D 14:54:26.985 NotebookApp] Paths used for configuration of edit: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/edit.json
+[D 14:54:26.986 NotebookApp] 200 GET /r8i7n6_8009/api/config/edit?_=1673013266921 (10.148.0.38) 3.110000ms
+[D 14:54:26.990 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:54:26.990 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:54:26.990 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:54:26.991 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:54:26.991 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:54:26.992 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013266922 (10.148.0.38) 2.670000ms
+[D 14:54:27.009 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/policy/metaRNN_bis.py?type=file&format=text&_=1673013266923 (10.148.0.38) 4.730000ms
+[D 14:54:27.063 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.js?v=20230106145342 (10.148.0.38) 0.690000ms
+[D 14:54:40.224 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237398 (10.148.0.38) 0.940000ms
+[D 14:54:40.225 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237399 (10.148.0.38) 0.610000ms
+[D 14:54:40.261 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/policy?type=directory&_=1673013237400 (10.148.0.38) 3.730000ms
+[D 14:54:46.176 NotebookApp] Using contents: services/contents
+[D 14:54:46.177 NotebookApp] 200 GET /r8i7n6_8009/edit/evojax/evojax/policy/metaRNN.py (10.148.0.38) 2.100000ms
+[D 14:54:46.260 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.css (10.148.0.38) 0.720000ms
+[D 14:54:46.383 NotebookApp] Paths used for configuration of edit: 
+    	/etc/jupyter/nbconfig/edit.json
+[D 14:54:46.383 NotebookApp] Paths used for configuration of edit: 
+    	/usr/local/etc/jupyter/nbconfig/edit.json
+[D 14:54:46.383 NotebookApp] Paths used for configuration of edit: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/edit.json
+[D 14:54:46.384 NotebookApp] Paths used for configuration of edit: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/edit.json
+[D 14:54:46.384 NotebookApp] Paths used for configuration of edit: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/edit.json
+[D 14:54:46.385 NotebookApp] 200 GET /r8i7n6_8009/api/config/edit?_=1673013286318 (10.148.0.38) 2.790000ms
+[D 14:54:46.410 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:54:46.410 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:54:46.410 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:54:46.411 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:54:46.411 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:54:46.412 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013286319 (10.148.0.38) 2.670000ms
+[D 14:54:46.417 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/policy/metaRNN.py?type=file&format=text&_=1673013286320 (10.148.0.38) 1.380000ms
+[D 14:54:46.455 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.js?v=20230106145342 (10.148.0.38) 0.690000ms
+[D 14:55:14.587 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237401 (10.148.0.38) 0.990000ms
+[D 14:55:14.611 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237402 (10.148.0.38) 0.580000ms
+[D 14:55:14.621 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/policy?type=directory&_=1673013237403 (10.148.0.38) 3.500000ms
+[D 14:55:33.598 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237404 (10.148.0.38) 1.080000ms
+[D 14:55:33.624 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237405 (10.148.0.38) 0.640000ms
+[D 14:55:33.638 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/policy?type=directory&_=1673013237406 (10.148.0.38) 3.870000ms
+[D 14:55:34.969 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax?type=directory&_=1673013237407 (10.148.0.38) 4.150000ms
+[D 14:55:36.949 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts?type=directory&_=1673013237408 (10.148.0.38) 2.010000ms
+[D 14:55:38.181 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks?type=directory&_=1673013237409 (10.148.0.38) 61.740000ms
+[D 14:55:39.812 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs?type=directory&_=1673013237410 (10.148.0.38) 6.950000ms
+[D 14:55:41.831 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES?type=directory&_=1673013237411 (10.148.0.38) 20.310000ms
+[D 14:55:43.748 NotebookApp] Using contents: services/contents
+[D 14:55:43.749 NotebookApp] 200 GET /r8i7n6_8009/edit/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml (10.148.0.38) 2.090000ms
+[D 14:55:43.811 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.css (10.148.0.38) 0.750000ms
+[D 14:55:43.912 NotebookApp] Paths used for configuration of edit: 
+    	/etc/jupyter/nbconfig/edit.json
+[D 14:55:43.912 NotebookApp] Paths used for configuration of edit: 
+    	/usr/local/etc/jupyter/nbconfig/edit.json
+[D 14:55:43.913 NotebookApp] Paths used for configuration of edit: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/edit.json
+[D 14:55:43.913 NotebookApp] Paths used for configuration of edit: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/edit.json
+[D 14:55:43.914 NotebookApp] Paths used for configuration of edit: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/edit.json
+[D 14:55:43.914 NotebookApp] 200 GET /r8i7n6_8009/api/config/edit?_=1673013343848 (10.148.0.38) 2.880000ms
+[D 14:55:43.939 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:55:43.939 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:55:43.939 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:55:43.940 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:55:43.940 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:55:43.941 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013343849 (10.148.0.38) 2.730000ms
+[D 14:55:43.956 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml?type=file&format=text&_=1673013343850 (10.148.0.38) 1.320000ms
+[D 14:55:43.978 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.js?v=20230106145342 (10.148.0.38) 0.690000ms
+[D 14:55:44.035 NotebookApp] Path components/codemirror/mode/yaml/yaml.js served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/components/codemirror/mode/yaml/yaml.js
+[D 14:55:44.036 NotebookApp] 200 GET /r8i7n6_8009/static/components/codemirror/mode/yaml/yaml.js?v=20230106145342 (10.148.0.38) 2.260000ms
+[D 14:55:49.367 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237412 (10.148.0.38) 1.130000ms
+[D 14:55:49.392 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237413 (10.148.0.38) 0.540000ms
+[D 14:55:49.404 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES?type=directory&_=1673013237414 (10.148.0.38) 4.170000ms
+[D 14:55:55.768 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks?type=directory&_=1673013237415 (10.148.0.38) 5.290000ms
+[D 14:55:58.444 NotebookApp] Using contents: services/contents
+[D 14:55:58.445 NotebookApp] 200 GET /r8i7n6_8009/edit/evojax/scripts/benchmarks/model.npz (10.148.0.38) 1.900000ms
+[D 14:55:58.516 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.css (10.148.0.38) 0.760000ms
+[D 14:55:58.623 NotebookApp] Paths used for configuration of edit: 
+    	/etc/jupyter/nbconfig/edit.json
+[D 14:55:58.623 NotebookApp] Paths used for configuration of edit: 
+    	/usr/local/etc/jupyter/nbconfig/edit.json
+[D 14:55:58.624 NotebookApp] Paths used for configuration of edit: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/edit.json
+[D 14:55:58.624 NotebookApp] Paths used for configuration of edit: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/edit.json
+[D 14:55:58.624 NotebookApp] Paths used for configuration of edit: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/edit.json
+[D 14:55:58.625 NotebookApp] 200 GET /r8i7n6_8009/api/config/edit?_=1673013358560 (10.148.0.38) 2.750000ms
+[D 14:55:58.650 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:55:58.650 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:55:58.651 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:55:58.651 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:55:58.651 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:55:58.652 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013358561 (10.148.0.38) 2.670000ms
+[W 14:55:58.679 NotebookApp] 400 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/model.npz?type=file&format=text&_=1673013358562 (10.148.0.38): /gpfswork/rech/imi/uzw47io/evojax/scripts/benchmarks/model.npz is not UTF-8 encoded
+[W 14:55:58.679 NotebookApp] /gpfswork/rech/imi/uzw47io/evojax/scripts/benchmarks/model.npz is not UTF-8 encoded
+[W 14:55:58.679 NotebookApp] 400 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/model.npz?type=file&format=text&_=1673013358562 (10.148.0.38) 21.230000ms referer=https://idrvprox.idris.fr/r8i7n6_8009/edit/evojax/scripts/benchmarks/model.npz
+[D 14:55:58.696 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.js?v=20230106145342 (10.148.0.38) 0.690000ms
+[D 14:56:00.603 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237416 (10.148.0.38) 0.820000ms
+[D 14:56:00.604 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237417 (10.148.0.38) 0.540000ms
+[D 14:56:00.637 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks?type=directory&_=1673013237418 (10.148.0.38) 5.160000ms
+[D 14:56:02.388 NotebookApp] Using contents: services/contents
+[D 14:56:02.389 NotebookApp] 200 GET /r8i7n6_8009/edit/evojax/scripts/benchmarks/problems.py (10.148.0.38) 2.000000ms
+[D 14:56:02.507 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.css (10.148.0.38) 1.020000ms
+[D 14:56:02.612 NotebookApp] Paths used for configuration of edit: 
+    	/etc/jupyter/nbconfig/edit.json
+[D 14:56:02.613 NotebookApp] Paths used for configuration of edit: 
+    	/usr/local/etc/jupyter/nbconfig/edit.json
+[D 14:56:02.613 NotebookApp] Paths used for configuration of edit: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/edit.json
+[D 14:56:02.614 NotebookApp] Paths used for configuration of edit: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/edit.json
+[D 14:56:02.614 NotebookApp] Paths used for configuration of edit: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/edit.json
+[D 14:56:02.615 NotebookApp] 200 GET /r8i7n6_8009/api/config/edit?_=1673013362550 (10.148.0.38) 2.890000ms
+[D 14:56:02.616 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:56:02.616 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:56:02.617 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:56:02.617 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:56:02.618 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:56:02.618 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013362551 (10.148.0.38) 2.800000ms
+[D 14:56:02.658 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/problems.py?type=file&format=text&_=1673013362552 (10.148.0.38) 20.940000ms
+[D 14:56:02.668 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.js?v=20230106145342 (10.148.0.38) 0.710000ms
+[D 14:56:18.220 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml?content=0&_=1673013343851 (10.148.0.38) 1.360000ms
+[I 14:56:18.258 NotebookApp] Saving file at /evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml
+[D 14:56:18.258 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml
+[D 14:56:18.280 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml (10.148.0.38) 22.870000ms
+[D 14:56:20.472 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml?content=0&_=1673013343852 (10.148.0.38) 1.160000ms
+[I 14:56:20.509 NotebookApp] Saving file at /evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml
+[D 14:56:20.509 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml
+[D 14:56:20.512 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml (10.148.0.38) 3.740000ms
+[D 14:56:21.869 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml?content=0&_=1673013343853 (10.148.0.38) 1.150000ms
+[I 14:56:21.907 NotebookApp] Saving file at /evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml
+[D 14:56:21.907 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml
+[D 14:56:21.909 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES/CPPR.yaml (10.148.0.38) 3.150000ms
+[D 14:56:25.589 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:56:25.589 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: execute_input
+[D 14:56:25.605 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:56:25.606 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:56:26.895 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:56:26.895 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: execute_input
+[D 14:56:26.895 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:56:26.897 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:56:28.929 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:56:28.929 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: execute_input
+[D 14:56:30.060 NotebookApp] Path base/images/favicon-busy-1.ico served from /gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/lib/python3.9/site-packages/notebook/static/base/images/favicon-busy-1.ico
+[D 14:56:30.061 NotebookApp] 200 GET /r8i7n6_8009/static/base/images/favicon-busy-1.ico (10.148.0.38) 1.870000ms
+[D 14:56:38.126 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:56:38.227 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:56:38.632 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[I 14:56:38.741 NotebookApp] Kernel interrupted: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:56:38.742 NotebookApp] 204 POST /r8i7n6_8009/api/kernels/67c90938-7d68-4f41-949e-cdfb7f5e00fe/interrupt (10.148.0.38) 1.350000ms
+[D 14:56:38.994 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:56:39.296 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:56:39.297 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:56:39.298 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:56:39.368 NotebookApp] 304 GET /r8i7n6_8009/static/base/images/favicon-notebook.ico (10.148.0.38) 0.820000ms
+[D 14:56:43.469 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237419 (10.148.0.38) 0.990000ms
+[D 14:56:43.505 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237420 (10.148.0.38) 0.610000ms
+[D 14:56:43.514 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks?type=directory&_=1673013237421 (10.148.0.38) 5.530000ms
+[D 14:56:55.546 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax?type=directory&_=1673013237422 (10.148.0.38) 4.410000ms
+[D 14:56:57.774 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax?type=directory&_=1673013237423 (10.148.0.38) 3.260000ms
+[D 14:57:00.774 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax?type=directory&_=1673013237424 (10.148.0.38) 4.260000ms
+[D 14:57:02.180 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax?type=directory&_=1673013237425 (10.148.0.38) 3.110000ms
+[D 14:57:03.407 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/task?type=directory&_=1673013237426 (10.148.0.38) 24.080000ms
+[D 14:57:05.932 NotebookApp] Using contents: services/contents
+[D 14:57:05.933 NotebookApp] 200 GET /r8i7n6_8009/edit/evojax/evojax/task/CPPR_1agent.py (10.148.0.38) 2.150000ms
+[D 14:57:06.005 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.css (10.148.0.38) 0.710000ms
+[D 14:57:06.124 NotebookApp] Paths used for configuration of edit: 
+    	/etc/jupyter/nbconfig/edit.json
+[D 14:57:06.125 NotebookApp] Paths used for configuration of edit: 
+    	/usr/local/etc/jupyter/nbconfig/edit.json
+[D 14:57:06.125 NotebookApp] Paths used for configuration of edit: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/edit.json
+[D 14:57:06.125 NotebookApp] Paths used for configuration of edit: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/edit.json
+[D 14:57:06.126 NotebookApp] Paths used for configuration of edit: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/edit.json
+[D 14:57:06.126 NotebookApp] 200 GET /r8i7n6_8009/api/config/edit?_=1673013426055 (10.148.0.38) 2.800000ms
+[D 14:57:06.151 NotebookApp] Paths used for configuration of common: 
+    	/etc/jupyter/nbconfig/common.json
+[D 14:57:06.151 NotebookApp] Paths used for configuration of common: 
+    	/usr/local/etc/jupyter/nbconfig/common.json
+[D 14:57:06.152 NotebookApp] Paths used for configuration of common: 
+    	/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/etc/jupyter/nbconfig/common.json
+[D 14:57:06.152 NotebookApp] Paths used for configuration of common: 
+    	/linkhome/rech/genini01/uzw47io/.local/etc/jupyter/nbconfig/common.json
+[D 14:57:06.153 NotebookApp] Paths used for configuration of common: 
+    	/gpfs7kw/linkhome/rech/genini01/uzw47io/.jupyter/nbconfig/common.json
+[D 14:57:06.153 NotebookApp] 200 GET /r8i7n6_8009/api/config/common?_=1673013426056 (10.148.0.38) 2.660000ms
+[D 14:57:06.186 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/task/CPPR_1agent.py?type=file&format=text&_=1673013426057 (10.148.0.38) 24.180000ms
+[D 14:57:06.202 NotebookApp] 304 GET /r8i7n6_8009/custom/custom.js?v=20230106145342 (10.148.0.38) 0.680000ms
+[D 14:57:32.879 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/task/CPPR_1agent.py?content=0&_=1673013426058 (10.148.0.38) 1.330000ms
+[I 14:57:32.915 NotebookApp] Saving file at /evojax/evojax/task/CPPR_1agent.py
+[D 14:57:32.915 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax/evojax/task/CPPR_1agent.py
+[D 14:57:32.965 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax/evojax/task/CPPR_1agent.py (10.148.0.38) 50.060000ms
+[D 14:58:07.708 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243336 (10.148.0.38) 1.090000ms
+[I 14:58:08.243 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 14:58:08.243 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 14:58:08.245 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 14:58:08.467 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 629.730000ms
+[D 14:58:37.369 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/task/CPPR_1agent.py?content=0&_=1673013426059 (10.148.0.38) 1.250000ms
+[I 14:58:37.404 NotebookApp] Saving file at /evojax/evojax/task/CPPR_1agent.py
+[D 14:58:37.404 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax/evojax/task/CPPR_1agent.py
+[D 14:58:37.411 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax/evojax/task/CPPR_1agent.py (10.148.0.38) 7.820000ms
+[D 14:58:53.044 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/task/CPPR_1agent.py?content=0&_=1673013426060 (10.148.0.38) 1.160000ms
+[I 14:58:53.081 NotebookApp] Saving file at /evojax/evojax/task/CPPR_1agent.py
+[D 14:58:53.081 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax/evojax/task/CPPR_1agent.py
+[D 14:58:53.086 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax/evojax/task/CPPR_1agent.py (10.148.0.38) 6.480000ms
+[D 14:58:56.713 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/task/CPPR_1agent.py?content=0&_=1673013426061 (10.148.0.38) 1.120000ms
+[I 14:58:56.752 NotebookApp] Saving file at /evojax/evojax/task/CPPR_1agent.py
+[D 14:58:56.752 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax/evojax/task/CPPR_1agent.py
+[D 14:58:56.758 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax/evojax/task/CPPR_1agent.py (10.148.0.38) 7.120000ms
+[D 14:59:00.826 NotebookApp] Websocket closed 67c90938-7d68-4f41-949e-cdfb7f5e00fe:6e7a399dd7794331b6e7a03acc784ffa
+[I 14:59:00.826 NotebookApp] Starting buffering for 67c90938-7d68-4f41-949e-cdfb7f5e00fe:6e7a399dd7794331b6e7a03acc784ffa
+[D 14:59:00.826 NotebookApp] Clearing buffer for 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:59:00.842 NotebookApp] Buffering msg on 67c90938-7d68-4f41-949e-cdfb7f5e00fe:iopub
+[D 14:59:00.842 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:00.859 NotebookApp] Buffering msg on 67c90938-7d68-4f41-949e-cdfb7f5e00fe:iopub
+[D 14:59:00.859 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: shutdown_reply
+[D 14:59:00.887 NotebookApp] Buffering msg on 67c90938-7d68-4f41-949e-cdfb7f5e00fe:iopub
+[D 14:59:00.887 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:59:01.054 NotebookApp] Starting kernel: ['/gpfslocalsup/pub/anaconda-py3/2021.05/envs/pytorch-gpu-1.11.0+py3.9.12/bin/python', '-m', 'ipykernel_launcher', '-f', '/gpfsdswork/projects/rech/imi/uzw47io/.local/share/jupyter/runtime/kernel-67c90938-7d68-4f41-949e-cdfb7f5e00fe.json']
+[D 14:59:01.063 NotebookApp] Connecting to: tcp://127.0.0.1:47389
+[I 14:59:01.074 NotebookApp] Kernel restarted: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:59:01.074 NotebookApp] Connecting to: tcp://127.0.0.1:51503
+[D 14:59:01.076 NotebookApp] 200 POST /r8i7n6_8009/api/kernels/67c90938-7d68-4f41-949e-cdfb7f5e00fe/restart (10.148.0.38) 236.820000ms
+[D 14:59:01.218 NotebookApp] Initializing websocket connection /r8i7n6_8009/api/kernels/67c90938-7d68-4f41-949e-cdfb7f5e00fe/channels
+[D 14:59:01.220 NotebookApp] 101 GET /r8i7n6_8009/api/kernels/67c90938-7d68-4f41-949e-cdfb7f5e00fe/channels?session_id=6e7a399dd7794331b6e7a03acc784ffa (10.148.0.38) 2.320000ms
+[D 14:59:01.220 NotebookApp] Opening websocket /r8i7n6_8009/api/kernels/67c90938-7d68-4f41-949e-cdfb7f5e00fe/channels
+[D 14:59:01.220 NotebookApp] Getting buffer for 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[I 14:59:01.220 NotebookApp] Restoring connection for 67c90938-7d68-4f41-949e-cdfb7f5e00fe:6e7a399dd7794331b6e7a03acc784ffa
+[D 14:59:01.220 NotebookApp] Connecting to: tcp://127.0.0.1:51503
+[D 14:59:01.220 NotebookApp] Connecting to: tcp://127.0.0.1:47389
+[D 14:59:01.221 NotebookApp] Nudge: attempt 1 on kernel 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:59:01.722 NotebookApp] Nudge: attempt 2 on kernel 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:59:01.971 NotebookApp] Nudge: IOPub received: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:59:01.971 NotebookApp] Nudge: resolving iopub future: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:59:02.014 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:02.014 NotebookApp] Kernel info reply received: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:59:02.014 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:59:02.028 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:02.028 NotebookApp] Nudge: shell info reply received: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:59:02.028 NotebookApp] Nudge: resolving shell future: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 14:59:02.028 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[I 14:59:02.028 NotebookApp] Replaying 3 buffered messages
+[D 14:59:02.030 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:02.030 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:59:02.059 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:02.059 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:59:02.060 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:02.060 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:59:02.084 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:02.084 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:59:02.486 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:02.487 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: execute_input
+[D 14:59:02.488 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:02.489 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:59:04.819 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:04.819 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: execute_input
+[D 14:59:05.898 NotebookApp] 304 GET /r8i7n6_8009/static/base/images/favicon-busy-1.ico (10.148.0.38) 0.950000ms
+[D 14:59:09.389 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:10.701 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:11.055 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:11.207 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:11.509 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:11.762 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:11.813 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:11.864 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:11.915 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:11.966 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:12.017 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:12.118 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:12.371 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:13.480 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:13.683 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:14.492 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:14.846 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:15.048 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:15.302 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:15.454 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:15.607 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:15.709 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:15.861 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:16.114 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:16.316 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:16.618 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:16.821 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:16.973 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:28.472 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:28.724 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:28.826 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:30.145 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:50.454 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:59:50.456 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:50.457 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: execute_input
+[D 14:59:50.457 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:50.459 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 14:59:50.460 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 14:59:50.460 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: execute_input
+[D 14:59:50.573 NotebookApp] 304 GET /r8i7n6_8009/static/base/images/favicon-notebook.ico (10.148.0.38) 0.830000ms
+[D 14:59:51.547 NotebookApp] 304 GET /r8i7n6_8009/static/base/images/favicon-busy-1.ico (10.148.0.38) 0.840000ms
+[D 14:59:52.703 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 14:59:53.208 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:00:00.137 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:00:01.097 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:00:02.824 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:00:03.832 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:00:06.881 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243337 (10.148.0.38) 1.200000ms
+[I 15:00:07.419 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:00:07.419 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:00:07.421 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:00:07.659 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 627.300000ms
+[D 15:00:33.395 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:00:58.596 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:01:23.800 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:01:49.038 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:01:50.420 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:01:53.468 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:02:06.886 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243338 (10.148.0.38) 1.110000ms
+[I 15:02:07.450 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:02:07.450 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:02:07.452 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:02:07.669 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 641.200000ms
+[D 15:02:18.823 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:02:44.019 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:03:09.222 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:03:34.467 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:03:59.719 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:04:06.910 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243339 (10.148.0.38) 1.090000ms
+[I 15:04:07.375 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:04:07.375 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:04:07.377 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:04:07.581 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 535.320000ms
+[D 15:04:24.923 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:04:50.115 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:05:15.316 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:05:15.367 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:05:28.900 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237427 (10.148.0.38) 1.020000ms
+[D 15:05:28.917 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237428 (10.148.0.38) 0.590000ms
+[D 15:05:28.954 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax/task?type=directory&_=1673013237429 (10.148.0.38) 5.640000ms
+[D 15:05:33.200 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/evojax?type=directory&_=1673013237430 (10.148.0.38) 3.070000ms
+[D 15:05:34.884 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax?type=directory&_=1673013237431 (10.148.0.38) 3.850000ms
+[D 15:05:36.539 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts?type=directory&_=1673013237432 (10.148.0.38) 1.390000ms
+[D 15:05:37.735 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks?type=directory&_=1673013237433 (10.148.0.38) 5.170000ms
+[D 15:05:39.358 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs?type=directory&_=1673013237434 (10.148.0.38) 3.150000ms
+[D 15:05:40.616 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:05:40.766 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/configs/OpenES?type=directory&_=1673013237435 (10.148.0.38) 4.120000ms
+[D 15:05:44.913 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks?type=directory&_=1673013237436 (10.148.0.38) 5.240000ms
+[D 15:05:46.764 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/log?type=directory&_=1673013237437 (10.148.0.38) 23.670000ms
+[D 15:05:47.904 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/log/OpenES?type=directory&_=1673013237438 (10.148.0.38) 9.310000ms
+[D 15:05:49.527 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/log/OpenES/CPPR?type=directory&_=1673013237439 (10.148.0.38) 1.990000ms
+[D 15:05:50.692 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/log/OpenES/CPPR/CPPR0?type=directory&_=1673013237440 (10.148.0.38) 18.650000ms
+[D 15:05:56.792 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237441 (10.148.0.38) 0.840000ms
+[D 15:05:56.793 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237442 (10.148.0.38) 0.540000ms
+[D 15:05:56.828 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/log/OpenES/CPPR/CPPR0?type=directory&_=1673013237443 (10.148.0.38) 4.620000ms
+[D 15:06:00.397 NotebookApp] 200 GET /r8i7n6_8009/files/evojax/scripts/benchmarks/log/OpenES/CPPR/CPPR0/iter_300.npz?download=1 (10.148.0.38) 2.670000ms
+[D 15:06:05.813 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:06:07.710 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243340 (10.148.0.38) 1.000000ms
+[I 15:06:08.339 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:06:08.339 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:06:08.341 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:06:08.518 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 541.510000ms
+[D 15:06:31.013 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:06:56.211 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:07:21.456 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:07:38.904 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237444 (10.148.0.38) 0.950000ms
+[D 15:07:38.905 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237445 (10.148.0.38) 0.570000ms
+[D 15:07:38.948 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/log/OpenES/CPPR/CPPR0?type=directory&_=1673013237446 (10.148.0.38) 4.640000ms
+[D 15:07:46.640 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:08:06.887 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243341 (10.148.0.38) 1.080000ms
+[I 15:08:07.391 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:08:07.391 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:08:07.393 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:08:07.603 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 537.820000ms
+[D 15:08:11.840 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:08:37.040 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:08:37.090 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:08:54.386 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237447 (10.148.0.38) 0.950000ms
+[D 15:08:54.387 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237448 (10.148.0.38) 0.580000ms
+[D 15:08:54.426 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/log/OpenES/CPPR/CPPR0?type=directory&_=1673013237449 (10.148.0.38) 4.670000ms
+[D 15:08:59.117 NotebookApp] 200 GET /r8i7n6_8009/files/evojax/scripts/benchmarks/log/OpenES/CPPR/CPPR0/iter_500.npz?download=1 (10.148.0.38) 2.580000ms
+[D 15:09:02.341 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:09:27.536 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:09:52.736 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:10:07.691 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243342 (10.148.0.38) 1.090000ms
+[I 15:10:08.214 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:10:08.214 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:10:08.216 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:10:08.414 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 550.290000ms
+[D 15:10:17.975 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:10:43.223 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:11:08.420 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:11:11.346 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237450 (10.148.0.38) 0.950000ms
+[D 15:11:11.351 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237451 (10.148.0.38) 0.560000ms
+[D 15:11:11.387 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/log/OpenES/CPPR/CPPR0?type=directory&_=1673013237452 (10.148.0.38) 4.690000ms
+[D 15:11:16.492 NotebookApp] 304 GET /r8i7n6_8009/files/evojax/scripts/benchmarks/log/OpenES/CPPR/CPPR0/iter_300.npz?download=1 (10.148.0.38) 1.280000ms
+[D 15:11:33.675 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:11:58.873 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:11:58.924 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:12:07.697 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243343 (10.148.0.38) 1.080000ms
+[I 15:12:08.203 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:12:08.203 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:12:08.205 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:12:08.384 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 527.290000ms
+[D 15:12:24.175 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:12:49.381 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:12:53.942 NotebookApp] 200 GET /r8i7n6_8009/api/sessions?_=1673013237453 (10.148.0.38) 0.940000ms
+[D 15:12:53.951 NotebookApp] 200 GET /r8i7n6_8009/api/terminals?_=1673013237454 (10.148.0.38) 0.550000ms
+[D 15:12:53.993 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax/scripts/benchmarks/log/OpenES/CPPR/CPPR0?type=directory&_=1673013237455 (10.148.0.38) 4.670000ms
+[D 15:13:14.586 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:13:39.822 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:13:39.872 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:14:05.109 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:14:06.880 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243344 (10.148.0.38) 1.050000ms
+[I 15:14:07.395 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:14:07.395 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:14:07.397 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:14:07.585 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 543.440000ms
+[D 15:14:30.338 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:14:55.530 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:15:20.732 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:15:20.783 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:15:46.031 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:16:06.889 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243345 (10.148.0.38) 1.100000ms
+[I 15:16:07.405 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:16:07.405 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:16:07.407 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:16:07.586 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 565.560000ms
+[D 15:16:11.230 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:16:36.430 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:17:01.631 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:17:01.682 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:17:26.883 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:17:52.087 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:18:06.906 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243346 (10.148.0.38) 1.100000ms
+[I 15:18:07.366 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:18:07.366 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:18:07.368 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:18:07.560 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 504.090000ms
+[D 15:18:17.292 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:18:42.493 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:18:42.544 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:19:07.790 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:19:32.993 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:19:58.196 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:20:06.888 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243347 (10.148.0.38) 1.110000ms
+[I 15:20:07.408 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:20:07.408 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:20:07.410 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:20:07.608 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 554.380000ms
+[D 15:20:23.449 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:20:23.500 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:20:48.702 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:21:13.953 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:21:39.155 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:22:04.359 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:22:04.409 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:22:06.900 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243348 (10.148.0.38) 1.050000ms
+[I 15:22:07.361 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:22:07.361 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:22:07.363 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:22:07.544 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 517.130000ms
+[D 15:22:29.606 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:22:54.860 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:23:20.056 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:23:45.260 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:23:45.311 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:24:06.889 NotebookApp] 200 GET /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb?content=0&_=1673013243349 (10.148.0.38) 1.090000ms
+[I 15:24:07.969 NotebookApp] Saving file at /evojax_CPPR_1.ipynb
+[D 15:24:07.969 NotebookApp] Saving /gpfswork/rech/imi/uzw47io/evojax_CPPR_1.ipynb
+[W 15:24:07.972 NotebookApp] Notebook evojax_CPPR_1.ipynb is not trusted
+[D 15:24:08.259 NotebookApp] 200 PUT /r8i7n6_8009/api/contents/evojax_CPPR_1.ipynb (10.148.0.38) 1221.270000ms
+[D 15:24:10.564 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:24:35.742 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:25:00.995 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[I 15:25:11.862 NotebookApp] Kernel interrupted: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[D 15:25:11.863 NotebookApp] 204 POST /r8i7n6_8009/api/kernels/67c90938-7d68-4f41-949e-cdfb7f5e00fe/interrupt (10.148.0.38) 1.170000ms
+[D 15:25:12.115 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: stream
+[D 15:25:12.618 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 15:25:12.620 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (busy)
+[D 15:25:12.620 NotebookApp] activity on 67c90938-7d68-4f41-949e-cdfb7f5e00fe: status (idle)
+[D 15:25:12.764 NotebookApp] 304 GET /r8i7n6_8009/static/base/images/favicon-notebook.ico (10.148.0.38) 0.810000ms
+[I 15:25:14.501 NotebookApp] Interrupted...
+[I 15:25:14.503 NotebookApp] Shutting down 1 kernel
+[D 15:25:14.503 NotebookApp] Clearing buffer for 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[I 15:25:14.503 NotebookApp] Kernel shutdown: 67c90938-7d68-4f41-949e-cdfb7f5e00fe
+[C 15:25:14.512 NotebookApp] received signal 15, stopping
+[I 15:25:14.716 NotebookApp] Shutting down 0 terminals

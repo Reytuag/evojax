@@ -42,3 +42,120 @@ vector_recipes: 2022-12-14 23:42:39,349 [INFO] ==============================
 vector_recipes: 2022-12-14 23:43:01,719 [INFO] EvoJAX vector_recipes
 vector_recipes: 2022-12-14 23:43:01,719 [INFO] ==============================
 vector_recipes: 2022-12-14 23:43:04,686 [INFO] Start to train for 10000 iterations.
+vector_recipes: 2022-12-14 23:55:53,798 [INFO] EvoJAX vector_recipes
+vector_recipes: 2022-12-14 23:55:53,800 [INFO] ==============================
+vector_recipes: 2022-12-14 23:56:01,801 [INFO] Start to train for 10000 iterations.
+vector_recipes: 2022-12-15 00:00:18,898 [INFO] EvoJAX vector_recipes
+vector_recipes: 2022-12-15 00:00:18,914 [INFO] ==============================
+vector_recipes: 2022-12-15 00:00:29,580 [INFO] Start to train for 10000 iterations.
+vector_recipes: 2022-12-15 00:00:53,012 [INFO] Iter=25, size=100, max=15.2400, avg=13.4612, min=10.9000, std=0.7239
+vector_recipes: 2022-12-15 00:01:11,320 [INFO] Iter=50, size=100, max=18.1000, avg=15.9624, min=13.4200, std=1.0103
+vector_recipes: 2022-12-15 00:01:29,632 [INFO] Iter=75, size=100, max=19.8600, avg=16.4638, min=10.6700, std=1.7471
+vector_recipes: 2022-12-15 00:01:47,939 [INFO] Iter=100, size=100, max=21.3400, avg=18.7610, min=14.6900, std=1.2434
+vector_recipes: 2022-12-15 00:01:50,864 [INFO] [TEST] Iter=100, #tests=100, max=34.0000 avg=19.7900, min=3.0000, std=6.3942
+vector_recipes: 2022-12-15 00:02:09,325 [INFO] Iter=125, size=100, max=22.0800, avg=19.7704, min=16.0000, std=1.4117
+vector_recipes: 2022-12-15 00:02:27,632 [INFO] Iter=150, size=100, max=23.3100, avg=19.6230, min=13.3300, std=2.0839
+vector_recipes: 2022-12-15 00:02:45,935 [INFO] Iter=175, size=100, max=24.6700, avg=21.0082, min=14.6900, std=1.9994
+vector_recipes: 2022-12-15 00:03:04,239 [INFO] Iter=200, size=100, max=24.9400, avg=21.3283, min=16.3100, std=1.9569
+vector_recipes: 2022-12-15 00:03:04,281 [INFO] [TEST] Iter=200, #tests=100, max=72.0000 avg=25.6500, min=6.0000, std=11.5181
+vector_recipes: 2022-12-15 00:03:22,617 [INFO] Iter=225, size=100, max=27.7800, avg=23.1024, min=14.9700, std=2.3028
+vector_recipes: 2022-12-15 00:03:40,928 [INFO] Iter=250, size=100, max=27.5600, avg=23.5879, min=16.2800, std=2.2603
+vector_recipes: 2022-12-15 00:03:59,239 [INFO] Iter=275, size=100, max=31.6000, avg=26.6686, min=19.5600, std=2.1683
+vector_recipes: 2022-12-15 00:04:17,552 [INFO] Iter=300, size=100, max=31.3900, avg=27.1180, min=22.0700, std=1.9953
+vector_recipes: 2022-12-15 00:04:17,593 [INFO] [TEST] Iter=300, #tests=100, max=88.0000 avg=34.1900, min=6.0000, std=17.4038
+vector_recipes: 2022-12-15 00:04:35,913 [INFO] Iter=325, size=100, max=32.6100, avg=28.6492, min=21.3400, std=2.2559
+vector_recipes: 2022-12-15 00:04:54,206 [INFO] Iter=350, size=100, max=34.2000, avg=29.9217, min=19.4600, std=2.5369
+vector_recipes: 2022-12-15 00:05:12,500 [INFO] Iter=375, size=100, max=40.3700, avg=34.0185, min=26.4500, std=2.4708
+vector_recipes: 2022-12-15 00:05:30,792 [INFO] Iter=400, size=100, max=44.4100, avg=37.5905, min=25.1700, std=3.5371
+vector_recipes: 2022-12-15 00:05:30,834 [INFO] [TEST] Iter=400, #tests=100, max=136.0000 avg=41.8000, min=3.0000, std=25.1929
+vector_recipes: 2022-12-15 00:05:49,167 [INFO] Iter=425, size=100, max=44.5000, avg=38.4751, min=29.2800, std=2.9172
+vector_recipes: 2022-12-15 00:06:07,478 [INFO] Iter=450, size=100, max=53.8500, avg=46.4468, min=29.0400, std=4.2637
+vector_recipes: 2022-12-15 00:06:25,793 [INFO] Iter=475, size=100, max=53.7400, avg=46.3668, min=34.7000, std=3.3166
+vector_recipes: 2022-12-15 00:06:44,103 [INFO] Iter=500, size=100, max=55.1000, avg=48.6704, min=40.6700, std=2.9970
+vector_recipes: 2022-12-15 00:06:44,146 [INFO] [TEST] Iter=500, #tests=100, max=150.0000 avg=54.0800, min=18.0000, std=25.0163
+vector_recipes: 2022-12-15 00:07:02,482 [INFO] Iter=525, size=100, max=63.2000, avg=55.4612, min=35.0000, std=3.6414
+vector_recipes: 2022-12-15 00:07:20,794 [INFO] Iter=550, size=100, max=60.2200, avg=53.9258, min=42.7000, std=3.7541
+vector_recipes: 2022-12-15 00:07:39,104 [INFO] Iter=575, size=100, max=72.0400, avg=62.7343, min=49.4000, std=4.5366
+vector_recipes: 2022-12-15 00:07:57,414 [INFO] Iter=600, size=100, max=75.0100, avg=66.6297, min=54.5300, std=4.0372
+vector_recipes: 2022-12-15 00:07:57,457 [INFO] [TEST] Iter=600, #tests=100, max=150.0000 avg=78.9200, min=22.0000, std=32.5084
+vector_recipes: 2022-12-15 00:08:15,769 [INFO] Iter=625, size=100, max=74.7600, avg=65.8062, min=52.5500, std=4.6541
+vector_recipes: 2022-12-15 00:08:34,055 [INFO] Iter=650, size=100, max=83.4400, avg=74.0852, min=63.7900, std=3.8095
+vector_recipes: 2022-12-15 00:08:52,343 [INFO] Iter=675, size=100, max=91.5300, avg=83.3013, min=69.1900, std=4.3527
+vector_recipes: 2022-12-15 00:09:10,633 [INFO] Iter=700, size=100, max=90.8400, avg=82.3387, min=67.0200, std=4.5352
+vector_recipes: 2022-12-15 00:09:10,675 [INFO] [TEST] Iter=700, #tests=100, max=150.0000 avg=91.0400, min=39.0000, std=30.3710
+vector_recipes: 2022-12-15 00:09:29,000 [INFO] Iter=725, size=100, max=87.8600, avg=80.4678, min=59.5600, std=4.1184
+vector_recipes: 2022-12-15 00:09:47,316 [INFO] Iter=750, size=100, max=98.9800, avg=91.0710, min=75.6500, std=4.0212
+vector_recipes: 2022-12-15 00:10:05,633 [INFO] Iter=775, size=100, max=96.5700, avg=90.1322, min=80.9900, std=3.3251
+vector_recipes: 2022-12-15 00:10:23,951 [INFO] Iter=800, size=100, max=98.8700, avg=91.9596, min=81.9600, std=3.3630
+vector_recipes: 2022-12-15 00:10:23,992 [INFO] [TEST] Iter=800, #tests=100, max=150.0000 avg=102.5900, min=31.0000, std=30.7779
+vector_recipes: 2022-12-15 00:10:42,305 [INFO] Iter=825, size=100, max=105.9600, avg=100.0015, min=82.4600, std=4.1134
+vector_recipes: 2022-12-15 00:11:00,608 [INFO] Iter=850, size=100, max=102.3900, avg=96.0988, min=82.3700, std=3.9062
+vector_recipes: 2022-12-15 00:11:18,911 [INFO] Iter=875, size=100, max=106.4400, avg=98.9509, min=89.8200, std=3.6326
+vector_recipes: 2022-12-15 00:11:37,214 [INFO] Iter=900, size=100, max=102.5800, avg=95.6833, min=86.5100, std=3.1204
+vector_recipes: 2022-12-15 00:11:37,258 [INFO] [TEST] Iter=900, #tests=100, max=150.0000 avg=105.2400, min=58.0000, std=29.8285
+vector_recipes: 2022-12-15 00:11:55,576 [INFO] Iter=925, size=100, max=107.6200, avg=101.3996, min=93.1300, std=3.4460
+vector_recipes: 2022-12-15 00:12:13,871 [INFO] Iter=950, size=100, max=107.7100, avg=102.5742, min=94.6600, std=2.6847
+vector_recipes: 2022-12-15 00:12:32,168 [INFO] Iter=975, size=100, max=101.7200, avg=96.7224, min=89.7900, std=2.7038
+vector_recipes: 2022-12-15 00:12:50,467 [INFO] Iter=1000, size=100, max=113.1300, avg=106.9130, min=98.6600, std=2.6222
+vector_recipes: 2022-12-15 00:12:50,508 [INFO] [TEST] Iter=1000, #tests=100, max=150.0000 avg=113.3500, min=61.0000, std=29.2077
+vector_recipes: 2022-12-15 00:13:08,823 [INFO] Iter=1025, size=100, max=115.8600, avg=109.7975, min=93.4900, std=3.8768
+vector_recipes: 2022-12-15 00:13:27,132 [INFO] Iter=1050, size=100, max=112.8200, avg=107.3460, min=98.0900, std=2.8623
+vector_recipes: 2022-12-15 00:13:45,442 [INFO] Iter=1075, size=100, max=119.4700, avg=113.4151, min=104.5100, std=2.5600
+vector_recipes: 2022-12-15 00:14:03,749 [INFO] Iter=1100, size=100, max=115.9800, avg=110.5705, min=103.3900, std=2.4017
+vector_recipes: 2022-12-15 00:14:03,790 [INFO] [TEST] Iter=1100, #tests=100, max=150.0000 avg=120.8900, min=66.0000, std=23.2632
+vector_recipes: 2022-12-15 00:14:22,090 [INFO] Iter=1125, size=100, max=114.8900, avg=110.3307, min=102.5900, std=2.4082
+vector_recipes: 2022-12-15 00:14:40,384 [INFO] Iter=1150, size=100, max=114.9200, avg=110.1445, min=98.2200, std=2.9667
+vector_recipes: 2022-12-15 00:14:58,679 [INFO] Iter=1175, size=100, max=123.9500, avg=117.3177, min=106.9400, std=3.2740
+vector_recipes: 2022-12-15 00:15:16,974 [INFO] Iter=1200, size=100, max=118.9700, avg=112.8246, min=101.2700, std=2.9720
+vector_recipes: 2022-12-15 00:15:17,016 [INFO] [TEST] Iter=1200, #tests=100, max=150.0000 avg=119.3900, min=36.0000, std=27.3276
+vector_recipes: 2022-12-15 00:15:35,331 [INFO] Iter=1225, size=100, max=120.8900, avg=116.2624, min=104.7900, std=3.1512
+vector_recipes: 2022-12-15 00:15:53,640 [INFO] Iter=1250, size=100, max=119.6500, avg=114.4128, min=102.9100, std=2.8667
+vector_recipes: 2022-12-15 00:16:11,949 [INFO] Iter=1275, size=100, max=123.5500, avg=119.1310, min=111.3000, std=2.6299
+vector_recipes: 2022-12-15 00:16:30,259 [INFO] Iter=1300, size=100, max=127.1100, avg=122.1976, min=112.9300, std=3.0411
+vector_recipes: 2022-12-15 00:16:30,302 [INFO] [TEST] Iter=1300, #tests=100, max=150.0000 avg=123.5000, min=60.0000, std=24.1299
+vector_recipes: 2022-12-15 00:16:48,623 [INFO] Iter=1325, size=100, max=126.6900, avg=120.5094, min=111.7000, std=2.9156
+vector_recipes: 2022-12-15 00:17:06,939 [INFO] Iter=1350, size=100, max=125.8200, avg=121.0267, min=115.4600, std=2.2383
+vector_recipes: 2022-12-15 00:17:25,257 [INFO] Iter=1375, size=100, max=127.0200, avg=121.7183, min=111.6700, std=2.9269
+vector_recipes: 2022-12-15 00:17:43,572 [INFO] Iter=1400, size=100, max=124.2900, avg=119.7295, min=108.8800, std=2.4305
+vector_recipes: 2022-12-15 00:17:43,616 [INFO] [TEST] Iter=1400, #tests=100, max=150.0000 avg=127.7400, min=67.0000, std=23.2347
+vector_recipes: 2022-12-15 00:18:01,913 [INFO] Iter=1425, size=100, max=124.7200, avg=121.3706, min=114.7000, std=1.9803
+vector_recipes: 2022-12-15 00:18:20,201 [INFO] Iter=1450, size=100, max=127.7600, avg=123.1514, min=115.5700, std=2.5490
+vector_recipes: 2022-12-15 00:18:38,489 [INFO] Iter=1475, size=100, max=128.9900, avg=126.4425, min=121.1000, std=1.6013
+vector_recipes: 2022-12-15 00:18:56,779 [INFO] Iter=1500, size=100, max=127.3500, avg=124.2599, min=116.4500, std=1.6547
+vector_recipes: 2022-12-15 00:18:56,822 [INFO] [TEST] Iter=1500, #tests=100, max=150.0000 avg=129.3100, min=63.0000, std=22.3019
+vector_recipes: 2022-12-15 00:19:15,144 [INFO] Iter=1525, size=100, max=126.2200, avg=122.8657, min=117.4100, std=2.1254
+vector_recipes: 2022-12-15 00:19:33,462 [INFO] Iter=1550, size=100, max=129.4500, avg=125.4299, min=115.6200, std=2.6818
+vector_recipes: 2022-12-15 00:19:51,780 [INFO] Iter=1575, size=100, max=130.0600, avg=126.9197, min=122.1500, std=1.8390
+vector_recipes: 2022-12-15 00:20:10,094 [INFO] Iter=1600, size=100, max=130.1300, avg=125.9802, min=113.7700, std=2.3471
+vector_recipes: 2022-12-15 00:20:10,135 [INFO] [TEST] Iter=1600, #tests=100, max=150.0000 avg=129.4200, min=67.0000, std=20.4735
+vector_recipes: 2022-12-15 00:20:28,451 [INFO] Iter=1625, size=100, max=128.9300, avg=125.5212, min=119.1800, std=1.8896
+vector_recipes: 2022-12-15 00:20:46,761 [INFO] Iter=1650, size=100, max=129.8000, avg=125.0451, min=116.4300, std=2.3781
+vector_recipes: 2022-12-15 00:21:05,073 [INFO] Iter=1675, size=100, max=133.5900, avg=128.6217, min=121.0100, std=2.7022
+vector_recipes: 2022-12-15 00:21:23,385 [INFO] Iter=1700, size=100, max=131.4700, avg=127.7023, min=119.2600, std=2.1035
+vector_recipes: 2022-12-15 00:21:23,428 [INFO] [TEST] Iter=1700, #tests=100, max=150.0000 avg=131.8900, min=84.0000, std=17.3879
+vector_recipes: 2022-12-15 00:21:41,741 [INFO] Iter=1725, size=100, max=134.0400, avg=130.4948, min=124.0000, std=2.0642
+vector_recipes: 2022-12-15 00:22:00,047 [INFO] Iter=1750, size=100, max=135.5700, avg=132.3563, min=125.4800, std=2.0624
+vector_recipes: 2022-12-15 00:22:18,353 [INFO] Iter=1775, size=100, max=133.2600, avg=130.7291, min=125.9400, std=1.5303
+vector_recipes: 2022-12-15 00:22:36,657 [INFO] Iter=1800, size=100, max=131.7000, avg=129.1128, min=123.5900, std=1.4913
+vector_recipes: 2022-12-15 00:22:36,701 [INFO] [TEST] Iter=1800, #tests=100, max=150.0000 avg=135.2000, min=94.0000, std=14.2084
+vector_recipes: 2022-12-15 00:22:55,024 [INFO] Iter=1825, size=100, max=135.5700, avg=132.3924, min=123.5800, std=2.2999
+vector_recipes: 2022-12-15 00:23:13,343 [INFO] Iter=1850, size=100, max=137.0900, avg=134.1138, min=127.0500, std=2.2229
+vector_recipes: 2022-12-15 00:23:31,662 [INFO] Iter=1875, size=100, max=134.6700, avg=131.9108, min=124.0900, std=1.8971
+vector_recipes: 2022-12-15 00:23:49,984 [INFO] Iter=1900, size=100, max=134.1700, avg=132.0041, min=126.7100, std=1.5254
+vector_recipes: 2022-12-15 00:23:50,025 [INFO] [TEST] Iter=1900, #tests=100, max=150.0000 avg=135.5300, min=94.0000, std=14.0460
+vector_recipes: 2022-12-15 00:24:08,336 [INFO] Iter=1925, size=100, max=137.6300, avg=134.2691, min=128.3500, std=1.9463
+vector_recipes: 2022-12-15 00:24:26,638 [INFO] Iter=1950, size=100, max=135.3500, avg=133.5050, min=126.4300, std=1.4140
+vector_recipes: 2022-12-15 00:24:44,940 [INFO] Iter=1975, size=100, max=135.7600, avg=133.0579, min=129.0600, std=1.3720
+vector_recipes: 2022-12-15 00:25:03,242 [INFO] Iter=2000, size=100, max=137.5900, avg=135.1999, min=126.0000, std=1.8363
+vector_recipes: 2022-12-15 00:25:03,284 [INFO] [TEST] Iter=2000, #tests=100, max=150.0000 avg=134.9400, min=84.0000, std=14.8451
+vector_recipes: 2022-12-15 00:25:21,604 [INFO] Iter=2025, size=100, max=135.3700, avg=131.9294, min=122.4700, std=2.6591
+vector_recipes: 2022-12-15 00:25:39,923 [INFO] Iter=2050, size=100, max=137.2300, avg=134.5748, min=123.7400, std=2.1526
+vector_recipes: 2022-12-15 00:25:58,240 [INFO] Iter=2075, size=100, max=137.9400, avg=134.9309, min=127.2400, std=1.9830
+vector_recipes: 2022-12-15 00:26:16,555 [INFO] Iter=2100, size=100, max=140.4200, avg=137.9076, min=132.6700, std=1.9756
+vector_recipes: 2022-12-15 00:26:16,598 [INFO] [TEST] Iter=2100, #tests=100, max=150.0000 avg=138.1600, min=94.0000, std=11.5652
+vector_recipes: 2022-12-15 00:26:34,924 [INFO] Iter=2125, size=100, max=137.0500, avg=135.1894, min=130.9600, std=1.3397
+vector_recipes: 2022-12-15 00:26:53,246 [INFO] Iter=2150, size=100, max=137.9800, avg=135.2150, min=130.0300, std=1.9153
+vector_recipes: 2022-12-15 00:27:11,568 [INFO] Iter=2175, size=100, max=138.0600, avg=135.1365, min=129.9700, std=1.7118
+vector_recipes: 2022-12-15 00:27:29,891 [INFO] Iter=2200, size=100, max=141.1700, avg=139.4543, min=134.2200, std=1.3071
+vector_recipes: 2022-12-15 00:27:29,934 [INFO] [TEST] Iter=2200, #tests=100, max=150.0000 avg=137.6700, min=94.0000, std=12.1112
+vector_recipes: 2022-12-15 00:27:48,238 [INFO] Iter=2225, size=100, max=137.4600, avg=135.1874, min=130.4600, std=1.3615
