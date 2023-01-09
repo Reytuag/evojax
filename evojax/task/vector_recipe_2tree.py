@@ -181,6 +181,7 @@ class Gridworld(VectorizedTask):
 
             action = jax.nn.one_hot(action, self.nb_items + 3+6)
 
+            reward=jnp.where(last_reward<5,0,reward)
             last_reward=jnp.where(reward>0,0,state.agent.last_reward+1)
             reward=jnp.where(last_reward>20,-2,reward)
             cur_state = State(state=grid, obs=jnp.concatenate(
