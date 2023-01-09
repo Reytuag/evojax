@@ -1,5 +1,5 @@
 es_name: "OpenES"
-problem_type: "vector_recipes_no_remove"
+problem_type: "vector_recipes_2tree"
 #problem_type: "gridworld_recipes_2tree"
 nb_items: 10
 normalize: false
