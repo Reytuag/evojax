@@ -152,7 +152,7 @@ class Gridworld(VectorizedTask):
                                                    *(grid, action, inventory, state.permutation_recipe))
 
             steps = state.steps + 1
-            done = jnp.logical_or(grid[-1] > 0, steps > self.max_steps)
+            done =(steps > self.max_steps)
 
             # key, subkey = random.split(key)
             # rand=jax.random.uniform(subkey)
