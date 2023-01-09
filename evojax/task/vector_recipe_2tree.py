@@ -183,7 +183,7 @@ class Gridworld(VectorizedTask):
             last_reward=state.agent.last_reward
 
             reward_felt=reward*1.0
-            reward=jnp.where(last_reward<5,0,reward)
+            reward=jnp.where(last_reward<7,0,reward)
             last_reward=jnp.where(reward>0,0,last_reward+1)
             reward=jnp.where(last_reward>20,-2,reward)
             reward_felt = jnp.where(last_reward > 20, -2, reward_felt)
