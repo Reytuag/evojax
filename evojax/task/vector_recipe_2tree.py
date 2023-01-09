@@ -181,12 +181,15 @@ class Gridworld(VectorizedTask):
 
             action = jax.nn.one_hot(action, self.nb_items + 3+6)
             last_reward=state.agent.last_reward
+
+            reward_felt=reward*1.0
             reward=jnp.where(last_reward<5,0,reward)
             last_reward=jnp.where(reward>0,0,last_reward+1)
             reward=jnp.where(last_reward>20,-2,reward)
+            reward_felt = jnp.where(last_reward > 20, -2, reward_felt)
             cur_state = State(state=grid, obs=jnp.concatenate(
                 [get_obs(state=grid), jax.nn.one_hot(inventory, self.nb_items + 3+6),last_reward*jnp.ones((1,))]), last_action=action,
-                              reward=jnp.ones((1,)) * reward,
+                              reward=jnp.ones((1,)) * reward_felt,
                               agent=AgentState(inventory=inventory,last_reward=last_reward),
                               steps=steps, permutation_recipe=state.permutation_recipe, key=key)
 
