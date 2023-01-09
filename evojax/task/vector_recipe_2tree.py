@@ -32,6 +32,7 @@ AGENT_VIEW = 1
 @dataclass
 class AgentState(object):
     inventory: jnp.int32
+    last_reward:jnp.int32
 
 
 @dataclass
@@ -124,7 +125,7 @@ class Gridworld(VectorizedTask):
 
         def reset_fn(key):
             next_key, key = random.split(key)
-            agent = AgentState(inventory=-1)
+            agent = AgentState(inventory=-1,last_reward=0)
             grid = get_init_state_fn(key, self.nb_items)
 
             next_key, key = random.split(next_key)
@@ -141,7 +142,7 @@ class Gridworld(VectorizedTask):
         def rest_keep_recipe(key, recipes, steps, nb_items):
             next_key, key = random.split(key)
 
-            agent = AgentState(inventory=-1)
+            agent = AgentState(inventory=-1,last_reward=0)
             grid = get_init_state_fn(key, nb_items)
 
             return State(state=grid, obs=jnp.concatenate([get_obs(state=grid), jnp.zeros(nb_items + 3+6)]),
@@ -180,10 +181,12 @@ class Gridworld(VectorizedTask):
 
             action = jax.nn.one_hot(action, self.nb_items + 3+6)
 
+            last_reward=jnp.where(reward>0,0,state.agent.last_reward+1)
+            reward=jnp.where(last_reward>20,-2,reward)
             cur_state = State(state=grid, obs=jnp.concatenate(
                 [get_obs(state=grid), jax.nn.one_hot(inventory, self.nb_items + 3+6)]), last_action=action,
                               reward=jnp.ones((1,)) * reward,
-                              agent=AgentState(inventory=inventory),
+                              agent=AgentState(inventory=inventory,last_reward=last_reward),
                               steps=steps, permutation_recipe=state.permutation_recipe, key=key)
 
             # keep it in case we let agent several trials
