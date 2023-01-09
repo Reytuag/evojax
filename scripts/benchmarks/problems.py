@@ -44,10 +44,12 @@ def setup_problem(config, logger):
         return setup_vector_recipes_changes(config)
     elif config["problem_type"] == "vector_recipes_no_remove":
         return setup_vector_recipes_no_remove(config)
+    elif config["problem_type"] == "vector_recipes_2tree":
+        return setup_vector_recipes_2tree(config)
 
 
-def setup_vector_recipes_no_remove(config):
-    from evojax.task.vector_recipe_no_remove import Gridworld
+def setup_vector_recipes_2tree(config):
+    from evojax.task.vector_recipe_2tree import Gridworld
 
     train_task = Gridworld(test=False, nb_items=config["nb_items"], max_steps=config["episode_len"])
     test_task = Gridworld(test=True, nb_items=config["nb_items"], max_steps=config["episode_len"])
