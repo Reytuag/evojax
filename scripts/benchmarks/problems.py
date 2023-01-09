@@ -27,27 +27,138 @@ def setup_problem(config, logger):
     elif config["problem_type"] == "waterworld_ma":
         return setup_waterworld_ma(config)
     elif config["problem_type"] == "gridworld_meta":
-    	return setup_gridworld(config)
+        return setup_gridworld(config)
     elif config["problem_type"] == "gridworld_meta_b":
-    	return setup_gridworld_b(config)
+        return setup_gridworld_b(config)
     elif config["problem_type"] == "gridworld_recipes":
-    	return setup_gridworld_recipes(config)
+        return setup_gridworld_recipes(config)
     elif config["problem_type"] == "gridworld_recipes_reward_item":
-    	return setup_gridworld_recipes_reward_item(config)
+        return setup_gridworld_recipes_reward_item(config)
     elif config["problem_type"] == "vector_recipes_3":
-    	return setup_vector_recipes_3(config)
+        return setup_vector_recipes_3(config)
     elif config["problem_type"] == "vector_recipes":
-    	return setup_vector_recipes(config)
+        return setup_vector_recipes(config)
     elif config["problem_type"] == "CPPR":
-    	return setup_CPPR(config)
+        return setup_CPPR(config)
+    elif config["problem_type"] == "vector_recipes_changes":
+        return setup_vector_recipes_changes(config)
+    elif config["problem_type"] == "vector_recipes_no_remove":
+        return setup_vector_recipes_no_remove(config)
+
+
+def setup_vector_recipes_no_remove(config):
+    from evojax.task.vector_recipe_no_remove import Gridworld
+
+    train_task = Gridworld(test=False, nb_items=config["nb_items"], max_steps=config["episode_len"])
+    test_task = Gridworld(test=True, nb_items=config["nb_items"], max_steps=config["episode_len"])
+    if (config["policy"] == 'SymLA'):
+        policy = SymLA_Policy(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            msg_dim=config["msg_size"],
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            num_micro_ticks=config['num_micro_ticks'],
+            hidden_layers=config["hidden_layers"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN'):
+        policy = MetaRnnPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN2'):
+        policy = MetaRnnPolicy_b2(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim_1=config["hidden_size"],
+            hidden_dim_2=config["hidden_size_2"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN_t'):
+        policy = MetaRnnPolicy_t(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    else:
+        policy = MLPPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dims=[config["hidden_size"]] * 2,
+
+            output_dim=train_task.act_shape[0],
+            output_act_fn="categorical"
+        )
+
+    return train_task, test_task, policy
+
+
+def setup_vector_recipes_changes(config):
+    from evojax.task.vector_recipe_drastic_change import Gridworld
+
+    train_task = Gridworld(test=False, nb_items=config["nb_items"], max_steps=config["episode_len"])
+    test_task = Gridworld(test=True, nb_items=config["nb_items"], max_steps=config["episode_len"])
+    if (config["policy"] == 'SymLA'):
+        policy = SymLA_Policy(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            msg_dim=config["msg_size"],
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            num_micro_ticks=config['num_micro_ticks'],
+            hidden_layers=config["hidden_layers"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN'):
+        policy = MetaRnnPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN2'):
+        policy = MetaRnnPolicy_b2(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim_1=config["hidden_size"],
+            hidden_dim_2=config["hidden_size_2"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN_t'):
+        policy = MetaRnnPolicy_t(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    else:
+        policy = MLPPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dims=[config["hidden_size"]] * 2,
+
+            output_dim=train_task.act_shape[0],
+            output_act_fn="categorical"
+        )
+
+    return train_task, test_task, policy
 
 
 def setup_CPPR(config):
-
     from evojax.task.CPPR_1agent import Gridworld
 
-    train_task = Gridworld(test=False,SX=config["SX"],SY=config["SY"], max_steps=config["episode_len"])
-    test_task = Gridworld(test=True,SX=config["SX"],SY=config["SY"], max_steps=config["episode_len"])
+    train_task = Gridworld(test=False, SX=config["SX"], SY=config["SY"], max_steps=config["episode_len"])
+    test_task = Gridworld(test=True, SX=config["SX"], SY=config["SY"], max_steps=config["episode_len"])
     if (config["policy"] == 'SymLA'):
         policy = SymLA_Policy(
             input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
@@ -98,11 +209,10 @@ def setup_CPPR(config):
 
 
 def setup_vector_recipes(config):
-
     from evojax.task.vector_recipe import Gridworld
 
-    train_task = Gridworld(test=False,nb_items=config["nb_items"], max_steps=config["episode_len"])
-    test_task = Gridworld(test=True,nb_items=config["nb_items"], max_steps=config["episode_len"])
+    train_task = Gridworld(test=False, nb_items=config["nb_items"], max_steps=config["episode_len"])
+    test_task = Gridworld(test=True, nb_items=config["nb_items"], max_steps=config["episode_len"])
     if (config["policy"] == 'SymLA'):
         policy = SymLA_Policy(
             input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
@@ -151,8 +261,8 @@ def setup_vector_recipes(config):
 
     return train_task, test_task, policy
 
-def setup_vector_recipes_3(config):
 
+def setup_vector_recipes_3(config):
     from evojax.task.vector_recipe_3 import Gridworld
 
     train_task = Gridworld(test=False, spawn_prob=config["spawn_prob"], max_steps=config["episode_len"])
@@ -206,186 +316,185 @@ def setup_vector_recipes_3(config):
     return train_task, test_task, policy
 
 
-    
 def setup_gridworld_recipes_reward_item(config):
-
     from evojax.task.gridworld_recipe_reward_item import Gridworld
 
-    train_task = Gridworld(test=False,spawn_prob=config["spawn_prob"])
-    test_task = Gridworld(test=True,spawn_prob=config["spawn_prob"])
-    if(config["policy"]=='SymLA'):
-      policy=SymLA_Policy(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      msg_dim=config["msg_size"],
-      hidden_dim=config["hidden_size"],
-      output_dim=train_task.act_shape[0],
-      num_micro_ticks=config['num_micro_ticks'],
-      output_act_fn="categorical")
-    elif(config["policy"]=='MetaRNN'):
-      policy=MetaRnnPolicy_b(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      hidden_dim=config["hidden_size"],
-      hidden_layers=config["hidden_layers"],
-      encoder=config["encoder"],
-      encoder_size=config["encoder_size"],
-      output_dim=train_task.act_shape[0],
-      output_act_fn="categorical")
-    elif(config["policy"]=='MetaRNN_t'):
-      policy=MetaRnnPolicy_t(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      hidden_dim=config["hidden_size"],
-      output_dim=train_task.act_shape[0],
-      hidden_layers=config["hidden_layers"],
-      encoder=config["encoder"],
-      encoder_size=config["encoder_size"],
-      output_act_fn="categorical")
-    elif(config["policy"]=='MetaRNN2'):
-      policy=MetaRnnPolicy_b2(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      hidden_dim_1=config["hidden_size"],
-      hidden_dim_2=config["hidden_size_2"],
-      output_dim=train_task.act_shape[0],
-      hidden_layers=config["hidden_layers"],
-      encoder=config["encoder"],
-      encoder_size=config["encoder_size"],
-      output_act_fn="categorical")
+    train_task = Gridworld(test=False, spawn_prob=config["spawn_prob"])
+    test_task = Gridworld(test=True, spawn_prob=config["spawn_prob"])
+    if (config["policy"] == 'SymLA'):
+        policy = SymLA_Policy(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            msg_dim=config["msg_size"],
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            num_micro_ticks=config['num_micro_ticks'],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN'):
+        policy = MetaRnnPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_dim=train_task.act_shape[0],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN_t'):
+        policy = MetaRnnPolicy_t(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN2'):
+        policy = MetaRnnPolicy_b2(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim_1=config["hidden_size"],
+            hidden_dim_2=config["hidden_size_2"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
     else:
-      policy = MLPPolicy_b(
-            input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
+        policy = MLPPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
             hidden_dims=[config["hidden_size"]] * 2,
-            
+
             output_dim=train_task.act_shape[0],
             output_act_fn="categorical"
         )
-  
+
     return train_task, test_task, policy
 
+
 def setup_gridworld_recipes(config):
-    if(config["nb_items"]==4):
+    if (config["nb_items"] == 4):
         from evojax.task.gridworld_recipe_4 import Gridworld
     else:
         from evojax.task.gridworld_recipe_3 import Gridworld
 
-    train_task = Gridworld(test=False,spawn_prob=config["spawn_prob"],max_steps=config["episode_len"])
-    test_task = Gridworld(test=True,spawn_prob=config["spawn_prob"],max_steps=config["episode_len"])
-    if(config["policy"]=='SymLA'):
-      policy=SymLA_Policy(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      msg_dim=config["msg_size"],
-      hidden_dim=config["hidden_size"],
-      output_dim=train_task.act_shape[0],
-      num_micro_ticks=config['num_micro_ticks'],
-      hidden_layers=config["hidden_layers"],
-      output_act_fn="categorical")
-    elif(config["policy"]=='MetaRNN'):
-      policy=MetaRnnPolicy_b(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      hidden_dim=config["hidden_size"],
-      output_dim=train_task.act_shape[0],
-      hidden_layers=config["hidden_layers"],
-      encoder=config["encoder"],
-      encoder_size=config["encoder_size"],
-      output_act_fn="categorical")
-    elif(config["policy"]=='MetaRNN2'):
-      policy=MetaRnnPolicy_b2(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      hidden_dim_1=config["hidden_size"],
-      hidden_dim_2=config["hidden_size_2"],
-      output_dim=train_task.act_shape[0],
-      hidden_layers=config["hidden_layers"],
-      encoder=config["encoder"],
-      encoder_size=config["encoder_size"],
-      output_act_fn="categorical")
-    elif(config["policy"]=='MetaRNN_t'):
-      policy=MetaRnnPolicy_t(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      hidden_dim=config["hidden_size"],
-      output_dim=train_task.act_shape[0],
-      hidden_layers=config["hidden_layers"],
-      encoder=config["encoder"],
-      encoder_size=config["encoder_size"],
-      output_act_fn="categorical")
+    train_task = Gridworld(test=False, spawn_prob=config["spawn_prob"], max_steps=config["episode_len"])
+    test_task = Gridworld(test=True, spawn_prob=config["spawn_prob"], max_steps=config["episode_len"])
+    if (config["policy"] == 'SymLA'):
+        policy = SymLA_Policy(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            msg_dim=config["msg_size"],
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            num_micro_ticks=config['num_micro_ticks'],
+            hidden_layers=config["hidden_layers"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN'):
+        policy = MetaRnnPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN2'):
+        policy = MetaRnnPolicy_b2(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim_1=config["hidden_size"],
+            hidden_dim_2=config["hidden_size_2"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN_t'):
+        policy = MetaRnnPolicy_t(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
     else:
-      policy = MLPPolicy_b(
-            input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
+        policy = MLPPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
             hidden_dims=[config["hidden_size"]] * 2,
-            
+
             output_dim=train_task.act_shape[0],
             output_act_fn="categorical"
         )
-  
+
     return train_task, test_task, policy
+
 
 def setup_gridworld_b(config):
-
     from evojax.task.gridworld_repop_bis import Gridworld
 
-    train_task = Gridworld(test=False,spawn_prob=config["spawn_prob"])
-    test_task = Gridworld(test=True,spawn_prob=config["spawn_prob"])
-    if(config["policy"]=='SymLA'):
-      policy=SymLA_Policy(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      msg_dim=config["msg_size"],
-      hidden_dim=config["hidden_size"],
-      output_dim=train_task.act_shape[0],
-      num_micro_ticks=config['num_micro_ticks'],
-      output_act_fn="categorical")
-    elif(config["policy"]=='MetaRNN'):
-      policy=MetaRnnPolicy_b(
-      input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
-      hidden_dim=config["hidden_size"],
-      output_dim=train_task.act_shape[0],
-      output_act_fn="categorical")
+    train_task = Gridworld(test=False, spawn_prob=config["spawn_prob"])
+    test_task = Gridworld(test=True, spawn_prob=config["spawn_prob"])
+    if (config["policy"] == 'SymLA'):
+        policy = SymLA_Policy(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            msg_dim=config["msg_size"],
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            num_micro_ticks=config['num_micro_ticks'],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN'):
+        policy = MetaRnnPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            output_act_fn="categorical")
     else:
-      policy = MLPPolicy_b(
-            input_dim=train_task.obs_shape[0]+train_task.act_shape[0]+1,
+        policy = MLPPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
             hidden_dims=[config["hidden_size"]] * 2,
-            
+
             output_dim=train_task.act_shape[0],
             output_act_fn="categorical"
         )
-  
+
     return train_task, test_task, policy
 
-def setup_gridworld(config):
 
+def setup_gridworld(config):
     from evojax.task.gridworld_repop import Gridworld
 
-    train_task = Gridworld(test=False,spawn_prob=config["spawn_prob"])
-    test_task = Gridworld(test=True,spawn_prob=config["spawn_prob"])
-    if(config["policy"]=='MetaRNN'):
-      policy=MetaRnnPolicy(
-      input_dim=train_task.obs_shape[0],
-      hidden_dim=config["hidden_size"],
-      output_dim=train_task.act_shape[0],
-      output_act_fn="categorical")
-      
-    
+    train_task = Gridworld(test=False, spawn_prob=config["spawn_prob"])
+    test_task = Gridworld(test=True, spawn_prob=config["spawn_prob"])
+    if (config["policy"] == 'MetaRNN'):
+        policy = MetaRnnPolicy(
+            input_dim=train_task.obs_shape[0],
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            output_act_fn="categorical")
+
+
     else:
-      policy = MLPPolicy(
+        policy = MLPPolicy(
             input_dim=train_task.obs_shape[0],
             hidden_dims=[config["hidden_size"]] * 2,
             output_dim=train_task.act_shape[0],
             output_act_fn="categorical"
         )
-  
+
     return train_task, test_task, policy
 
+
 def setup_cartpole(config, hard=False):
-    
-    if(config["policy"]=='MetaRNN'):
+    if (config["policy"] == 'MetaRNN'):
         from evojax.task.cartpole_meta import CartPoleSwingUp
-    
+
         train_task = CartPoleSwingUp(test=False, harder=hard)
         test_task = CartPoleSwingUp(test=True, harder=hard)
-        policy=MetaRnnPolicy(
-    	input_dim=train_task.obs_shape[0],
-    	hidden_dim=config["hidden_size"],
-    	output_dim=train_task.act_shape[0],)
-    	
+        policy = MetaRnnPolicy(
+            input_dim=train_task.obs_shape[0],
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0], )
+
     else:
         from evojax.task.cartpole import CartPoleSwingUp
-    
+
         train_task = CartPoleSwingUp(test=False, harder=hard)
         test_task = CartPoleSwingUp(test=True, harder=hard)
         policy = MLPPolicy(
