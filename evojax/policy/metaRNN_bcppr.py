@@ -45,6 +45,7 @@ class MetaRNN_b(nn.Module):
                 out = jax.nn.tanh(layer(out))
 
         inputs_encoded= jnp.concatenate([out,last_action,reward])
+
         for _ in range(self._num_micro_ticks):
             carry,out= self._lstm(carry,inputs_encoded)
         for layer in self._hiddens:

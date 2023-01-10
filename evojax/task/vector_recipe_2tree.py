@@ -179,11 +179,14 @@ class Gridworld(VectorizedTask):
             # permutation_recipe=jnp.where(catastrophic,state.permutation_recipe.at[1].set(b).at[2].set(a), state.permutation_recipe)
             # steps = jnp.where(catastrophic, jnp.zeros((), jnp.int32), steps)
 
+            #catastrophic at timestep max -200
+            permutation_recipe=jnp.where(steps==self.max_steps-200,state.permutation_recipe.at[:3].set(self.nb_items+3+6+10),state.permutation_recipe)
+
             action = jax.nn.one_hot(action, self.nb_items + 3+6)
             last_reward=state.agent.last_reward
 
             reward_felt=reward*1.0
-            reward=jnp.where(last_reward<7,0,reward)
+            reward=jnp.where(last_reward<3,0,reward)
             last_reward=jnp.where(reward>0,0,last_reward+1)
             reward=jnp.where(last_reward>20,-2,reward)
             reward_felt = jnp.where(last_reward > 20, -2, reward_felt)
@@ -191,7 +194,9 @@ class Gridworld(VectorizedTask):
                 [get_obs(state=grid), jax.nn.one_hot(inventory, self.nb_items + 3+6),last_reward*jnp.ones((1,))]), last_action=action,
                               reward=jnp.ones((1,)) * reward_felt,
                               agent=AgentState(inventory=inventory,last_reward=last_reward),
-                              steps=steps, permutation_recipe=state.permutation_recipe, key=key)
+                              steps=steps, permutation_recipe=permutation_recipe, key=key)
+
+
 
             # keep it in case we let agent several trials
             state = jax.lax.cond(
