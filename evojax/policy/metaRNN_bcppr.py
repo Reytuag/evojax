@@ -16,7 +16,7 @@ from evojax.policy.base import PolicyState
 from evojax.util import create_logger
 from evojax.util import get_params_format_fn
 
-class MetaRNN_b(nn.Module):
+class MetaRNN_bcppr(nn.Module):
     output_size:int
     out_fn:str
     hidden_layers:list
@@ -63,7 +63,7 @@ class MetaRNN_b(nn.Module):
         return h,c,out
 
 @dataclass
-class metaRNNPolicyState_b(PolicyState):
+class metaRNNPolicyState_bcppr(PolicyState):
     lstm_h:jnp.array
     lstm_c:jnp.array
     keys:jnp.array
@@ -73,7 +73,7 @@ class metaRNNPolicyState_b(PolicyState):
 
 
 
-class MetaRnnPolicy_b(PolicyNetwork):
+class MetaRnnPolicy_bcppr(PolicyNetwork):
 
     def __init__(self,input_dim: int,
                     hidden_dim: int,

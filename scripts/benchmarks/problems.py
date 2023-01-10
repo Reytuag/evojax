@@ -9,6 +9,7 @@ from evojax.policy import MetaRnnPolicy
 from evojax.policy import MetaRnnPolicy_b
 from evojax.policy import MetaRnnPolicy_t
 from evojax.policy import MetaRnnPolicy_b2
+from evojax.policy import MetaRnnPolicy_bcppr
 from evojax.policy.convnet import ConvNetPolicy
 from evojax.policy import SymLA_Policy
 
@@ -230,6 +231,15 @@ def setup_CPPR(config):
             hidden_layers=config["hidden_layers"],
             encoder=config["encoder"],
             encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN_bcppr'):
+        policy = MetaRnnPolicy_bcppr(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_layers=config["encoder_layers"],
             output_act_fn="categorical")
     elif (config["policy"] == 'MetaRNN2'):
         policy = MetaRnnPolicy_b2(
