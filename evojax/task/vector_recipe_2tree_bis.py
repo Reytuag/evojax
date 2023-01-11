@@ -52,10 +52,10 @@ def get_obs(state: jnp.ndarray) -> jnp.ndarray:
 
 
 def get_init_state_fn(key: jnp.ndarray, nb_items) -> jnp.ndarray:
-    grid = jnp.zeros((nb_items + 3+6,))
+    grid = jnp.zeros((nb_items + 1+1,))
 
-    grid = grid.at[:4].set(1)
-    grid = grid.at[6:6+nb_items].set(1)
+
+    grid = grid.at[:nb_items].set(1)
 
     return (grid)
 
@@ -63,33 +63,25 @@ def get_init_state_fn(key: jnp.ndarray, nb_items) -> jnp.ndarray:
 def test_recipes(action, inventory, recipes, nb_items):
     recipe_done = jnp.where(jnp.logical_or(jnp.logical_and(recipes[0] == inventory, recipes[1] == action),
                                            jnp.logical_and(recipes[0] == action, recipes[1] == inventory)),
-                            jnp.array([recipes[0], recipes[1], 4]),
+                            jnp.array([recipes[0], recipes[1], nb_items]),
                             jnp.zeros(3, jnp.int32))
-    recipe_done = jnp.where(jnp.logical_or(jnp.logical_and(recipes[2] == inventory, action == 4),
-                                           jnp.logical_and(inventory == 4, recipes[2] == action)),
-                            jnp.array([recipes[2], 4, 5]), recipe_done)
 
 
-    recipe_done = jnp.where(jnp.logical_or(jnp.logical_and(recipes[3] == inventory, recipes[4] == action),
-                                           jnp.logical_and(recipes[3] == action, recipes[4] == inventory)),
-                            jnp.array([recipes[3], recipes[4], nb_items+6]),
+
+    recipe_done = jnp.where(jnp.logical_or(jnp.logical_and(recipes[2] == inventory, recipes[3] == action),
+                                           jnp.logical_and(recipes[2] == action, recipes[3] == inventory)),
+                            jnp.array([recipes[2], recipes[3], nb_items+1]),
                             recipe_done)
-    recipe_done = jnp.where(jnp.logical_or(jnp.logical_and(recipes[5] == inventory, action == nb_items+6),
-                                           jnp.logical_and(inventory == nb_items+6, recipes[5] == action)),
-                            jnp.array([recipes[5], nb_items+6, nb_items+7]), recipe_done)
 
-    recipe_done = jnp.where(jnp.logical_or(jnp.logical_and(recipes[6] == inventory, action == nb_items + 7),
-                                           jnp.logical_and(inventory == nb_items + 7, recipes[6] == action)),
-                            jnp.array([recipes[6], nb_items + 7, nb_items + 8]), recipe_done)
     product = recipe_done[2]
-    reward = jnp.select([product == 0, product == 4, product == 5, product == nb_items + 6,product == nb_items + 7,product == nb_items + 8],
-                        [0., 1., 2., 4.,8.,16.])
+    reward = jnp.select([product == 0, product == nb_items, product == nb_items+1],
+                        [0., 1., 4.])
     return recipe_done, reward
 
 
 def try_recipe(grid, action, inventory, permutation_recipes):
     in_env = grid[action] > 0
-    nb_items = grid.shape[0] - 3-6
+    nb_items = grid.shape[0] - 1-1
     recipe_done, reward = jax.lax.cond(in_env, test_recipes,
                                        lambda x, y, z, a: (jnp.zeros(3, jnp.int32), 0.),
                                        *(action, inventory, permutation_recipes, nb_items))
@@ -118,8 +110,8 @@ class Gridworld(VectorizedTask):
                  test: bool = False,
                  nb_items=5):
         self.max_steps = max_steps
-        self.obs_shape = tuple([(nb_items + 3+6) * 2+1, ])
-        self.act_shape = tuple([nb_items + 3+6, ])
+        self.obs_shape = tuple([(nb_items + 1+1) * 2+1, ])
+        self.act_shape = tuple([nb_items + 1+1, ])
         self.test = test
         self.nb_items = nb_items
 
@@ -129,12 +121,12 @@ class Gridworld(VectorizedTask):
             grid = get_init_state_fn(key, self.nb_items)
 
             next_key,key2, key = random.split(next_key,3)
-            permutation_recipe = jnp.concatenate([jax.random.permutation(key, 4)[:3],jax.random.permutation(key2, nb_items)[:4]+6])
+            permutation_recipe = jnp.concatenate([jax.random.permutation(key, nb_items)[:2],jax.random.permutation(key2, nb_items)[:2]])
             # rand=jax.random.uniform(key)
             # permutation_recipe=jnp.where(rand>0.5,jnp.array([1,2,3]),jnp.array([1,3,2]))
             # permutation_recipe=jnp.where(rand<0.5,jnp.array([2,3,1]),permutation_recipe)
-            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid), jnp.zeros(self.nb_items + 3 +6),jnp.zeros((1,))]),
-                         last_action=jnp.zeros((self.nb_items + 3+6,)), reward=jnp.zeros((1,)), agent=agent,
+            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid), jnp.zeros(self.nb_items + 1 +1),jnp.zeros((1,))]),
+                         last_action=jnp.zeros((self.nb_items + 1+1,)), reward=jnp.zeros((1,)), agent=agent,
                          steps=jnp.zeros((), dtype=int), permutation_recipe=permutation_recipe, key=next_key)
 
         self._reset_fn = jax.jit(jax.vmap(reset_fn))
@@ -145,8 +137,8 @@ class Gridworld(VectorizedTask):
             agent = AgentState(inventory=-1,last_reward=0)
             grid = get_init_state_fn(key, nb_items)
 
-            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid), jnp.zeros(nb_items + 3+6),jnp.zeros((1,))]),
-                         last_action=jnp.zeros((nb_items + 3+6,)), reward=jnp.zeros((1,)), agent=agent,
+            return State(state=grid, obs=jnp.concatenate([get_obs(state=grid), jnp.zeros(nb_items + 1+1),jnp.zeros((1,))]),
+                         last_action=jnp.zeros((nb_items + 1+1,)), reward=jnp.zeros((1,)), agent=agent,
                          steps=steps, permutation_recipe=recipes, key=next_key)
 
         def step_fn(state, action):
@@ -180,22 +172,22 @@ class Gridworld(VectorizedTask):
             # steps = jnp.where(catastrophic, jnp.zeros((), jnp.int32), steps)
 
             #catastrophic at timestep max -200
-            permutation_recipe=jnp.where(steps==self.max_steps-200,state.permutation_recipe.at[:3].set(self.nb_items+3+6+10),state.permutation_recipe)
+            #permutation_recipe=jnp.where(steps==self.max_steps-200,state.permutation_recipe.at[:3].set(self.nb_items+1+1+10),state.permutation_recipe)
 
-            action = jax.nn.one_hot(action, self.nb_items + 3+6)
+            action = jax.nn.one_hot(action, self.nb_items + 1+1)
             last_reward=state.agent.last_reward
 
             reward_felt=reward*1.0
-            reward=jnp.where(last_reward<5,0,reward)
+            #reward=jnp.where(last_reward<5,0,reward)
             last_reward=jnp.where(reward>0,0,last_reward+1)
-            reward=jnp.where(last_reward>20,-8,reward)
-            reward_felt = jnp.where(last_reward > 20, -8, reward_felt)
+            #reward=jnp.where(last_reward>20,-8,reward)
+            #reward_felt = jnp.where(last_reward > 20, -8, reward_felt)
 
             cur_state = State(state=grid, obs=jnp.concatenate(
-                [get_obs(state=grid), jax.nn.one_hot(inventory, self.nb_items + 3+6),last_reward*jnp.ones((1,))]), last_action=action,
+                [get_obs(state=grid), jax.nn.one_hot(inventory, self.nb_items + 1+1),last_reward*jnp.ones((1,))]), last_action=action,
                               reward=jnp.ones((1,)) * reward_felt,
                               agent=AgentState(inventory=inventory,last_reward=last_reward),
-                              steps=steps, permutation_recipe=permutation_recipe, key=key)
+                              steps=steps, permutation_recipe=state.permutation_recipe, key=key)
 
 
 

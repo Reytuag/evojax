@@ -47,7 +47,62 @@ def setup_problem(config, logger):
         return setup_vector_recipes_no_remove(config)
     elif config["problem_type"] == "vector_recipes_2tree":
         return setup_vector_recipes_2tree(config)
+    elif config["problem_type"] == "vector_recipes_2tree_bis":
+        return setup_vector_recipes_2tree_bis(config)
 
+
+def setup_vector_recipes_2tree_bis(config):
+    from evojax.task.vector_recipe_2tree_bis import Gridworld
+
+    train_task = Gridworld(test=False, nb_items=config["nb_items"], max_steps=config["episode_len"])
+    test_task = Gridworld(test=True, nb_items=config["nb_items"], max_steps=config["episode_len"])
+    if (config["policy"] == 'SymLA'):
+        policy = SymLA_Policy(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            msg_dim=config["msg_size"],
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            num_micro_ticks=config['num_micro_ticks'],
+            hidden_layers=config["hidden_layers"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN'):
+        policy = MetaRnnPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN2'):
+        policy = MetaRnnPolicy_b2(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim_1=config["hidden_size"],
+            hidden_dim_2=config["hidden_size_2"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    elif (config["policy"] == 'MetaRNN_t'):
+        policy = MetaRnnPolicy_t(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dim=config["hidden_size"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            encoder=config["encoder"],
+            encoder_size=config["encoder_size"],
+            output_act_fn="categorical")
+    else:
+        policy = MLPPolicy_b(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            hidden_dims=[config["hidden_size"]] * 2,
+
+            output_dim=train_task.act_shape[0],
+            output_act_fn="categorical"
+        )
+
+    return train_task, test_task, policy
 def setup_vector_recipes_2tree(config):
     from evojax.task.vector_recipe_2tree import Gridworld
 
