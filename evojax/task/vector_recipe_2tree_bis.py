@@ -180,7 +180,7 @@ class Gridworld(VectorizedTask):
             reward_felt=reward*1.0
             #reward=jnp.where(last_reward<5,0,reward)
             last_reward=jnp.where(reward>0,0,last_reward+1)
-            #reward=jnp.where(last_reward>20,-8,reward)
+            reward=jnp.where(last_reward>100,-4,reward)
             #reward_felt = jnp.where(last_reward > 20, -8, reward_felt)
 
             cur_state = State(state=grid, obs=jnp.concatenate(
