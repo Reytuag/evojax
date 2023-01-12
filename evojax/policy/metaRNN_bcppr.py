@@ -96,7 +96,7 @@ class MetaRnnPolicy_bcppr(PolicyNetwork):
             self._logger.info('MetaRNNPolicy.num_params = {}'.format(self.num_params))
             self.hidden_dim=hidden_dim
             self.encoder=encoder
-            self.hidden_layers=hidden_layers
+            self.encoder_layers=encoder_layers
             self._format_params_fn = (jax.vmap(format_params_fn))
             self._forward_fn = (jax.vmap(model.apply))
 
