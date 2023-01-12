@@ -95,7 +95,6 @@ class MetaRnnPolicy_bcppr(PolicyNetwork):
             self.num_params, format_params_fn = get_params_format_fn(self.params)
             self._logger.info('MetaRNNPolicy.num_params = {}'.format(self.num_params))
             self.hidden_dim=hidden_dim
-            self.in_lstm=jnp.where(encoder,encoder_layers[-1],input_dim)
             self._format_params_fn = (jax.vmap(format_params_fn))
             self._forward_fn = (jax.vmap(model.apply))
 
@@ -107,8 +106,8 @@ class MetaRnnPolicy_bcppr(PolicyNetwork):
             PolicyState. Policy internal states.
         """
         keys = jax.random.split(jax.random.PRNGKey(0), states.obs.shape[0])
-        h= jnp.zeros((self.in_lstm,self.hidden_dim))
-        c= jnp.zeros((self.in_lstm,self.hidden_dim))
+        h= jnp.zeros((states.obs.shape[0],self.hidden_dim))
+        c= jnp.zeros((states.obs.shape[0],self.hidden_dim))
         return metaRNNPolicyState_bcppr(keys=keys,lstm_h=h,lstm_c=c)
 
 
