@@ -133,7 +133,7 @@ class Gridworld(VectorizedTask):
                  test: bool = False):
         self.max_steps = max_steps
 
-        self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*3+1, ])
+        self.obs_shape = tuple([(AGENT_VIEW*2+1)*(AGENT_VIEW*2+1)*3, ])
         # self.obs_shape=11*5*4
         self.act_shape = tuple([4, ])
         self.test = test
