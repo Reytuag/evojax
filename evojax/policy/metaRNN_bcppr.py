@@ -108,12 +108,12 @@ class MetaRnnPolicy_bcppr(PolicyNetwork):
         keys = jax.random.split(jax.random.PRNGKey(0), states.obs.shape[0])
         h= jnp.zeros((states.obs.shape[0],self.hidden_dim))
         c= jnp.zeros((states.obs.shape[0],self.hidden_dim))
-        return metaRNNPolicyState_b(keys=keys,lstm_h=h,lstm_c=c)
+        return metaRNNPolicyState_bcppr(keys=keys,lstm_h=h,lstm_c=c)
 
 
 
     def get_actions(self,t_states: TaskState,params: jnp.ndarray,p_states: PolicyState):
         params = self._format_params_fn(params)
         h,c,out=self._forward_fn(params,p_states.lstm_h,p_states.lstm_c, t_states.obs,t_states.last_action,t_states.reward)
-        return out, metaRNNPolicyState_b(keys=p_states.keys,lstm_h=h,lstm_c=c)
+        return out, metaRNNPolicyState_bcppr(keys=p_states.keys,lstm_h=h,lstm_c=c)
 
