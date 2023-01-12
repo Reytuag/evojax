@@ -91,10 +91,12 @@ class MetaRnnPolicy_bcppr(PolicyNetwork):
                         self._logger = logger
             model=MetaRNN_bcppr(output_dim,out_fn=output_act_fn,hidden_layers=hidden_layers,encoder_in=encoder,encoder_layers=encoder_layers)
             self.params = model.init(jax.random.PRNGKey(0),jnp.zeros((hidden_dim)),jnp.zeros((hidden_dim)), jnp.zeros([ input_dim-output_dim-1]),jnp.zeros([output_dim]),jnp.zeros([1]))
-            
+
             self.num_params, format_params_fn = get_params_format_fn(self.params)
             self._logger.info('MetaRNNPolicy.num_params = {}'.format(self.num_params))
             self.hidden_dim=hidden_dim
+            self.encoder=encoder
+            self.hidden_layers=hidden_layers
             self._format_params_fn = (jax.vmap(format_params_fn))
             self._forward_fn = (jax.vmap(model.apply))
 
