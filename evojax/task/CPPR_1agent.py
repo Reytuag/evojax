@@ -158,7 +158,7 @@ class Gridworld(VectorizedTask):
             grid = get_init_state_fn(key, SX, SY, posx, posy, pos_food_x, pos_food_y, self.climate_type,
                                      self.climate_var)
 
-            return State(state=grid, obs=get_obs_vector(grid, posx[0], posy[0]), last_action=jnp.zeros(( 5,)),
+            return State(state=grid, obs=get_obs_vector(grid, posx[0], posy[0]), last_action=jnp.zeros(( 4,)),
                          reward=jnp.zeros((1,)), agents=agents,
                          steps=jnp.zeros((), dtype=int), key=next_key)
 
@@ -174,7 +174,7 @@ class Gridworld(VectorizedTask):
             key, subkey = random.split(state.key)
             #maybe later make the agent to output the one hot categorical
             actions=jax.random.categorical(subkey,actions)
-            actions=jax.nn.one_hot(actions,5)
+            actions=jax.nn.one_hot(actions,4)
 
             action_int=actions.astype(jnp.int32)
             posx = state.agents.posx - action_int[ 0] + action_int[ 2]
