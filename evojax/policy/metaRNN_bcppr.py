@@ -106,8 +106,8 @@ class MetaRnnPolicy_bcppr(PolicyNetwork):
             PolicyState. Policy internal states.
         """
         keys = jax.random.split(jax.random.PRNGKey(0), states.obs.shape[0])
-        h= jnp.zeros((states.obs.shape[0],self.hidden_dim))
-        c= jnp.zeros((states.obs.shape[0],self.hidden_dim))
+        h= jnp.zeros((jnp.where(self.encoder,self.encoder_layers[-1],states.obs.shape[0]),self.hidden_dim))
+        c= jnp.zeros((jnp.where(self.encoder,self.encoder_layers[-1],states.obs.shape[0]),self.hidden_dim))
         return metaRNNPolicyState_bcppr(keys=keys,lstm_h=h,lstm_c=c)
 
 
