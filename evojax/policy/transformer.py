@@ -136,7 +136,7 @@ class TransformerPolicy(PolicyNetwork):
             self._logger = logger
         model = Transformer(output_size=output_dim, hidden_layers=hidden_layers, encoder_size=encoder_size,
                             qkv_features=qkv_features, num_heads=num_heads, out_features=[encoder_size, encoder_size],
-                            max_len=100)
+                            max_len=max_len)
         self.params = model.init(jax.random.PRNGKey(0), jnp.zeros((1, max_len, input_dim)), jnp.ones((1, max_len)),
                                  timestep=0)
 
