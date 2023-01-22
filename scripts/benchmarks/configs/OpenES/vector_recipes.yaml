@@ -14,10 +14,12 @@ es_config:
     lrate_decay: 0.9998
     lrate_limit: 0.001
     momentum: 0.0
-policy: "MetaRNN_t"
+policy: "Transformer"
 hidden_size: 128
 #hidden_size_2: 64
-hidden_layers: [64,32]
+hidden_layers: [32,16]
+num_heads: 4
+qkv_features: 32
 num_tests: 100
 n_repeats: 10
 max_iter: 10000
@@ -30,5 +32,5 @@ debug: false
 spawn_prob: 0.005
 model_dir: ""
 encoder: False
-encoder_size: 64
-search_eval_id: "7_items_vector"
+encoder_size: 32
+search_eval_id: "5_items_vector_transformer"

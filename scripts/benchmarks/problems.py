@@ -12,6 +12,7 @@ from evojax.policy import MetaRnnPolicy_b2
 from evojax.policy import MetaRnnPolicy_bcppr
 from evojax.policy.convnet import ConvNetPolicy
 from evojax.policy import SymLA_Policy
+from evojax.policy import TransformerPolicy
 
 
 def setup_problem(config, logger):
@@ -369,6 +370,17 @@ def setup_vector_recipes(config):
             encoder=config["encoder"],
             encoder_size=config["encoder_size"],
             output_act_fn="categorical")
+
+    elif (config["policy"] == 'Transformer'):
+        policy = TransformerPolicy(
+            input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,
+            qkv_features= config["qkv_features"],
+            output_dim=train_task.act_shape[0],
+            hidden_layers=config["hidden_layers"],
+            num_heads=config.num_heads["num_heads"],
+            max_len=config.["episode_len"],
+            out_features=config["encoder_size"],
+            encoder_size=config["encoder_size"],)
     else:
         policy = MLPPolicy_b(
             input_dim=train_task.obs_shape[0] + train_task.act_shape[0] + 1,

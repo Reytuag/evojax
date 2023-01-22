@@ -16,6 +16,7 @@ from evojax.policy.base import PolicyState
 from evojax.util import create_logger
 from evojax.util import get_params_format_fn
 
+
 class MetaRNN_bcppr(nn.Module):
     output_size:int
     out_fn:str

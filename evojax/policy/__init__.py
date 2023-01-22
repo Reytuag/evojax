@@ -23,7 +23,8 @@ from .metaRNN_ter import MetaRnnPolicy_t
 from .symla1layer import SymLA_Policy
 from .metaRNN_2layers import MetaRnnPolicy_b2
 from .metaRNN_bcppr import MetaRnnPolicy_bcppr
+from.transformer import TransformerPolicy
 
 
 __all__ = ['PolicyNetwork', 'MLPPolicy','MLPPolicy_b', 'PermutationInvariantPolicy',
-           'ConvNetPolicy', 'Seq2seqPolicy','MetaRnnPolicy','MetaRnnPolicy_b','MetaRnnPolicy_t','SymLA_Policy','MetaRnnPolicy_bcppr']
+           'ConvNetPolicy', 'Seq2seqPolicy','MetaRnnPolicy','MetaRnnPolicy_b','MetaRnnPolicy_t','SymLA_Policy','MetaRnnPolicy_bcppr','TransformerPolicy']
