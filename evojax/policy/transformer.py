@@ -158,16 +158,16 @@ class TransformerPolicy(PolicyNetwork):
         history = jnp.zeros((states.obs.shape[0], 1, self.max_len, self.input_dim))
         mask = jnp.zeros((states.obs.shape[0], 1, self.input_dim, self.max_len))
 
-        return transformer_state(keys=keys, history=history, mask=mask, timesteps=jnp.zeros((states.obs.shape[0],)))
+        return transformer_state(keys=keys, history=history, mask=mask,
+                                 timesteps=jnp.zeros((states.obs.shape[0],), dtype=jnp.int8))
 
     def get_actions(self, t_states: TaskState, params: jnp.ndarray, p_states: PolicyState):
         params = self._format_params_fn(params)
         new_inp = jnp.concatenate([t_states.obs, t_states.last_action, t_states.reward], axis=-1)
-        timesteps = t_states.steps
+        timesteps = p_states.timesteps
         history = p_states.history.at[:, 0, timesteps[0]].set(new_inp)
         mask = p_states.mask.at[:, 0, timesteps[0]].set(1)
 
         out = self._forward_fn(params, inputs=history, mask=mask, timestep=timesteps)
         timesteps = timesteps + 1
         return out, transformer_state(keys=p_states.keys, history=history, mask=mask, timesteps=timesteps)
-
