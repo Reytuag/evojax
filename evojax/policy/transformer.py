@@ -166,7 +166,7 @@ class TransformerPolicy(PolicyNetwork):
         new_inp = jnp.concatenate([t_states.obs, t_states.last_action, t_states.reward], axis=-1)
         timesteps = p_states.timesteps
         history=p_states.history
-        history=jnp.where(timesteps[0]>=max_len,jnp.roll(history,-1,axis=-2),history)
+        history=jnp.where(timesteps[0]>=self.max_len,jnp.roll(history,-1,axis=-2),history)
         history = history.at[:, 0, jnp.maximum(timesteps[0],self.max_len-1)].set(new_inp)
         mask = p_states.mask.at[:, 0, jnp.maximum(timesteps[0],self.max_len-1)].set(1)
 
