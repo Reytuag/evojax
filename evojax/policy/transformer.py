@@ -156,7 +156,7 @@ class TransformerPolicy(PolicyNetwork):
         """
         keys = jax.random.split(jax.random.PRNGKey(0), states.obs.shape[0])
         history = jnp.zeros((states.obs.shape[0], 1, self.max_len, self.input_dim))
-        mask = jnp.zeros((states.obs.shape[0], 1, self.input_dim, self.max_len))
+        mask = jnp.zeros((states.obs.shape[0], 1,  self.max_len))
 
         return transformer_state(keys=keys, history=history, mask=mask,
                                  timesteps=jnp.zeros((states.obs.shape[0],), dtype=jnp.int8))
