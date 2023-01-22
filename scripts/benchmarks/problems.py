@@ -379,7 +379,6 @@ def setup_vector_recipes(config):
             hidden_layers=config["hidden_layers"],
             num_heads=config.num_heads["num_heads"],
             max_len=config.["max_len"],
-            out_features=config["encoder_size"],
             encoder_size=config["encoder_size"],)
     else:
         policy = MLPPolicy_b(
