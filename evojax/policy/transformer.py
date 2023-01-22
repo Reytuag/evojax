@@ -167,8 +167,8 @@ class TransformerPolicy(PolicyNetwork):
         timesteps = p_states.timesteps
         history=p_states.history
         history=jnp.where(timesteps[0]>=self.max_len,jnp.roll(history,-1,axis=-2),history)
-        history = history.at[:, 0, jnp.maximum(timesteps[0],self.max_len-1)].set(new_inp)
-        mask = p_states.mask.at[:, 0, jnp.maximum(timesteps[0],self.max_len-1)].set(1)
+        history = history.at[:, 0, jnp.minimum(timesteps[0],self.max_len-1)].set(new_inp)
+        mask = p_states.mask.at[:, 0, jnp.minimum(timesteps[0],self.max_len-1)].set(1)
 
         out = self._forward_fn(params, inputs=history, mask=mask, timestep=timesteps)
         timesteps = timesteps + 1
