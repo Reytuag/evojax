@@ -378,7 +378,7 @@ def setup_vector_recipes(config):
             output_dim=train_task.act_shape[0],
             hidden_layers=config["hidden_layers"],
             num_heads=config.num_heads["num_heads"],
-            max_len=config.["episode_len"],
+            max_len=config.["max_len"],
             out_features=config["encoder_size"],
             encoder_size=config["encoder_size"],)
     else:
