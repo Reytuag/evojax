@@ -42,7 +42,7 @@ class transformer_layer(nn.Module):
     num_heads: int
     out_features: int
     qkv_features: int
-    causal: Bool
+    causal: bool
 
     def setup(self):
         self.attention1 = nn.SelfAttention(num_heads=self.num_heads, qkv_features=self.qkv_features,
