@@ -377,8 +377,9 @@ def setup_vector_recipes(config):
             qkv_features= config["qkv_features"],
             output_dim=train_task.act_shape[0],
             hidden_layers=config["hidden_layers"],
-            num_heads=config.num_heads["num_heads"],
-            max_len=config.["max_len"],
+            num_heads=config["num_heads"],
+            max_len=config["max_len"],
+            causal=config["causal"],
             encoder_size=config["encoder_size"],)
     else:
         policy = MLPPolicy_b(

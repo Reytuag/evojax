@@ -79,6 +79,7 @@ class Transformer(nn.Module):
     out_features: list
     max_len: int
     qkv_features: int
+    causal:bool
 
     def setup(self):
         self.encoder = nn.Dense(self.encoder_size)
@@ -86,9 +87,9 @@ class Transformer(nn.Module):
         self.positional_encoding = PositionalEncoding(self.encoder_size, max_len=self.max_len)
 
         self.tf_layer1 = transformer_layer(num_heads=self.num_heads, qkv_features=self.qkv_features,
-                                           out_features=self.out_features[0])
+                                           out_features=self.out_features[0],decode=self.causal)
         self.tf_layer2 = transformer_layer(num_heads=self.num_heads, qkv_features=self.qkv_features,
-                                           out_features=self.out_features[1])
+                                           out_features=self.out_features[1],decode=self.causal)
 
         self._hiddens = [(nn.Dense(size)) for size in self.hidden_layers]
         # self._encoder=nn.Dense(64)
@@ -128,6 +129,7 @@ class TransformerPolicy(PolicyNetwork):
                  num_heads: int = 4,
                  encoder_size: int = 32,
                  max_len: int = 100,
+                 causal: bool =False,
                  logger: logging.Logger = None):
 
         if logger is None:
@@ -136,7 +138,7 @@ class TransformerPolicy(PolicyNetwork):
             self._logger = logger
         model = Transformer(output_size=output_dim, hidden_layers=hidden_layers, encoder_size=encoder_size,
                             qkv_features=qkv_features, num_heads=num_heads, out_features=[encoder_size, encoder_size],
-                            max_len=max_len)
+                            max_len=max_len,causal=causal)
         self.params = model.init(jax.random.PRNGKey(0), jnp.zeros((1, max_len, input_dim)), jnp.ones((1, max_len)),
                                  timestep=0)
 
