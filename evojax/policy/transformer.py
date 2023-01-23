@@ -42,10 +42,11 @@ class transformer_layer(nn.Module):
     num_heads: int
     out_features: int
     qkv_features: int
+    causal: Bool
 
     def setup(self):
         self.attention1 = nn.SelfAttention(num_heads=self.num_heads, qkv_features=self.qkv_features,
-                                           out_features=self.out_features)
+                                           out_features=self.out_features,decode=self.causal)
 
         self.ln1 = nn.LayerNorm()
 
@@ -87,9 +88,9 @@ class Transformer(nn.Module):
         self.positional_encoding = PositionalEncoding(self.encoder_size, max_len=self.max_len)
 
         self.tf_layer1 = transformer_layer(num_heads=self.num_heads, qkv_features=self.qkv_features,
-                                           out_features=self.out_features[0],decode=self.causal)
+                                           out_features=self.out_features[0],causal=self.causal)
         self.tf_layer2 = transformer_layer(num_heads=self.num_heads, qkv_features=self.qkv_features,
-                                           out_features=self.out_features[1],decode=self.causal)
+                                           out_features=self.out_features[1],causal=self.causal)
 
         self._hiddens = [(nn.Dense(size)) for size in self.hidden_layers]
         # self._encoder=nn.Dense(64)
